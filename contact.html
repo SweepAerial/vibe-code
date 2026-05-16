@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Sweep Aerial Photography</title>
+  <meta name="description" content="Get in touch with Sweep Aerial Photography for a free consultation and quote on drone mapping, GIS, construction monitoring, and aerial survey services.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar scrolled" id="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="images/logo.svg" alt="Sweep Aerial Photography" onerror="this.style.display='none'">
+      <span class="navbar__logo-text">SWEEP <span>AERIAL</span></span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="portal.html" class="btn btn--primary">Client Portal</a></li>
+    </ul>
+    <button class="navbar__hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="portal.html">Client Portal</a>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="contact-hero" style="background:var(--black);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 100%,rgba(105,37,191,0.1) 0%,transparent 70%);"></div>
+  <div class="container" style="position:relative;">
+    <div class="tag fade-in">Get in Touch</div>
+    <h1 class="fade-in">Let's Discuss<br><span class="text-purple">Your Project.</span></h1>
+    <div class="divider fade-in"></div>
+    <p class="fade-in" style="max-width:520px;font-size:1.05rem;">Whether you have a clear brief or just an idea, we're happy to talk through what aerial intelligence can do for your project. Free consultation, no obligation.</p>
+  </div>
+</section>
+
+<!-- ── Contact Form ── -->
+<section class="section" style="background:var(--black-soft);">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Form -->
+      <div class="contact-form-wrap fade-in">
+        <h2>Send Us a Message</h2>
+        <p>Fill in the form below and we'll get back to you within 1 business day.</p>
+
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Message Sent!</h3>
+          <p>Your message has been sent. We'll be in touch within 1 business day.</p>
+          <a href="index.html" class="btn btn--outline" style="margin-top:20px;">Back to Home</a>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Full Name *</label>
+              <input class="form-control" type="text" id="name" name="name" placeholder="John Smith" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input class="form-control" type="email" id="email" name="email" placeholder="john@company.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="company">Company / Organisation</label>
+              <input class="form-control" type="text" id="company" name="company" placeholder="Acme Construction Pty Ltd">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input class="form-control" type="tel" id="phone" name="phone" placeholder="+61 400 000 000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">Service of Interest *</label>
+            <select class="form-control" id="service" name="service" required>
+              <option value="" disabled selected>Select a service...</option>
+              <option value="Drone Mapping & 3D Reconstruction">Drone Mapping & 3D Reconstruction</option>
+              <option value="Gaussian Splatting">Gaussian Splatting</option>
+              <option value="Construction Progress Monitoring">Construction Progress Monitoring</option>
+              <option value="Stockpile Volume Analysis">Stockpile Volume Analysis</option>
+              <option value="GIS Data & Outputs">GIS Data & Outputs</option>
+              <option value="Inspection & Reporting">Inspection & Reporting</option>
+              <option value="Multiple / Custom">Multiple Services / Custom Requirements</option>
+            </select>
+            <div class="service-select-note">Not sure? Select "Multiple / Custom" and tell us about your project in the message.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="site">Site Location / Area (optional)</label>
+            <input class="form-control" type="text" id="site" name="site" placeholder="e.g. Western Sydney, NSW — approx. 50 hectares">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Project Details *</label>
+            <textarea class="form-control" id="message" name="message" placeholder="Tell us about your project — site size, timeline, deliverables required, any specific requirements..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary form-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="contact-info">
+        <div class="contact-info-card fade-in fade-in--delay-1">
+          <h4>Contact Details</h4>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@sweepaerialphotography.com</span>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>+61 400 000 000</span>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Australia-wide operations. Based in [Your City], servicing all states and territories.</span>
+          </div>
+        </div>
+
+        <div class="contact-info-card fade-in fade-in--delay-2">
+          <h4>Response Times</h4>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span><strong style="color:var(--white);">Enquiries:</strong> 1 business day</span>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span><strong style="color:var(--white);">Quotes:</strong> 2–3 business days</span>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            <span><strong style="color:var(--white);">Deliverables:</strong> 48–72 hrs post-capture</span>
+          </div>
+        </div>
+
+        <div class="contact-info-card fade-in fade-in--delay-3">
+          <h4>Already a Client?</h4>
+          <p style="font-size:0.875rem;margin-bottom:16px;">Access your project files, deliverables, and progress reports through our secure client portal.</p>
+          <a href="portal.html" class="btn btn--primary" style="width:100%;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Client Portal Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section" style="background:var(--black);">
+  <div class="container">
+    <div class="section-header section-header--center fade-in">
+      <div class="tag">FAQ</div>
+      <h2>Common Questions</h2>
+      <div class="divider divider--center"></div>
+    </div>
+    <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--black-border);border:1px solid var(--black-border);border-radius:var(--radius-lg);overflow:hidden;">
+
+      <details style="background:var(--black-card);padding:24px 28px;" class="fade-in">
+        <summary style="font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          What areas do you operate in?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--purple-light);"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p style="margin-top:12px;font-size:0.9rem;line-height:1.7;">We operate Australia-wide. Our team is based in [Your City] but we regularly travel for projects across all states and territories. Travel costs may apply for remote or regional locations — we'll include these in your quote.</p>
+      </details>
+
+      <details style="background:var(--black-card);padding:24px 28px;" class="fade-in fade-in--delay-1">
+        <summary style="font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          Do you handle CASA airspace approvals?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--purple-light);"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p style="margin-top:12px;font-size:0.9rem;line-height:1.7;">Yes. We hold a CASA ReOC (Remotely Piloted Aircraft Operator's Certificate) and manage all airspace approvals, NOTAM submissions, and site permissions as part of our standard workflow. You don't need to handle any aviation compliance — we take care of it.</p>
+      </details>
+
+      <details style="background:var(--black-card);padding:24px 28px;" class="fade-in fade-in--delay-2">
+        <summary style="font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          How accurate are your survey outputs?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--purple-light);"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p style="margin-top:12px;font-size:0.9rem;line-height:1.7;">With RTK-enabled drones and ground control points, we can achieve horizontal accuracy of 2–3cm and vertical accuracy of 3–5cm. For applications requiring higher accuracy (e.g., cadastral surveys), we recommend discussing your specific tolerances with us upfront.</p>
+      </details>
+
+      <details style="background:var(--black-card);padding:24px 28px;" class="fade-in fade-in--delay-3">
+        <summary style="font-family:var(--font-heading);font-size:1rem;font-weight:600;cursor:pointer;color:var(--white);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          What file formats do you deliver?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--purple-light);"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p style="margin-top:12px;font-size:0.9rem;line-height:1.7;">We deliver in the formats your team already uses. Common formats include GeoTIFF (orthomosaics), LAS/LAZ (point clouds), OBJ/FBX (meshes), SHP/GDB (GIS data), DXF/DWG (CAD), and KML/KMZ (Google Earth). Just tell us what platform you're working in and we'll match it.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-logo">
+          <img src="images/logo.svg" alt="Sweep Aerial" onerror="this.style.display='none'">
+          <span>SWEEP <span>AERIAL</span></span>
+        </div>
+        <p>Professional drone mapping, GIS services, and 3D reconstruction for construction, mining, and infrastructure projects. Precision from above.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">Drone Mapping</a></li>
+          <li><a href="services.html">Gaussian Splatting</a></li>
+          <li><a href="services.html">Construction Monitoring</a></li>
+          <li><a href="services.html">Stockpile Volumes</a></li>
+          <li><a href="services.html">GIS Outputs</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="portal.html">Client Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:info@sweepaerialphotography.com">info@sweepaerialphotography.com</a></li>
+          <li><a href="tel:+61400000000">+61 400 000 000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__copy">&copy; 2025 Sweep Aerial Photography. All rights reserved.</div>
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
