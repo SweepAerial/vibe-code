@@ -254,6 +254,17 @@
       max-width: 440px;
     }
     .notify-success svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .notify-error {
+      display: none;
+      font-size: 0.85rem;
+      color: #fca5a5;
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 4px;
+      max-width: 440px;
+    }
 
     .left__footer {
       display: flex;
@@ -494,6 +505,7 @@
           </svg>
           Got it — we'll let you know the moment we go live.
         </div>
+        <div class="notify-error" id="notifyError"></div>
       </div>
     </div>
 
@@ -590,18 +602,69 @@
 </div>
 
 <script>
-  const form = document.getElementById('notifyForm');
+  // ─────────────────────────────────────────────────────────────────
+  // MAILCHIMP SETUP
+  // 1. Log in to Mailchimp → Audience → Signup forms → Embedded forms
+  // 2. Copy the form "action" URL — it looks like:
+  //    https://yourname.us1.list-manage.com/subscribe/post?u=abc123&amp;id=def456
+  // 3. Paste it below, change "subscribe/post" → "subscribe/post-json"
+  //    and remove any "&amp;" (replace with "&")
+  // ─────────────────────────────────────────────────────────────────
+  const MAILCHIMP_URL = 'https://YOURNAME.usX.list-manage.com/subscribe/post-json?u=XXXXXXXXXXXXXXXXXXXXXXXX&id=XXXXXXXXXX';
+
+  const form    = document.getElementById('notifyForm');
+  const input   = document.getElementById('notifyEmail');
+  const btn     = form.querySelector('button');
   const success = document.getElementById('notifySuccess');
+  const error   = document.getElementById('notifyError');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = document.getElementById('notifyEmail').value;
+    const email = input.value.trim();
     if (!email) return;
-    // In production: POST to your email service (Mailchimp, ConvertKit, etc.)
-    // For now, open mailto as a fallback
-    window.location.href = `mailto:info@sweepaerialphotography.com?subject=Launch%20Notification%20Request&body=Please%20notify%20me%20when%20Sweep%20Aerial%20Photography%20launches%3A%20${encodeURIComponent(email)}`;
-    form.style.display = 'none';
-    success.style.display = 'flex';
+
+    // Reset state
+    error.style.display = 'none';
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Mailchimp requires JSONP for cross-origin requests from static sites
+    const callbackName = 'mcCallback_' + Date.now();
+    const url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}&c=${callbackName}`;
+
+    window[callbackName] = function (data) {
+      // Clean up
+      delete window[callbackName];
+      document.getElementById('mc-jsonp')?.remove();
+      btn.textContent = 'Notify Me';
+      btn.disabled = false;
+
+      if (data.result === 'success') {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } else {
+        // Mailchimp returns HTML in data.msg — strip tags for display
+        const msg = data.msg
+          ? data.msg.replace(/<[^>]*>/g, '').replace(/^\d+ - /, '')
+          : 'Something went wrong. Please try again.';
+        error.textContent = msg;
+        error.style.display = 'block';
+      }
+    };
+
+    const script = document.createElement('script');
+    script.id  = 'mc-jsonp';
+    script.src = url;
+    // Timeout fallback if Mailchimp doesn't respond
+    script.onerror = () => {
+      delete window[callbackName];
+      script.remove();
+      btn.textContent = 'Notify Me';
+      btn.disabled = false;
+      error.textContent = 'Could not connect. Please try again.';
+      error.style.display = 'block';
+    };
+    document.body.appendChild(script);
   });
 </script>
 
