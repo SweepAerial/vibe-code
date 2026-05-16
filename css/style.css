@@ -2,7 +2,7 @@
    SWEEP AERIAL PHOTOGRAPHY - Main Stylesheet
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
   --purple: #6925bf;
@@ -17,9 +17,10 @@
   --white-dim: rgba(255, 255, 255, 0.85);
   --white-muted: rgba(255, 255, 255, 0.5);
   --white-subtle: rgba(255, 255, 255, 0.08);
-  --font-heading: 'Rajdhani', sans-serif;
+  --font-heading: 'Audiowide', sans-serif;
+  --font-accent: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --nav-height: 72px;
+  --nav-height: 96px;
   --radius: 4px;
   --radius-lg: 8px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -166,7 +167,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   align-items: center;
 }
 .navbar__logo img {
-  height: 52px;
+  height: 84px;
   width: auto;
 }
 .navbar__logo-text {
@@ -1075,7 +1076,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   text-align: center;
   margin-bottom: 40px;
 }
-.portal-logo img { height: 64px; margin: 0 auto 12px; }
+.portal-logo img { height: 100px; margin: 0 auto 12px; }
 .portal-logo-text {
   font-family: var(--font-heading);
   font-size: 1.4rem;
@@ -1346,7 +1347,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   align-items: center;
   gap: 10px;
 }
-.footer__brand-logo img { height: 48px; }
+.footer__brand-logo img { height: 80px; }
 .footer__brand-logo span { color: var(--purple-light); }
 .footer__col h5 {
   font-family: var(--font-heading);
@@ -1412,7 +1413,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
 }
 
 @media (max-width: 768px) {
-  :root { --nav-height: 64px; }
+  :root { --nav-height: 80px; }
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
   .services-grid { grid-template-columns: 1fr; }
