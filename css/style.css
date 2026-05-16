@@ -20,7 +20,7 @@
   --font-heading: 'Audiowide', sans-serif;
   --font-accent: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --nav-height: 96px;
+  --nav-height: 72px;
   --radius: 4px;
   --radius-lg: 8px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,7 +172,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   align-items: center;
 }
 .navbar__logo img {
-  height: 84px;
+  height: 44px;
   width: auto;
 }
 .navbar__logo-text {
@@ -1081,7 +1081,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   text-align: center;
   margin-bottom: 40px;
 }
-.portal-logo img { height: 100px; margin: 0 auto 12px; }
+.portal-logo img { height: 56px; margin: 0 auto 12px; }
 .portal-logo-text {
   font-family: var(--font-heading);
   font-size: 1.4rem;
@@ -1352,7 +1352,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   align-items: center;
   gap: 10px;
 }
-.footer__brand-logo img { height: 80px; }
+.footer__brand-logo img { height: 52px; }
 .footer__brand-logo span { color: var(--purple-light); }
 .footer__col h5 {
   font-family: var(--font-heading);
@@ -1418,7 +1418,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
 }
 
 @media (max-width: 768px) {
-  :root { --nav-height: 80px; }
+  :root { --nav-height: 60px; }
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
   .services-grid { grid-template-columns: 1fr; }
