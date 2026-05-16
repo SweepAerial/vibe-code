@@ -80,7 +80,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--purple-light);
+  color: var(--purple);
   border: 1px solid var(--purple);
   border-radius: 2px;
   padding: 3px 10px;
@@ -303,7 +303,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--purple-light);
+  color: var(--purple);
 }
 .hero__eyebrow::before {
   content: '';
@@ -609,7 +609,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--purple-light);
+  color: var(--purple);
   margin-bottom: 12px;
 }
 .carousel__deliverables li {
@@ -673,7 +673,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--purple-light);
+  color: var(--purple);
   margin-bottom: 4px;
 }
 .carousel__use-case p { font-size: 0.875rem; }

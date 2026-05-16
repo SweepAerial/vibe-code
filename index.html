@@ -156,7 +156,7 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--purple-light);
+      color: var(--purple);
       margin-bottom: 32px;
     }
     .eyebrow::before {
@@ -199,7 +199,7 @@
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--white-muted);
+      color: var(--white);
       margin-bottom: 10px;
     }
     .notify-form {
@@ -339,8 +339,18 @@
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--white-muted);
+      color: var(--purple);
       margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .services-title::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--purple);
+      flex-shrink: 0;
     }
     .service-row {
       display: flex;
