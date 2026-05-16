@@ -164,10 +164,9 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 .navbar__logo img {
-  height: 40px;
+  height: 52px;
   width: auto;
 }
 .navbar__logo-text {
@@ -1076,7 +1075,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   text-align: center;
   margin-bottom: 40px;
 }
-.portal-logo img { height: 48px; margin: 0 auto 12px; }
+.portal-logo img { height: 64px; margin: 0 auto 12px; }
 .portal-logo-text {
   font-family: var(--font-heading);
   font-size: 1.4rem;
@@ -1347,7 +1346,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   align-items: center;
   gap: 10px;
 }
-.footer__brand-logo img { height: 32px; }
+.footer__brand-logo img { height: 48px; }
 .footer__brand-logo span { color: var(--purple-light); }
 .footer__col h5 {
   font-family: var(--font-heading);

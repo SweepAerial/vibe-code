@@ -140,7 +140,7 @@ contactForm?.addEventListener('submit', (e) => {
 
   const subject = `Sweep Aerial Enquiry - ${service || 'General'} - ${company || name}`;
   const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\n\n${message}`;
-  const mailtoLink = `mailto:info@sweepaerialphotography.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailtoLink = `mailto:hell@sweepaerial.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   window.location.href = mailtoLink;
 
