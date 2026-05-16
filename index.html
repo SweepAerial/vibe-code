@@ -3,327 +3,503 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweep Aerial Photography | Drone Mapping & GIS</title>
-  <meta name="description" content="Professional drone mapping, Gaussian splatting, construction monitoring, stockpile analysis and GIS outputs. Precision aerial intelligence for your project.">
+  <title>Sweep Aerial Photography | Coming Soon</title>
+  <meta name="description" content="Sweep Aerial Photography — drone mapping, Gaussian splatting, construction monitoring, stockpile analysis and GIS outputs. Launching soon.">
   <link rel="icon" type="image/png" href="images/logo.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #6925bf;
+      --purple-light: #8b3ff0;
+      --purple-glow: rgba(105, 37, 191, 0.25);
+      --black: #000000;
+      --black-card: #0f0f0f;
+      --black-border: #1a1a1a;
+      --white: #ffffff;
+      --white-dim: rgba(255,255,255,0.85);
+      --white-muted: rgba(255,255,255,0.45);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white-dim);
+      overflow: hidden;
+    }
+
+    /* ── Background ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+    .bg__gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(105,37,191,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 0%, rgba(105,37,191,0.06) 0%, transparent 55%);
+    }
+    .bg__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(105,37,191,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(105,37,191,0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+    }
+    .bg__noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Scan line animation ── */
+    .bg__scan {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(105,37,191,0.03) 50%,
+        transparent 100%
+      );
+      background-size: 100% 8px;
+      animation: scanMove 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes scanMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 800px; }
+    }
+
+    /* ── Floating orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+    .orb--1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(105,37,191,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation-delay: 0s;
+    }
+    .orb--2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(139,63,240,0.1) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+      animation-delay: -6s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20px, -30px) scale(1.05); }
+      66% { transform: translate(-15px, 20px) scale(0.95); }
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    /* ── Left panel ── */
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 64px;
+      border-right: 1px solid var(--black-border);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo img {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+    .logo__text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .logo__text span { color: var(--purple-light); }
+
+    .left__main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 0; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 32px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--purple);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    h1 .accent {
+      display: block;
+      background: linear-gradient(135deg, var(--purple-light) 0%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sub {
+      font-size: 1rem;
+      color: var(--white-muted);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Email form ── */
+    .notify-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      margin-bottom: 10px;
+    }
+    .notify-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+    }
+    .notify-input {
+      flex: 1;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      padding: 13px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .notify-input:focus { border-color: var(--purple); }
+    .notify-input::placeholder { color: rgba(255,255,255,0.2); }
+    .notify-btn {
+      background: var(--purple);
+      border: 1px solid var(--purple);
+      border-radius: 0 4px 4px 0;
+      padding: 13px 22px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.25s, box-shadow 0.25s;
+      white-space: nowrap;
+    }
+    .notify-btn:hover {
+      background: var(--purple-light);
+      box-shadow: 0 0 24px var(--purple-glow);
+    }
+    .notify-success {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #a78bfa;
+      margin-top: 4px;
+      padding: 12px 16px;
+      background: rgba(105,37,191,0.1);
+      border: 1px solid rgba(105,37,191,0.25);
+      border-radius: 4px;
+      max-width: 440px;
+    }
+    .notify-success svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .left__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--black-border);
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--white-muted);
+    }
+    .social {
+      display: flex;
+      gap: 10px;
+    }
+    .social a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--black-border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-muted);
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .social a:hover { border-color: var(--purple); color: var(--purple-light); }
+    .social a svg { width: 15px; height: 15px; }
+
+    /* ── Right panel ── */
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 64px;
+    }
+    .right__top {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .contact-link {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.25s;
+    }
+    .contact-link:hover { color: var(--purple-light); }
+    .contact-link svg { width: 14px; height: 14px; }
+
+    .right__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* ── Services list ── */
+    .services-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white-muted);
+      margin-bottom: 8px;
+    }
+    .service-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 4px;
+      transition: border-color 0.25s, transform 0.25s;
+      animation: rowIn 0.6s ease both;
+    }
+    .service-row:hover { border-color: rgba(105,37,191,0.4); transform: translateX(4px); }
+    @keyframes rowIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .service-row:nth-child(1) { animation-delay: 0.1s; }
+    .service-row:nth-child(2) { animation-delay: 0.2s; }
+    .service-row:nth-child(3) { animation-delay: 0.3s; }
+    .service-row:nth-child(4) { animation-delay: 0.4s; }
+    .service-row:nth-child(5) { animation-delay: 0.5s; }
+    .service-row:nth-child(6) { animation-delay: 0.6s; }
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(105,37,191,0.12);
+      border: 1px solid rgba(105,37,191,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--purple-light);
+    }
+    .service-icon svg { width: 18px; height: 18px; }
+    .service-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      flex: 1;
+    }
+    .service-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      opacity: 0.5;
+    }
+
+    /* ── Status bar ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(105,37,191,0.06);
+      border: 1px solid rgba(105,37,191,0.15);
+      border-radius: 4px;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      box-shadow: 0 0 10px var(--purple);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--purple); }
+      50% { opacity: 0.5; box-shadow: 0 0 4px var(--purple); }
+    }
+    .status-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+    }
+    .status-sub {
+      font-size: 0.78rem;
+      color: var(--white-muted);
+      margin-left: auto;
+    }
+
+    /* ── Hero animation ── */
+    .left__main { animation: fadeUp 0.8s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      html, body { overflow: auto; }
+      .page { grid-template-columns: 1fr; }
+      .left {
+        padding: 40px 28px;
+        border-right: none;
+        border-bottom: 1px solid var(--black-border);
+      }
+      .right { padding: 40px 28px; }
+      h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+      .notify-form { flex-direction: column; }
+      .notify-input { border-right: 1px solid var(--black-border); border-radius: 4px; border-bottom: none; border-radius: 4px 4px 0 0; }
+      .notify-btn { border-radius: 0 0 4px 4px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .left__footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .right__top { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ── Navbar ── -->
-<nav class="navbar" id="navbar">
-  <div class="container navbar__inner">
-    <a href="index.html" class="navbar__logo">
+<div class="bg">
+  <div class="bg__gradient"></div>
+  <div class="bg__grid"></div>
+  <div class="bg__noise"></div>
+  <div class="bg__scan"></div>
+  <div class="orb orb--1"></div>
+  <div class="orb orb--2"></div>
+</div>
+
+<div class="page">
+
+  <!-- ── Left ── -->
+  <div class="left">
+
+    <div class="logo">
       <img src="images/logo.svg" alt="Sweep Aerial Photography" onerror="this.style.display='none'">
-      <span class="navbar__logo-text">SWEEP <span>AERIAL</span></span>
-    </a>
-    <ul class="navbar__links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="portal.html" class="btn btn--primary">Client Portal</a></li>
-    </ul>
-    <button class="navbar__hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<nav class="nav-mobile">
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="portal.html">Client Portal</a>
-</nav>
+      <div class="logo__text">SWEEP <span>AERIAL</span></div>
+    </div>
 
-<!-- ── Hero ── -->
-<section class="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__grid"></div>
-  <div class="container">
-    <div class="hero__content">
-      <div class="hero__eyebrow">Precision Aerial Intelligence</div>
+    <div class="left__main">
+      <div class="eyebrow">Launching Soon</div>
       <h1>
-        See Your Site<br>
-        <span class="line-purple">From Above.</span>
+        Precision<br>
+        From <span class="accent">Above.</span>
       </h1>
-      <p class="hero__sub">
-        Drone mapping, Gaussian splatting, construction monitoring, and GIS outputs.
-        We deliver data-driven insights that transform how you understand your projects.
+      <p class="sub">
+        We're putting the finishing touches on our new site. In the meantime, we're open for business — drone mapping, Gaussian splatting, construction monitoring, stockpile analysis, and GIS outputs delivered with survey-grade precision.
       </p>
-      <div class="hero__actions">
-        <a href="services.html" class="btn btn--primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Explore Services
-        </a>
-        <a href="contact.html" class="btn btn--outline">Get a Quote</a>
-      </div>
-    </div>
-  </div>
-  <div class="hero__scroll">
-    Scroll
-    <div class="hero__scroll-line"></div>
-  </div>
-</section>
 
-<!-- ── Stats ── -->
-<section class="stats">
-  <div class="container">
-    <div class="stats__grid">
-      <div class="stats__item fade-in">
-        <div class="stats__number" data-target="150" data-suffix="+">150+</div>
-        <div class="stats__label">Projects Completed</div>
-      </div>
-      <div class="stats__item fade-in fade-in--delay-1">
-        <div class="stats__number" data-target="98" data-suffix="%">98%</div>
-        <div class="stats__label">Client Satisfaction</div>
-      </div>
-      <div class="stats__item fade-in fade-in--delay-2">
-        <div class="stats__number" data-target="5" data-suffix=" yrs">5 yrs</div>
-        <div class="stats__label">Industry Experience</div>
-      </div>
-      <div class="stats__item fade-in fade-in--delay-3">
-        <div class="stats__number" data-target="2" data-suffix="cm">2cm</div>
-        <div class="stats__label">Survey Accuracy</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Services Overview ── -->
-<section class="section" style="background: var(--black-soft);">
-  <div class="container">
-    <div class="section-header fade-in">
-      <div class="tag">What We Do</div>
-      <h2>Aerial Intelligence<br>That Drives Decisions</h2>
-      <div class="divider"></div>
-      <p>From photogrammetry to immersive 3D models, our suite of aerial services gives you the data advantage on every project.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card fade-in">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-        </div>
-        <h3>Drone Mapping & 3D Reconstruction</h3>
-        <p>Centimetre-accurate photogrammetric surveys and dense point clouds. We capture every detail your project demands.</p>
-        <a href="services.html" class="service-card__link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card fade-in fade-in--delay-1">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-          </svg>
-        </div>
-        <h3>Gaussian Splatting</h3>
-        <p>Cutting-edge neural radiance field technology for photorealistic, immersive 3D scene reconstructions your stakeholders can explore.</p>
-        <a href="services.html" class="service-card__link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card fade-in fade-in--delay-2">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <path d="M3 9h18M9 21V9"/>
-          </svg>
-        </div>
-        <h3>Construction Monitoring</h3>
-        <p>Regular aerial surveys timed to your project milestones. Document progress, catch issues early and keep stakeholders informed.</p>
-        <a href="services.html" class="service-card__link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-            <line x1="12" y1="22" x2="12" y2="15.5"/>
-            <polyline points="22 8.5 12 15.5 2 8.5"/>
-          </svg>
-        </div>
-        <h3>Stockpile Volume Analysis</h3>
-        <p>Accurate volumetric calculations for stockpiles, earthworks, and cut-fill operations. Replace manual surveys with aerial precision.</p>
-        <a href="services.html" class="service-card__link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card fade-in fade-in--delay-1">
-        <div class="service-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/>
-            <line x1="9" y1="3" x2="9" y2="18"/>
-            <line x1="15" y1="6" x2="15" y2="21"/>
-          </svg>
-        </div>
-        <h3>GIS Data & Outputs</h3>
-        <p>Georeferenced orthomosaics, DEMs, contour maps, and full GIS-ready datasets delivered in the formats your team already uses.</p>
-        <a href="services.html" class="service-card__link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-      <div class="service-card fade-in fade-in--delay-2" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,#0a0012 0%,#0d0a1a 100%);">
-        <div class="tag">Custom Solutions</div>
-        <h3>Have a unique requirement?</h3>
-        <p style="margin-bottom:24px;">We work with clients across mining, civil engineering, environmental science and urban planning.</p>
-        <a href="contact.html" class="btn btn--primary">Discuss Your Project</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Why Us ── -->
-<section class="section why-us">
-  <div class="container">
-    <div class="why-us__grid">
       <div>
-        <div class="tag fade-in">Why Sweep Aerial</div>
-        <h2 class="fade-in">Precision You Can<br>Measure</h2>
-        <div class="divider fade-in"></div>
-        <p class="fade-in">We combine industry-leading hardware with rigorous data processing workflows, delivering outputs that meet survey-grade standards every time.</p>
-        <div class="why-us__list">
-          <div class="why-us__item fade-in">
-            <div class="why-us__num">01</div>
-            <div class="why-us__text">
-              <h4>Certified Operators</h4>
-              <p>CASA-certified remote pilots with extensive experience in complex airspace and sensitive site environments.</p>
-            </div>
-          </div>
-          <div class="why-us__item fade-in fade-in--delay-1">
-            <div class="why-us__num">02</div>
-            <div class="why-us__text">
-              <h4>Fast Turnaround</h4>
-              <p>Processed deliverables within 48–72 hours of data collection, without sacrificing accuracy or detail.</p>
-            </div>
-          </div>
-          <div class="why-us__item fade-in fade-in--delay-2">
-            <div class="why-us__num">03</div>
-            <div class="why-us__text">
-              <h4>Secure Delivery</h4>
-              <p>All project data is delivered via our encrypted client portal — accessible, organised and audit-ready.</p>
-            </div>
-          </div>
-          <div class="why-us__item fade-in fade-in--delay-3">
-            <div class="why-us__num">04</div>
-            <div class="why-us__text">
-              <h4>End-to-End Service</h4>
-              <p>From flight planning and permits through to final GIS outputs — we handle every step of the workflow.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="why-us__visual fade-in">
-        <div class="why-us__glow"></div>
-        <div class="why-us__visual-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
+        <div class="notify-label">Get notified when we launch</div>
+        <form class="notify-form" id="notifyForm" novalidate>
+          <input
+            class="notify-input"
+            type="email"
+            id="notifyEmail"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="notify-btn">Notify Me</button>
+        </form>
+        <div class="notify-success" id="notifySuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
-          <p>Survey-grade precision</p>
+          Got it — we'll let you know the moment we go live.
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ── Portfolio Preview ── -->
-<section class="section" style="background:var(--black);">
-  <div class="container">
-    <div class="section-header section-header--center fade-in">
-      <div class="tag">Our Work</div>
-      <h2>Recent Projects</h2>
-      <div class="divider divider--center"></div>
-      <p>A selection of recent aerial mapping and GIS projects delivered across construction, mining, and infrastructure sectors.</p>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card fade-in">
-        <div class="portfolio-card__bg" style="background:linear-gradient(135deg,#0a0010,#120020);">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#6925bf" stroke-width="1" opacity="0.3"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-        </div>
-        <div class="portfolio-card__overlay">
-          <div class="portfolio-card__type">Drone Mapping</div>
-          <div class="portfolio-card__title">Riverside Infrastructure Survey</div>
-        </div>
-      </div>
-      <div class="portfolio-card fade-in fade-in--delay-1">
-        <div class="portfolio-card__bg" style="background:linear-gradient(135deg,#080014,#0f001a);">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b3ff0" stroke-width="1" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div class="portfolio-card__overlay">
-          <div class="portfolio-card__type">Construction Monitoring</div>
-          <div class="portfolio-card__title">Commercial Precinct Stage 2</div>
-        </div>
-      </div>
-      <div class="portfolio-card fade-in fade-in--delay-2">
-        <div class="portfolio-card__bg" style="background:linear-gradient(135deg,#06000f,#0c0018);">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#6925bf" stroke-width="1" opacity="0.3"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/></svg>
-        </div>
-        <div class="portfolio-card__overlay">
-          <div class="portfolio-card__type">Stockpile Analysis</div>
-          <div class="portfolio-card__title">Quarry Volume Assessment</div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center fade-in">
-      <a href="portfolio.html" class="btn btn--outline">View Full Portfolio</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
-<section class="section--sm" style="background:linear-gradient(135deg,#0a0012 0%,#0d0a1a 50%,#000 100%);border-top:1px solid var(--black-border);border-bottom:1px solid var(--black-border);">
-  <div class="container text-center">
-    <div class="tag fade-in">Ready to Start?</div>
-    <h2 class="fade-in" style="margin-bottom:16px;">Your Project Deserves<br><span class="text-purple">Aerial Precision.</span></h2>
-    <p class="fade-in" style="max-width:500px;margin:0 auto 40px;">Get in touch for a free consultation and quote. We'll tailor the right aerial solution for your site and timeline.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="fade-in">
-      <a href="contact.html" class="btn btn--primary">Get a Free Quote</a>
-      <a href="portal.html" class="btn btn--outline">Client Portal</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Footer ── -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <div class="footer__brand-logo">
-          <img src="images/logo.svg" alt="Sweep Aerial" onerror="this.style.display='none'">
-          <span>SWEEP <span>AERIAL</span></span>
-        </div>
-        <p>Professional drone mapping, GIS services, and 3D reconstruction for construction, mining, and infrastructure projects. Precision from above.</p>
-      </div>
-      <div class="footer__col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="services.html">Drone Mapping</a></li>
-          <li><a href="services.html">Gaussian Splatting</a></li>
-          <li><a href="services.html">Construction Monitoring</a></li>
-          <li><a href="services.html">Stockpile Volumes</a></li>
-          <li><a href="services.html">GIS Outputs</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="portal.html">Client Portal</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h5>Contact</h5>
-        <ul>
-          <li><a href="mailto:info@sweepaerialphotography.com">info@sweepaerialphotography.com</a></li>
-          <li><a href="tel:+61400000000">+61 400 000 000</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">&copy; 2025 Sweep Aerial Photography. All rights reserved.</div>
-      <div class="footer__social">
+    <div class="left__footer">
+      <div class="footer-copy">&copy; 2025 Sweep Aerial Photography</div>
+      <div class="social">
         <a href="#" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
         </a>
@@ -335,9 +511,99 @@
         </a>
       </div>
     </div>
-  </div>
-</footer>
 
-<script src="js/main.js"></script>
+  </div>
+
+  <!-- ── Right ── -->
+  <div class="right">
+
+    <div class="right__top">
+      <a href="mailto:info@sweepaerialphotography.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        info@sweepaerialphotography.com
+      </a>
+    </div>
+
+    <div class="right__main">
+      <div class="services-title">Our Services</div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div class="service-name">Drone Mapping & 3D Reconstruction</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="service-name">Gaussian Splatting</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="service-name">Construction Progress Monitoring</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+        </div>
+        <div class="service-name">Stockpile Volume Analysis</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+        </div>
+        <div class="service-name">GIS Data & Spatial Outputs</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="service-name">Inspection & Reporting</div>
+        <div class="service-dot"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="status-bar">
+        <div class="status-dot"></div>
+        <div class="status-text">Taking on projects now</div>
+        <div class="status-sub">
+          <a href="mailto:info@sweepaerialphotography.com" style="color:inherit;text-decoration:none;">Get in touch &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('notifyForm');
+  const success = document.getElementById('notifySuccess');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('notifyEmail').value;
+    if (!email) return;
+    // In production: POST to your email service (Mailchimp, ConvertKit, etc.)
+    // For now, open mailto as a fallback
+    window.location.href = `mailto:info@sweepaerialphotography.com?subject=Launch%20Notification%20Request&body=Please%20notify%20me%20when%20Sweep%20Aerial%20Photography%20launches%3A%20${encodeURIComponent(email)}`;
+    form.style.display = 'none';
+    success.style.display = 'flex';
+  });
+</script>
+
 </body>
 </html>
