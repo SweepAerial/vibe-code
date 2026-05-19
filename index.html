@@ -116,6 +116,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: stretch;
+      max-width: 1800px;
+      margin: 0 auto;
     }
 
     /* ── Left panel ── */
@@ -445,6 +447,14 @@
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(32px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Large screens ── */
+    @media (min-width: 1400px) {
+      .left, .right { padding: 72px 96px; }
+    }
+    @media (min-width: 1800px) {
+      .left, .right { padding: 96px 120px; }
     }
 
     /* ── Mobile ── */

@@ -69,6 +69,12 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 
 /* ── Utilities ── */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 1600px) {
+  .container { max-width: 1440px; }
+}
+@media (min-width: 2000px) {
+  .container { max-width: 1600px; }
+}
 .section { padding: 96px 0; }
 .section--sm { padding: 64px 0; }
 .text-purple { color: var(--purple-light); }
