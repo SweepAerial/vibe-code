@@ -7,6 +7,7 @@
   <meta name="description" content="Sweep Aerial Photography client portal dashboard. Access your project files and deliverables.">
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/style.css">
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t==='system'?(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):t);})();</script>
 </head>
 <body>
 
@@ -47,6 +48,7 @@
           <div class="dashboard-sidebar__user-role" data-user-company>Demo Corp</div>
         </div>
       </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="margin-bottom:8px;width:100%;border-radius:var(--radius);"></button>
       <button class="dashboard-sidebar__logout" id="logoutBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         Sign Out

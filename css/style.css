@@ -1394,6 +1394,67 @@ textarea.form-control { resize: vertical; min-height: 140px; }
 .footer__social a:hover { border-color: var(--purple); color: var(--purple-light); }
 .footer__social a svg { width: 16px; height: 16px; }
 
+/* ── Theme Toggle Button ── */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  border: 1px solid var(--black-border);
+  background: transparent;
+  color: var(--white-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--purple);
+  color: var(--purple-light);
+}
+.theme-toggle svg { width: 16px; height: 16px; }
+
+/* ── Light Theme ── */
+html[data-theme="light"] {
+  --black: #f0f2f5;
+  --black-soft: #e8eaed;
+  --black-card: #ffffff;
+  --black-border: #d1d5db;
+  --white: #111827;
+  --white-dim: rgba(17,24,39,0.88);
+  --white-muted: rgba(17,24,39,0.55);
+  --white-subtle: rgba(17,24,39,0.07);
+}
+html[data-theme="light"] body {
+  background: var(--black);
+  color: var(--white-dim);
+}
+html[data-theme="light"] .navbar.scrolled {
+  background: rgba(240,242,245,0.95);
+}
+html[data-theme="light"] .nav-mobile {
+  background: rgba(240,242,245,0.98);
+}
+html[data-theme="light"] .form-control {
+  background: #f9fafb;
+  color: var(--white);
+}
+html[data-theme="light"] .form-control::placeholder {
+  color: rgba(17,24,39,0.3);
+}
+html[data-theme="light"] select.form-control option {
+  background: #ffffff;
+  color: #111827;
+}
+html[data-theme="light"] .service-card:hover { background: #f9f9f9; }
+html[data-theme="light"] .team-card__avatar {
+  background: linear-gradient(135deg, #e8eaed 0%, #d8d0f0 100%);
+}
+html[data-theme="light"] .carousel__visual {
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8e4f5 100%);
+}
+
 /* ── Animations ── */
 .fade-in {
   opacity: 0;
