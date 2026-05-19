@@ -17,6 +17,8 @@
       ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
       : pref;
     document.documentElement.setAttribute('data-theme', resolved);
+    const favicon = document.getElementById('favicon');
+    if (favicon) favicon.href = 'images/favicon-' + resolved + '.png';
   }
 
   let pref = localStorage.getItem('theme') || 'dark';

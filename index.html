@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sweep Aerial Photography | Coming Soon</title>
   <meta name="description" content="Sweep Aerial Photography — drone mapping, Gaussian splatting, construction monitoring, stockpile analysis and GIS outputs. Launching soon.">
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="icon" type="image/png" href="images/favicon-dark.png" id="favicon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap">
@@ -552,6 +552,12 @@
     }
     .admin-cancel:hover { color: var(--white); background: none !important; }
 
+    html[data-theme="light"] .bg__scan {
+      animation-duration: 60s;
+      opacity: 0.35;
+    }
+    html[data-theme="light"] .orb { opacity: 0.45; }
+
     /* ── Theme Toggle ── */
     .theme-toggle {
       position: fixed;
@@ -764,6 +770,8 @@
     function applyTheme(pref) {
       const resolved = pref === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : pref;
       document.documentElement.setAttribute('data-theme', resolved);
+      const favicon = document.getElementById('favicon');
+      if (favicon) favicon.href = 'images/favicon-' + resolved + '.png';
     }
     let pref = localStorage.getItem('theme') || 'dark';
     applyTheme(pref);
