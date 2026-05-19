@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sweep Aerial Photography | Coming Soon</title>
   <meta name="description" content="Sweep Aerial Photography — drone mapping, Gaussian splatting, construction monitoring, stockpile analysis and GIS outputs. Launching soon.">
-  <link rel="icon" type="image/png" href="images/favicon-dark.png" id="favicon">
+  <link rel="icon" type="image/svg+xml" href="images/PyramidWhite.svg" id="favicon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap">
@@ -613,7 +613,7 @@
   <div class="left">
 
     <div class="logo">
-      <img src="images/logo.svg" alt="Sweep Aerial Photography" onerror="this.style.display='none'">
+      <img class="theme-logo" src="images/FullSweepLogoWhiteOutline.svg" alt="Sweep Aerial Photography" onerror="this.style.display='none'">
     </div>
 
     <div class="left__main">
@@ -771,7 +771,10 @@
       const resolved = pref === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : pref;
       document.documentElement.setAttribute('data-theme', resolved);
       const favicon = document.getElementById('favicon');
-      if (favicon) favicon.href = 'images/favicon-' + resolved + '.png';
+      if (favicon) favicon.href = resolved === 'light' ? 'images/PyramidBlack.svg' : 'images/PyramidWhite.svg';
+      document.querySelectorAll('.theme-logo').forEach(img => {
+        img.src = resolved === 'light' ? 'images/FullSweepLogoBlackOutline.svg' : 'images/FullSweepLogoWhiteOutline.svg';
+      });
     }
     let pref = localStorage.getItem('theme') || 'dark';
     applyTheme(pref);
