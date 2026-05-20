@@ -102,23 +102,16 @@ class Carousel {
     this.progress = el.querySelector('.carousel__progress');
     this.current = 0;
     this.total = this.slides.length;
-    this.interval = null;
-    this.userTook = false;
     this.init();
   }
 
   init() {
-    this.prevBtn?.addEventListener('click', () => { this.prev(); this.stopForever(); });
-    this.nextBtn?.addEventListener('click', () => { this.next(); this.stopForever(); });
+    this.prevBtn?.addEventListener('click', () => this.prev());
+    this.nextBtn?.addEventListener('click', () => this.next());
     this.dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { this.goTo(i); this.stopForever(); });
+      dot.addEventListener('click', () => this.goTo(i));
     });
-
-    this.el.addEventListener('mouseenter', () => this.pause());
-    this.el.addEventListener('mouseleave', () => { if (!this.userTook) this.start(); });
-
     this.update();
-    this.start();
   }
 
   goTo(index) {
@@ -139,21 +132,6 @@ class Carousel {
     if (this.progress) {
       this.progress.textContent = `${this.current + 1} / ${this.total}`;
     }
-  }
-
-  start() {
-    this.pause();
-    this.interval = setInterval(() => this.next(), 6000);
-  }
-
-  pause() {
-    clearInterval(this.interval);
-    this.interval = null;
-  }
-
-  stopForever() {
-    this.userTook = true;
-    this.pause();
   }
 }
 

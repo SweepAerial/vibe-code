@@ -689,8 +689,10 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   align-items: center;
   justify-content: center;
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
+
+.section-header + .carousel { margin-top: -32px; }
 .carousel__btn {
   width: 48px;
   height: 48px;
