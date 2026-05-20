@@ -103,17 +103,22 @@ class Carousel {
     this.current = 0;
     this.total = this.slides.length;
     this.interval = null;
+    this.userTook = false;
     this.init();
   }
 
   init() {
-    this.prevBtn?.addEventListener('click', () => { this.prev(); this.resetInterval(); });
-    this.nextBtn?.addEventListener('click', () => { this.next(); this.resetInterval(); });
+    this.prevBtn?.addEventListener('click', () => { this.prev(); this.stopForever(); });
+    this.nextBtn?.addEventListener('click', () => { this.next(); this.stopForever(); });
     this.dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { this.goTo(i); this.resetInterval(); });
+      dot.addEventListener('click', () => { this.goTo(i); this.stopForever(); });
     });
+
+    this.el.addEventListener('mouseenter', () => this.pause());
+    this.el.addEventListener('mouseleave', () => { if (!this.userTook) this.start(); });
+
     this.update();
-    this.startInterval();
+    this.start();
   }
 
   goTo(index) {
@@ -136,13 +141,19 @@ class Carousel {
     }
   }
 
-  startInterval() {
-    this.interval = setInterval(() => this.next(), 5000);
+  start() {
+    this.pause();
+    this.interval = setInterval(() => this.next(), 6000);
   }
 
-  resetInterval() {
+  pause() {
     clearInterval(this.interval);
-    this.startInterval();
+    this.interval = null;
+  }
+
+  stopForever() {
+    this.userTook = true;
+    this.pause();
   }
 }
 
