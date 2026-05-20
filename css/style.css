@@ -1695,6 +1695,7 @@ html[data-theme="light"] .carousel__visual {
   flex: 1;
   overflow: hidden;
   cursor: grab;
+  touch-action: none;
 }
 
 .cslider-lb__canvas {
