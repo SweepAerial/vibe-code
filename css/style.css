@@ -1519,6 +1519,12 @@ html[data-theme="light"] .carousel__visual {
   .hero__actions .btn { width: 100%; justify-content: center; }
   .dashboard-stats { grid-template-columns: 1fr 1fr; }
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 
