@@ -1,26 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
-  <g fill="none" stroke="#6925bf">
-    <!-- Index contours -->
-    <path stroke-width="1" opacity="0.2" d="M0 145 C150 120 300 118 450 145 C600 172 750 174 900 148 C1050 122 1200 118 1400 145"/>
-    <path stroke-width="1" opacity="0.2" d="M0 320 C190 292 380 288 570 320 C760 352 950 358 1140 328 C1270 302 1360 298 1400 320"/>
-    <path stroke-width="1" opacity="0.2" d="M0 500 C175 472 350 468 525 500 C700 532 875 538 1050 508 C1200 480 1320 475 1400 500"/>
-    <path stroke-width="1" opacity="0.2" d="M0 680 C200 650 400 644 600 680 C800 716 1000 724 1200 692 C1300 664 1370 659 1400 680"/>
-    <!-- Minor contours -->
-    <path stroke-width="0.7" opacity="0.14" d="M0 50 C175 28 350 28 525 50 C700 72 875 72 1050 50 C1225 28 1400 28 1400 50"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 95 C200 70 380 68 560 95 C740 122 920 124 1100 98 C1220 78 1330 76 1400 95"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 200 C180 172 350 170 520 200 C690 230 860 234 1030 205 C1160 180 1300 176 1400 200"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 258 C160 232 320 228 480 258 C640 288 800 292 960 262 C1120 232 1280 226 1400 258"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 388 C200 360 400 355 600 388 C800 420 1000 426 1200 395 C1300 368 1370 363 1400 388"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 435 C185 408 365 403 545 435 C725 467 905 474 1085 444 C1215 418 1330 412 1400 435"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 558 C190 530 380 524 570 558 C760 592 950 600 1140 570 C1270 542 1360 536 1400 558"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 615 C175 586 350 580 525 615 C700 650 875 658 1050 626 C1200 598 1320 592 1400 615"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 760 C180 730 360 724 540 760 C720 796 900 804 1080 772 C1220 744 1330 738 1400 760"/>
-    <path stroke-width="0.7" opacity="0.14" d="M0 820 C195 790 390 784 585 820 C780 856 975 864 1170 832 C1280 806 1360 800 1400 820"/>
-    <!-- Supplementary contours (denser spacing = steeper terrain) -->
-    <path stroke-width="0.5" opacity="0.09" d="M0 72 C185 52 365 50 545 72 C725 94 905 96 1085 74 C1215 54 1330 52 1400 72"/>
-    <path stroke-width="0.5" opacity="0.09" d="M0 285 C175 260 345 256 515 285 C685 314 855 318 1025 290 C1160 264 1300 258 1400 285"/>
-    <path stroke-width="0.5" opacity="0.09" d="M0 465 C185 440 370 434 555 465 C740 496 925 504 1110 474 C1225 448 1330 442 1400 465"/>
-    <path stroke-width="0.5" opacity="0.09" d="M0 648 C185 618 370 612 555 648 C740 684 925 692 1110 660 C1225 630 1330 624 1400 648"/>
-    <path stroke-width="0.5" opacity="0.09" d="M0 840 C180 812 360 806 540 840 C720 874 900 882 1080 852 C1220 826 1330 820 1400 840"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
+  <defs>
+    <style>
+      .tc { fill: none; stroke: #6925bf; stroke-width: 0.5; opacity: 0.08; }
+      .ti { fill: none; stroke: #6925bf; stroke-width: 0.9; opacity: 0.14; }
+    </style>
+  </defs>
+
+  <!-- Hill 1 — medium, centre ~(250,280), rotated 20° -->
+  <g transform="rotate(20 250 280)">
+    <ellipse class="ti" cx="250" cy="280" rx="168" ry="116"/>
+    <ellipse class="tc" cx="251" cy="279" rx="132" ry="91"/>
+    <ellipse class="tc" cx="252" cy="278" rx="96" ry="66"/>
+    <ellipse class="ti" cx="252" cy="278" rx="62" ry="43"/>
+    <ellipse class="tc" cx="253" cy="277" rx="30" ry="21"/>
   </g>
+
+  <!-- Hill 2 — elongated ridge, centre ~(680,145), rotated -15° -->
+  <g transform="rotate(-15 680 145)">
+    <ellipse class="ti" cx="680" cy="145" rx="265" ry="82"/>
+    <ellipse class="tc" cx="680" cy="145" rx="204" ry="60"/>
+    <ellipse class="tc" cx="681" cy="145" rx="142" ry="41"/>
+    <ellipse class="ti" cx="681" cy="145" rx="78" ry="23"/>
+  </g>
+
+  <!-- Hill 3 — medium, centre ~(1085,295), rotated 35° -->
+  <g transform="rotate(35 1085 295)">
+    <ellipse class="tc" cx="1085" cy="295" rx="178" ry="126"/>
+    <ellipse class="ti" cx="1086" cy="294" rx="137" ry="97"/>
+    <ellipse class="tc" cx="1086" cy="294" rx="97" ry="69"/>
+    <ellipse class="tc" cx="1087" cy="293" rx="59" ry="42"/>
+    <ellipse class="ti" cx="1087" cy="293" rx="26" ry="18"/>
+  </g>
+
+  <!-- Hill 4 — large, centre ~(425,685), rotated 10° -->
+  <g transform="rotate(10 425 685)">
+    <ellipse class="tc" cx="425" cy="685" rx="228" ry="167"/>
+    <ellipse class="ti" cx="426" cy="683" rx="180" ry="132"/>
+    <ellipse class="tc" cx="427" cy="682" rx="134" ry="97"/>
+    <ellipse class="tc" cx="427" cy="682" rx="91" ry="66"/>
+    <ellipse class="ti" cx="428" cy="681" rx="53" ry="38"/>
+    <ellipse class="tc" cx="428" cy="681" rx="22" ry="16"/>
+  </g>
+
+  <!-- Hill 5 — medium, centre ~(955,730), rotated -25° -->
+  <g transform="rotate(-25 955 730)">
+    <ellipse class="ti" cx="955" cy="730" rx="202" ry="146"/>
+    <ellipse class="tc" cx="956" cy="729" rx="157" ry="113"/>
+    <ellipse class="tc" cx="956" cy="729" rx="107" ry="77"/>
+    <ellipse class="ti" cx="957" cy="728" rx="59" ry="43"/>
+  </g>
+
+  <!-- Hill 6 — medium-small, centre ~(1385,525), rotated 45° -->
+  <g transform="rotate(45 1385 525)">
+    <ellipse class="tc" cx="1385" cy="525" rx="162" ry="107"/>
+    <ellipse class="ti" cx="1385" cy="524" rx="124" ry="81"/>
+    <ellipse class="tc" cx="1386" cy="524" rx="87" ry="56"/>
+    <ellipse class="tc" cx="1386" cy="524" rx="51" ry="33"/>
+    <ellipse class="ti" cx="1386" cy="524" rx="22" ry="14"/>
+  </g>
+
+  <!-- Hill 7 — partially off edge (bottom-right), rotated -10° -->
+  <g transform="rotate(-10 1630 925)">
+    <ellipse class="ti" cx="1630" cy="925" rx="188" ry="137"/>
+    <ellipse class="tc" cx="1630" cy="924" rx="142" ry="102"/>
+    <ellipse class="tc" cx="1631" cy="924" rx="93" ry="67"/>
+  </g>
+
+  <!-- Hill 8 — large, centre ~(725,990), rotated 28° -->
+  <g transform="rotate(28 725 990)">
+    <ellipse class="tc" cx="725" cy="990" rx="238" ry="147"/>
+    <ellipse class="ti" cx="725" cy="989" rx="182" ry="112"/>
+    <ellipse class="tc" cx="726" cy="988" rx="122" ry="75"/>
+    <ellipse class="tc" cx="726" cy="988" rx="66" ry="40"/>
+  </g>
+
+  <!-- Hill 9 — small, centre ~(1235,985), rotated -18° -->
+  <g transform="rotate(-18 1235 985)">
+    <ellipse class="ti" cx="1235" cy="985" rx="158" ry="112"/>
+    <ellipse class="tc" cx="1235" cy="984" rx="114" ry="81"/>
+    <ellipse class="tc" cx="1236" cy="984" rx="70" ry="49"/>
+  </g>
+
+  <!-- Small hill near left edge ~(95,755), rotated 15° -->
+  <g transform="rotate(15 95 755)">
+    <ellipse class="tc" cx="95" cy="755" rx="122" ry="87"/>
+    <ellipse class="tc" cx="96" cy="754" rx="84" ry="59"/>
+    <ellipse class="ti" cx="96" cy="754" rx="46" ry="33"/>
+  </g>
+
+  <!-- East ridge ~(1490,185), very elongated, rotated 5° -->
+  <g transform="rotate(5 1490 185)">
+    <ellipse class="tc" cx="1490" cy="185" rx="282" ry="81"/>
+    <ellipse class="ti" cx="1490" cy="185" rx="217" ry="59"/>
+    <ellipse class="tc" cx="1490" cy="185" rx="150" ry="40"/>
+    <ellipse class="tc" cx="1490" cy="185" rx="84" ry="22"/>
+  </g>
+
+  <!-- Small hill upper-left ~(90,160), rotated -8° -->
+  <g transform="rotate(-8 90 160)">
+    <ellipse class="ti" cx="90" cy="160" rx="135" ry="95"/>
+    <ellipse class="tc" cx="91" cy="160" rx="95" ry="67"/>
+    <ellipse class="tc" cx="91" cy="159" rx="55" ry="38"/>
+    <ellipse class="ti" cx="92" cy="159" rx="22" ry="15"/>
+  </g>
+
 </svg>
