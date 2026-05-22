@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100">
   <defs>
     <style>
       .tc { fill: none; stroke: #6925bf; stroke-width: 0.5; opacity: 0.08; }
@@ -6,342 +6,102 @@
     </style>
   </defs>
 
-  <!-- Hill 1 — large, centre ~(210,210), rotated 18° -->
-  <g transform="rotate(18 210 210)">
-    <ellipse class="tc" cx="210" cy="210" rx="230" ry="160"/>
-    <ellipse class="ti" cx="210" cy="209" rx="185" ry="128"/>
-    <ellipse class="tc" cx="211" cy="208" rx="142" ry="98"/>
-    <ellipse class="tc" cx="211" cy="208" rx="103" ry="71"/>
-    <ellipse class="ti" cx="212" cy="207" rx="67" ry="46"/>
-    <ellipse class="tc" cx="212" cy="207" rx="36" ry="24"/>
-    <ellipse class="ti" cx="213" cy="206" rx="14" ry="9"/>
+  <!-- Hill 1 — medium, centre ~(250,280), rotated 20° -->
+  <g transform="rotate(20 250 280)">
+    <ellipse class="ti" cx="250" cy="280" rx="168" ry="116"/>
+    <ellipse class="tc" cx="251" cy="279" rx="132" ry="91"/>
+    <ellipse class="tc" cx="252" cy="278" rx="96" ry="66"/>
+    <ellipse class="ti" cx="252" cy="278" rx="62" ry="43"/>
+    <ellipse class="tc" cx="253" cy="277" rx="30" ry="21"/>
   </g>
 
-  <!-- Hill 2 — elongated ridge, centre ~(680,100), rotated -12° -->
-  <g transform="rotate(-12 680 100)">
-    <ellipse class="ti" cx="680" cy="100" rx="310" ry="78"/>
-    <ellipse class="tc" cx="680" cy="100" rx="252" ry="60"/>
-    <ellipse class="tc" cx="681" cy="100" rx="192" ry="45"/>
-    <ellipse class="ti" cx="681" cy="100" rx="128" ry="30"/>
-    <ellipse class="tc" cx="682" cy="100" rx="68" ry="16"/>
+  <!-- Hill 2 — elongated ridge, centre ~(680,145), rotated -15° -->
+  <g transform="rotate(-15 680 145)">
+    <ellipse class="ti" cx="680" cy="145" rx="265" ry="82"/>
+    <ellipse class="tc" cx="680" cy="145" rx="204" ry="60"/>
+    <ellipse class="tc" cx="681" cy="145" rx="142" ry="41"/>
+    <ellipse class="ti" cx="681" cy="145" rx="78" ry="23"/>
   </g>
 
-  <!-- Hill 3 — medium, centre ~(1120,180), rotated 32° -->
-  <g transform="rotate(32 1120 180)">
-    <ellipse class="tc" cx="1120" cy="180" rx="190" ry="130"/>
-    <ellipse class="ti" cx="1120" cy="179" rx="148" ry="101"/>
-    <ellipse class="tc" cx="1121" cy="179" rx="108" ry="74"/>
-    <ellipse class="tc" cx="1121" cy="178" rx="72" ry="49"/>
-    <ellipse class="ti" cx="1122" cy="178" rx="40" ry="27"/>
-    <ellipse class="tc" cx="1122" cy="177" rx="16" ry="11"/>
+  <!-- Hill 3 — medium, centre ~(1085,295), rotated 35° -->
+  <g transform="rotate(35 1085 295)">
+    <ellipse class="tc" cx="1085" cy="295" rx="178" ry="126"/>
+    <ellipse class="ti" cx="1086" cy="294" rx="137" ry="97"/>
+    <ellipse class="tc" cx="1086" cy="294" rx="97" ry="69"/>
+    <ellipse class="tc" cx="1087" cy="293" rx="59" ry="42"/>
+    <ellipse class="ti" cx="1087" cy="293" rx="26" ry="18"/>
   </g>
 
-  <!-- Hill 4 — small, centre ~(1580,130), rotated -5° -->
-  <g transform="rotate(-5 1580 130)">
-    <ellipse class="ti" cx="1580" cy="130" rx="148" ry="102"/>
-    <ellipse class="tc" cx="1580" cy="130" rx="108" ry="74"/>
-    <ellipse class="tc" cx="1581" cy="129" rx="70" ry="48"/>
-    <ellipse class="ti" cx="1581" cy="129" rx="36" ry="25"/>
+  <!-- Hill 4 — large, centre ~(425,685), rotated 10° -->
+  <g transform="rotate(10 425 685)">
+    <ellipse class="tc" cx="425" cy="685" rx="228" ry="167"/>
+    <ellipse class="ti" cx="426" cy="683" rx="180" ry="132"/>
+    <ellipse class="tc" cx="427" cy="682" rx="134" ry="97"/>
+    <ellipse class="tc" cx="427" cy="682" rx="91" ry="66"/>
+    <ellipse class="ti" cx="428" cy="681" rx="53" ry="38"/>
+    <ellipse class="tc" cx="428" cy="681" rx="22" ry="16"/>
   </g>
 
-  <!-- Hill 5 — large ridge, partially off top edge, centre ~(1870,80), rotated 8° -->
-  <g transform="rotate(8 1870 80)">
-    <ellipse class="tc" cx="1870" cy="80" rx="260" ry="95"/>
-    <ellipse class="ti" cx="1870" cy="80" rx="200" ry="72"/>
-    <ellipse class="tc" cx="1871" cy="80" rx="140" ry="50"/>
-    <ellipse class="tc" cx="1871" cy="80" rx="80" ry="28"/>
+  <!-- Hill 5 — medium, centre ~(955,730), rotated -25° -->
+  <g transform="rotate(-25 955 730)">
+    <ellipse class="ti" cx="955" cy="730" rx="202" ry="146"/>
+    <ellipse class="tc" cx="956" cy="729" rx="157" ry="113"/>
+    <ellipse class="tc" cx="956" cy="729" rx="107" ry="77"/>
+    <ellipse class="ti" cx="957" cy="728" rx="59" ry="43"/>
   </g>
 
-  <!-- Hill 6 — medium, centre ~(380,430), rotated 22° -->
-  <g transform="rotate(22 380 430)">
-    <ellipse class="ti" cx="380" cy="430" rx="210" ry="148"/>
-    <ellipse class="tc" cx="380" cy="429" rx="165" ry="116"/>
-    <ellipse class="tc" cx="381" cy="429" rx="122" ry="86"/>
-    <ellipse class="ti" cx="381" cy="428" rx="82" ry="58"/>
-    <ellipse class="tc" cx="382" cy="428" rx="46" ry="32"/>
-    <ellipse class="ti" cx="382" cy="427" rx="18" ry="13"/>
+  <!-- Hill 6 — medium-small, centre ~(1385,525), rotated 45° -->
+  <g transform="rotate(45 1385 525)">
+    <ellipse class="tc" cx="1385" cy="525" rx="162" ry="107"/>
+    <ellipse class="ti" cx="1385" cy="524" rx="124" ry="81"/>
+    <ellipse class="tc" cx="1386" cy="524" rx="87" ry="56"/>
+    <ellipse class="tc" cx="1386" cy="524" rx="51" ry="33"/>
+    <ellipse class="ti" cx="1386" cy="524" rx="22" ry="14"/>
   </g>
 
-  <!-- Hill 7 — elongated ridge, centre ~(880,310), rotated -30° -->
-  <g transform="rotate(-30 880 310)">
-    <ellipse class="tc" cx="880" cy="310" rx="288" ry="72"/>
-    <ellipse class="ti" cx="880" cy="310" rx="228" ry="55"/>
-    <ellipse class="tc" cx="881" cy="310" rx="166" ry="40"/>
-    <ellipse class="tc" cx="881" cy="310" rx="104" ry="25"/>
-    <ellipse class="ti" cx="882" cy="310" rx="48" ry="12"/>
+  <!-- Hill 7 — partially off edge (bottom-right), rotated -10° -->
+  <g transform="rotate(-10 1630 925)">
+    <ellipse class="ti" cx="1630" cy="925" rx="188" ry="137"/>
+    <ellipse class="tc" cx="1630" cy="924" rx="142" ry="102"/>
+    <ellipse class="tc" cx="1631" cy="924" rx="93" ry="67"/>
   </g>
 
-  <!-- Hill 8 — medium-small, centre ~(1340,350), rotated 48° -->
-  <g transform="rotate(48 1340 350)">
-    <ellipse class="tc" cx="1340" cy="350" rx="172" ry="114"/>
-    <ellipse class="ti" cx="1340" cy="349" rx="132" ry="87"/>
-    <ellipse class="tc" cx="1341" cy="349" rx="94" ry="62"/>
-    <ellipse class="tc" cx="1341" cy="348" rx="58" ry="38"/>
-    <ellipse class="ti" cx="1342" cy="348" rx="26" ry="17"/>
+  <!-- Hill 8 — large, centre ~(725,990), rotated 28° -->
+  <g transform="rotate(28 725 990)">
+    <ellipse class="tc" cx="725" cy="990" rx="238" ry="147"/>
+    <ellipse class="ti" cx="725" cy="989" rx="182" ry="112"/>
+    <ellipse class="tc" cx="726" cy="988" rx="122" ry="75"/>
+    <ellipse class="tc" cx="726" cy="988" rx="66" ry="40"/>
   </g>
 
-  <!-- Hill 9 — small, centre ~(1740,340), rotated 15° -->
-  <g transform="rotate(15 1740 340)">
-    <ellipse class="ti" cx="1740" cy="340" rx="138" ry="96"/>
-    <ellipse class="tc" cx="1740" cy="340" rx="100" ry="69"/>
-    <ellipse class="tc" cx="1741" cy="339" rx="64" ry="44"/>
-    <ellipse class="ti" cx="1741" cy="339" rx="32" ry="22"/>
+  <!-- Hill 9 — small, centre ~(1235,985), rotated -18° -->
+  <g transform="rotate(-18 1235 985)">
+    <ellipse class="ti" cx="1235" cy="985" rx="158" ry="112"/>
+    <ellipse class="tc" cx="1235" cy="984" rx="114" ry="81"/>
+    <ellipse class="tc" cx="1236" cy="984" rx="70" ry="49"/>
   </g>
 
-  <!-- Hill 10 — large, centre ~(120,660), rotated -20° -->
-  <g transform="rotate(-20 120 660)">
-    <ellipse class="tc" cx="120" cy="660" rx="240" ry="172"/>
-    <ellipse class="ti" cx="120" cy="659" rx="192" ry="137"/>
-    <ellipse class="tc" cx="121" cy="659" rx="146" ry="104"/>
-    <ellipse class="tc" cx="121" cy="658" rx="104" ry="74"/>
-    <ellipse class="ti" cx="122" cy="658" rx="66" ry="47"/>
-    <ellipse class="tc" cx="122" cy="657" rx="34" ry="24"/>
-    <ellipse class="ti" cx="123" cy="657" rx="12" ry="8"/>
+  <!-- Small hill near left edge ~(95,755), rotated 15° -->
+  <g transform="rotate(15 95 755)">
+    <ellipse class="tc" cx="95" cy="755" rx="122" ry="87"/>
+    <ellipse class="tc" cx="96" cy="754" rx="84" ry="59"/>
+    <ellipse class="ti" cx="96" cy="754" rx="46" ry="33"/>
   </g>
 
-  <!-- Hill 11 — medium, centre ~(570,600), rotated 38° -->
-  <g transform="rotate(38 570 600)">
-    <ellipse class="ti" cx="570" cy="600" rx="198" ry="138"/>
-    <ellipse class="tc" cx="570" cy="599" rx="154" ry="107"/>
-    <ellipse class="tc" cx="571" cy="599" rx="112" ry="78"/>
-    <ellipse class="ti" cx="571" cy="598" rx="74" ry="51"/>
-    <ellipse class="tc" cx="572" cy="598" rx="40" ry="28"/>
-    <ellipse class="ti" cx="572" cy="597" rx="16" ry="11"/>
+  <!-- East ridge ~(1490,185), very elongated, rotated 5° -->
+  <g transform="rotate(5 1490 185)">
+    <ellipse class="tc" cx="1490" cy="185" rx="282" ry="81"/>
+    <ellipse class="ti" cx="1490" cy="185" rx="217" ry="59"/>
+    <ellipse class="tc" cx="1490" cy="185" rx="150" ry="40"/>
+    <ellipse class="tc" cx="1490" cy="185" rx="84" ry="22"/>
   </g>
 
-  <!-- Hill 12 — elongated, centre ~(1000,530), rotated -18° -->
-  <g transform="rotate(-18 1000 530)">
-    <ellipse class="tc" cx="1000" cy="530" rx="262" ry="86"/>
-    <ellipse class="ti" cx="1000" cy="530" rx="206" ry="66"/>
-    <ellipse class="tc" cx="1001" cy="530" rx="150" ry="48"/>
-    <ellipse class="tc" cx="1001" cy="530" rx="94" ry="30"/>
-    <ellipse class="ti" cx="1002" cy="530" rx="44" ry="14"/>
-  </g>
-
-  <!-- Hill 13 — medium, centre ~(1450,510), rotated 28° -->
-  <g transform="rotate(28 1450 510)">
-    <ellipse class="tc" cx="1450" cy="510" rx="185" ry="128"/>
-    <ellipse class="ti" cx="1450" cy="509" rx="143" ry="98"/>
-    <ellipse class="tc" cx="1451" cy="509" rx="103" ry="71"/>
-    <ellipse class="tc" cx="1451" cy="508" rx="65" ry="45"/>
-    <ellipse class="ti" cx="1452" cy="508" rx="32" ry="22"/>
-  </g>
-
-  <!-- Hill 14 — large partially off right edge, centre ~(1960,530), rotated -8° -->
-  <g transform="rotate(-8 1960 530)">
-    <ellipse class="ti" cx="1960" cy="530" rx="220" ry="158"/>
-    <ellipse class="tc" cx="1960" cy="529" rx="172" ry="123"/>
-    <ellipse class="tc" cx="1961" cy="529" rx="126" ry="90"/>
-    <ellipse class="ti" cx="1961" cy="528" rx="82" ry="59"/>
-    <ellipse class="tc" cx="1962" cy="528" rx="42" ry="30"/>
-  </g>
-
-  <!-- Hill 15 — medium-large, centre ~(330,870), rotated 42° -->
-  <g transform="rotate(42 330 870)">
-    <ellipse class="tc" cx="330" cy="870" rx="222" ry="155"/>
-    <ellipse class="ti" cx="330" cy="869" rx="174" ry="121"/>
-    <ellipse class="tc" cx="331" cy="869" rx="128" ry="89"/>
-    <ellipse class="tc" cx="331" cy="868" rx="86" ry="60"/>
-    <ellipse class="ti" cx="332" cy="868" rx="50" ry="35"/>
-    <ellipse class="tc" cx="332" cy="867" rx="22" ry="15"/>
-  </g>
-
-  <!-- Hill 16 — small, centre ~(730,820), rotated -35° -->
-  <g transform="rotate(-35 730 820)">
-    <ellipse class="ti" cx="730" cy="820" rx="155" ry="108"/>
-    <ellipse class="tc" cx="730" cy="820" rx="116" ry="81"/>
-    <ellipse class="tc" cx="731" cy="819" rx="78" ry="54"/>
-    <ellipse class="ti" cx="731" cy="819" rx="44" ry="31"/>
-    <ellipse class="tc" cx="732" cy="818" rx="18" ry="12"/>
-  </g>
-
-  <!-- Hill 17 — elongated ridge, centre ~(1130,760), rotated 10° -->
-  <g transform="rotate(10 1130 760)">
-    <ellipse class="tc" cx="1130" cy="760" rx="295" ry="80"/>
-    <ellipse class="ti" cx="1130" cy="760" rx="234" ry="62"/>
-    <ellipse class="tc" cx="1131" cy="760" rx="172" ry="45"/>
-    <ellipse class="tc" cx="1131" cy="760" rx="110" ry="29"/>
-    <ellipse class="ti" cx="1132" cy="760" rx="54" ry="14"/>
-  </g>
-
-  <!-- Hill 18 — medium, centre ~(1680,720), rotated -42° -->
-  <g transform="rotate(-42 1680 720)">
-    <ellipse class="ti" cx="1680" cy="720" rx="196" ry="136"/>
-    <ellipse class="tc" cx="1680" cy="719" rx="152" ry="105"/>
-    <ellipse class="tc" cx="1681" cy="719" rx="110" ry="76"/>
-    <ellipse class="ti" cx="1681" cy="718" rx="72" ry="50"/>
-    <ellipse class="tc" cx="1682" cy="718" rx="38" ry="26"/>
-    <ellipse class="ti" cx="1682" cy="717" rx="14" ry="10"/>
-  </g>
-
-  <!-- Hill 19 — large, centre ~(900,990), rotated 25° -->
-  <g transform="rotate(25 900 990)">
-    <ellipse class="tc" cx="900" cy="990" rx="248" ry="158"/>
-    <ellipse class="ti" cx="900" cy="989" rx="196" ry="124"/>
-    <ellipse class="tc" cx="901" cy="989" rx="146" ry="92"/>
-    <ellipse class="tc" cx="901" cy="988" rx="100" ry="63"/>
-    <ellipse class="ti" cx="902" cy="988" rx="60" ry="38"/>
-    <ellipse class="tc" cx="902" cy="987" rx="28" ry="18"/>
-  </g>
-
-  <!-- Hill 20 — medium-small, centre ~(1390,940), rotated -15° -->
-  <g transform="rotate(-15 1390 940)">
-    <ellipse class="tc" cx="1390" cy="940" rx="168" ry="116"/>
-    <ellipse class="ti" cx="1390" cy="939" rx="128" ry="88"/>
-    <ellipse class="tc" cx="1391" cy="939" rx="90" ry="62"/>
-    <ellipse class="tc" cx="1391" cy="938" rx="54" ry="37"/>
-    <ellipse class="ti" cx="1392" cy="938" rx="24" ry="16"/>
-  </g>
-
-  <!-- Hill 21 — large, partially off bottom edge, centre ~(200,1160), rotated 30° -->
-  <g transform="rotate(30 200 1160)">
-    <ellipse class="ti" cx="200" cy="1160" rx="245" ry="172"/>
-    <ellipse class="tc" cx="200" cy="1159" rx="192" ry="134"/>
-    <ellipse class="tc" cx="201" cy="1159" rx="140" ry="97"/>
-    <ellipse class="ti" cx="201" cy="1158" rx="92" ry="64"/>
-    <ellipse class="tc" cx="202" cy="1158" rx="48" ry="33"/>
-  </g>
-
-  <!-- Hill 22 — elongated, partially off bottom, centre ~(640,1180), rotated -22° -->
-  <g transform="rotate(-22 640 1180)">
-    <ellipse class="tc" cx="640" cy="1180" rx="278" ry="88"/>
-    <ellipse class="ti" cx="640" cy="1180" rx="218" ry="68"/>
-    <ellipse class="tc" cx="641" cy="1180" rx="158" ry="48"/>
-    <ellipse class="tc" cx="641" cy="1180" rx="96" ry="29"/>
-  </g>
-
-  <!-- Hill 23 — medium, centre ~(1750,1050), rotated 18° -->
-  <g transform="rotate(18 1750 1050)">
-    <ellipse class="ti" cx="1750" cy="1050" rx="210" ry="148"/>
-    <ellipse class="tc" cx="1750" cy="1049" rx="164" ry="115"/>
-    <ellipse class="tc" cx="1751" cy="1049" rx="120" ry="84"/>
-    <ellipse class="ti" cx="1751" cy="1048" rx="78" ry="55"/>
-    <ellipse class="tc" cx="1752" cy="1048" rx="42" ry="29"/>
-    <ellipse class="ti" cx="1752" cy="1047" rx="16" ry="11"/>
-  </g>
-
-  <!-- Hill 24 — small, centre ~(1180,440), rotated -40° -->
-  <g transform="rotate(-40 1180 440)">
-    <ellipse class="tc" cx="1180" cy="440" rx="142" ry="98"/>
-    <ellipse class="ti" cx="1180" cy="440" rx="104" ry="72"/>
-    <ellipse class="tc" cx="1181" cy="439" rx="68" ry="47"/>
-    <ellipse class="ti" cx="1181" cy="439" rx="36" ry="25"/>
-    <ellipse class="tc" cx="1182" cy="438" rx="14" ry="9"/>
-  </g>
-
-  <!-- Hill 25 — medium, centre ~(760,440), rotated 55° -->
-  <g transform="rotate(55 760 440)">
-    <ellipse class="ti" cx="760" cy="440" rx="178" ry="122"/>
-    <ellipse class="tc" cx="760" cy="439" rx="138" ry="94"/>
-    <ellipse class="tc" cx="761" cy="439" rx="100" ry="68"/>
-    <ellipse class="ti" cx="761" cy="438" rx="64" ry="44"/>
-    <ellipse class="tc" cx="762" cy="438" rx="32" ry="22"/>
-  </g>
-
-  <!-- Hill 26 — small ridge near top-right, centre ~(1900,270), rotated -3° -->
-  <g transform="rotate(-3 1900 270)">
-    <ellipse class="tc" cx="1900" cy="270" rx="170" ry="54"/>
-    <ellipse class="ti" cx="1900" cy="270" rx="128" ry="40"/>
-    <ellipse class="tc" cx="1901" cy="270" rx="86" ry="27"/>
-    <ellipse class="tc" cx="1901" cy="270" rx="44" ry="14"/>
-  </g>
-
-  <!-- Hill 27 — medium-large, centre ~(1570,860), rotated 35° -->
-  <g transform="rotate(35 1570 860)">
-    <ellipse class="tc" cx="1570" cy="860" rx="205" ry="143"/>
-    <ellipse class="ti" cx="1570" cy="859" rx="160" ry="111"/>
-    <ellipse class="tc" cx="1571" cy="859" rx="116" ry="81"/>
-    <ellipse class="tc" cx="1571" cy="858" rx="76" ry="53"/>
-    <ellipse class="ti" cx="1572" cy="858" rx="42" ry="29"/>
-    <ellipse class="tc" cx="1572" cy="857" rx="16" ry="11"/>
-  </g>
-
-  <!-- Hill 28 — small, centre ~(460,1020), rotated -28° -->
-  <g transform="rotate(-28 460 1020)">
-    <ellipse class="ti" cx="460" cy="1020" rx="148" ry="104"/>
-    <ellipse class="tc" cx="460" cy="1020" rx="110" ry="77"/>
-    <ellipse class="tc" cx="461" cy="1019" rx="74" ry="52"/>
-    <ellipse class="ti" cx="461" cy="1019" rx="40" ry="28"/>
-  </g>
-
-  <!-- Hill 29 — elongated, centre ~(1120,1120), rotated 12° -->
-  <g transform="rotate(12 1120 1120)">
-    <ellipse class="tc" cx="1120" cy="1120" rx="268" ry="82"/>
-    <ellipse class="ti" cx="1120" cy="1120" rx="210" ry="63"/>
-    <ellipse class="tc" cx="1121" cy="1120" rx="150" ry="45"/>
-    <ellipse class="tc" cx="1121" cy="1120" rx="90" ry="27"/>
-    <ellipse class="ti" cx="1122" cy="1120" rx="40" ry="12"/>
-  </g>
-
-  <!-- Hill 30 — medium, centre ~(1860,1140), rotated -25° -->
-  <g transform="rotate(-25 1860 1140)">
-    <ellipse class="tc" cx="1860" cy="1140" rx="198" ry="138"/>
-    <ellipse class="ti" cx="1860" cy="1139" rx="154" ry="107"/>
-    <ellipse class="tc" cx="1861" cy="1139" rx="112" ry="78"/>
-    <ellipse class="ti" cx="1861" cy="1138" rx="72" ry="50"/>
-    <ellipse class="tc" cx="1862" cy="1138" rx="36" ry="25"/>
-  </g>
-
-  <!-- Hill 31 — small, near left edge off-canvas, centre ~(-30,480), rotated 10° -->
-  <g transform="rotate(10 -30 480)">
-    <ellipse class="ti" cx="-30" cy="480" rx="160" ry="112"/>
-    <ellipse class="tc" cx="-30" cy="480" rx="118" ry="82"/>
-    <ellipse class="tc" cx="-29" cy="479" rx="78" ry="54"/>
-    <ellipse class="ti" cx="-29" cy="479" rx="42" ry="29"/>
-  </g>
-
-  <!-- Hill 32 — medium, centre ~(1680,130), rotated 20° -->
-  <g transform="rotate(20 1680 130)">
-    <ellipse class="tc" cx="1680" cy="130" rx="185" ry="110"/>
-    <ellipse class="ti" cx="1680" cy="130" rx="144" ry="85"/>
-    <ellipse class="tc" cx="1681" cy="130" rx="104" ry="61"/>
-    <ellipse class="tc" cx="1681" cy="129" rx="66" ry="39"/>
-    <ellipse class="ti" cx="1682" cy="129" rx="32" ry="19"/>
-  </g>
-
-  <!-- Hill 33 — small, centre ~(940,180), rotated -50° -->
-  <g transform="rotate(-50 940 180)">
-    <ellipse class="ti" cx="940" cy="180" rx="128" ry="88"/>
-    <ellipse class="tc" cx="940" cy="180" rx="92" ry="63"/>
-    <ellipse class="tc" cx="941" cy="179" rx="58" ry="40"/>
-    <ellipse class="ti" cx="941" cy="179" rx="28" ry="19"/>
-  </g>
-
-  <!-- Hill 34 — medium-large, centre ~(1250,640), rotated 45° -->
-  <g transform="rotate(45 1250 640)">
-    <ellipse class="tc" cx="1250" cy="640" rx="215" ry="150"/>
-    <ellipse class="ti" cx="1250" cy="639" rx="168" ry="117"/>
-    <ellipse class="tc" cx="1251" cy="639" rx="123" ry="85"/>
-    <ellipse class="tc" cx="1251" cy="638" rx="82" ry="57"/>
-    <ellipse class="ti" cx="1252" cy="638" rx="46" ry="32"/>
-    <ellipse class="tc" cx="1252" cy="637" rx="18" ry="12"/>
-  </g>
-
-  <!-- Hill 35 — elongated ridge, centre ~(400,200), rotated 60° -->
-  <g transform="rotate(60 400 200)">
-    <ellipse class="tc" cx="400" cy="200" rx="240" ry="68"/>
-    <ellipse class="ti" cx="400" cy="200" rx="188" ry="52"/>
-    <ellipse class="tc" cx="401" cy="200" rx="134" ry="37"/>
-    <ellipse class="tc" cx="401" cy="200" rx="80" ry="22"/>
-    <ellipse class="ti" cx="402" cy="200" rx="36" ry="10"/>
-  </g>
-
-  <!-- Hill 36 — small, centre ~(1060,880), rotated -33° -->
-  <g transform="rotate(-33 1060 880)">
-    <ellipse class="ti" cx="1060" cy="880" rx="144" ry="100"/>
-    <ellipse class="tc" cx="1060" cy="880" rx="106" ry="73"/>
-    <ellipse class="tc" cx="1061" cy="879" rx="70" ry="48"/>
-    <ellipse class="ti" cx="1061" cy="879" rx="38" ry="26"/>
-    <ellipse class="tc" cx="1062" cy="878" rx="14" ry="10"/>
-  </g>
-
-  <!-- Hill 37 — medium, centre ~(580,1090), rotated 16° -->
-  <g transform="rotate(16 580 1090)">
-    <ellipse class="tc" cx="580" cy="1090" rx="178" ry="124"/>
-    <ellipse class="ti" cx="580" cy="1090" rx="138" ry="96"/>
-    <ellipse class="tc" cx="581" cy="1089" rx="100" ry="69"/>
-    <ellipse class="ti" cx="581" cy="1089" rx="64" ry="44"/>
-    <ellipse class="tc" cx="582" cy="1088" rx="32" ry="22"/>
+  <!-- Small hill upper-left ~(90,160), rotated -8° -->
+  <g transform="rotate(-8 90 160)">
+    <ellipse class="ti" cx="90" cy="160" rx="135" ry="95"/>
+    <ellipse class="tc" cx="91" cy="160" rx="95" ry="67"/>
+    <ellipse class="tc" cx="91" cy="159" rx="55" ry="38"/>
+    <ellipse class="ti" cx="92" cy="159" rx="22" ry="15"/>
   </g>
 
 </svg>
