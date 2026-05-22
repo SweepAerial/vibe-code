@@ -47,6 +47,13 @@
         radial-gradient(ellipse 50% 70% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%),
         radial-gradient(ellipse 40% 40% at 50% 0%, rgba(105,37,191,0.06) 0%, transparent 55%);
     }
+    .bg__topo {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/topo-bg.svg');
+      background-size: cover;
+      background-position: center;
+    }
     .bg__grid {
       position: absolute;
       inset: 0;
@@ -634,6 +641,7 @@
 
 <div class="bg">
   <div class="bg__gradient"></div>
+  <div class="bg__topo"></div>
   <div class="bg__grid"></div>
   <div class="bg__noise"></div>
   <div class="bg__scan"></div>

@@ -31,7 +31,12 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
-  background: var(--black);
+  background-color: var(--black);
+  background-image: url('../images/topo-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--white-dim);
   line-height: 1.6;
   overflow-x: hidden;
@@ -1437,7 +1442,7 @@ html[data-theme="light"] {
   --white-subtle: rgba(17,24,39,0.07);
 }
 html[data-theme="light"] body {
-  background: var(--black);
+  background-color: var(--black);
   color: var(--white-dim);
 }
 html[data-theme="light"] .navbar.scrolled {
