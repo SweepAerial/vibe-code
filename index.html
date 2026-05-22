@@ -494,6 +494,7 @@
       .notify-form { flex-direction: column; }
       .notify-input { border-right: 1px solid var(--black-border); border-radius: 4px; border-bottom: none; border-radius: 4px 4px 0 0; }
       .notify-btn { border-radius: 0 0 4px 4px; text-align: center; }
+      .left__main { flex: unset; justify-content: flex-start; padding-bottom: 0; }
       .left__footer { display: none; }
       .right__footer { display: flex; }
     }
@@ -625,6 +626,8 @@
     html[data-theme="light"] .notify-input::placeholder { color: rgba(17,24,39,0.3); }
     html[data-theme="light"] .admin-modal input { background: #f9fafb; }
     html[data-theme="light"] .left { border-right-color: var(--black-border); }
+    html[data-theme="light"] .right__top .contact-link { color: #ffffff; }
+    html[data-theme="light"] .right__top .theme-toggle { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.3); }
   </style>
 </head>
 <body>
