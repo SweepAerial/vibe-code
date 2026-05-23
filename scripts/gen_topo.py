@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""Generate a topographic background SVG. Distinct nested islands, smooth
-flowing contours, no crossing between islands. Includes occasional animated
-'light' sweeps along selected rings.
+"""Generate a topographic background SVG by contouring a real 2D elevation
+field. Uses sum-of-sines noise + marching-squares (skimage.measure.find_contours)
+so the resulting lines behave like real topo contours: closed loops around
+peaks, meandering ridges, lines that run off the edges, never crossing.
+
+Adds occasional 'comet' light sweeps along a few selected contour lines.
 
 Output: images/topo-bg.svg
 """
@@ -9,145 +12,124 @@ import math
 import random
 from pathlib import Path
 
-random.seed(11)
+import numpy as np
+from skimage import measure
+
+random.seed(5)
+np.random.seed(5)
 
 W, H = 2000, 1200
-STROKE = "#a78bda"          # mid lilac — visible on light + dark themes
-STROKE_HOT = "#6925bf"      # brand purple — used by the animated comet
+GRID_W, GRID_H = 320, 192        # field resolution (scaled to viewBox)
+SX = W / GRID_W
+SY = H / GRID_H
+
+STROKE = "#a78bda"
+STROKE_HOT = "#6925bf"           # brand purple
 
 
-def smooth_blob(cx, cy, rx, ry, points, offsets, rot=0.0):
-    """Closed Catmull-Rom -> Bezier path. `offsets` is a list of per-angle
-    radial multipliers (around 1.0). Sharing `offsets` between rings keeps
-    them nested and parallel."""
+# ---- Elevation field --------------------------------------------------------
+def make_field():
+    """Sum of low-frequency 2D sines with random orientation / phase, plus a
+    few gaussian 'peaks' to give the map clear elevation maxima around which
+    contours form tight nested loops."""
+    xs = np.linspace(0, 1, GRID_W)
+    ys = np.linspace(0, 1, GRID_H)
+    X, Y = np.meshgrid(xs, ys)
+
+    field = np.zeros_like(X)
+    # Layered sines — varying spatial frequencies & directions
+    for freq, amp in [(1.6, 1.0), (2.7, 0.55), (4.3, 0.32), (7.1, 0.18), (11.0, 0.10)]:
+        ang = np.random.uniform(0, math.pi * 2)
+        phx = np.random.uniform(0, math.pi * 2)
+        phy = np.random.uniform(0, math.pi * 2)
+        kx = math.cos(ang) * freq * math.pi * 2
+        ky = math.sin(ang) * freq * math.pi * 2
+        field += amp * np.sin(X * kx + phx) * np.cos(Y * ky + phy)
+
+    # Add a handful of gaussian peaks/pits to produce nested concentric loops
+    for _ in range(7):
+        px, py = np.random.uniform(0.05, 0.95), np.random.uniform(0.05, 0.95)
+        sigma = np.random.uniform(0.06, 0.13)
+        sign = np.random.choice([-1.0, 1.0])
+        amp = np.random.uniform(0.8, 1.6) * sign
+        field += amp * np.exp(-(((X - px) ** 2 + (Y - py) ** 2) / (2 * sigma ** 2)))
+
+    # normalise
+    field -= field.mean()
+    field /= field.std()
+    return field
+
+
+field = make_field()
+
+# Pick contour levels evenly spaced across the field's value range, skipping
+# the very extremes so we get a satisfying number of lines.
+lo, hi = np.percentile(field, [3, 97])
+N_LEVELS = 26
+levels = np.linspace(lo, hi, N_LEVELS)
+
+
+# ---- Build SVG paths from contours ------------------------------------------
+def path_from_contour(contour, simplify=1.0):
+    """contour is an (N,2) array of (row, col) coordinates from find_contours.
+    Convert to viewBox space and emit an SVG polyline path."""
     pts = []
-    for i in range(points):
-        a = 2 * math.pi * i / points + rot
-        r = 1 + offsets[i]
-        pts.append((cx + math.cos(a) * rx * r,
-                    cy + math.sin(a) * ry * r))
-    n = len(pts)
-    d = [f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"]
-    for i in range(n):
-        p0 = pts[(i - 1) % n]
-        p1 = pts[i]
-        p2 = pts[(i + 1) % n]
-        p3 = pts[(i + 2) % n]
-        c1x = p1[0] + (p2[0] - p0[0]) / 6
-        c1y = p1[1] + (p2[1] - p0[1]) / 6
-        c2x = p2[0] - (p3[0] - p1[0]) / 6
-        c2y = p2[1] - (p3[1] - p1[1]) / 6
-        d.append(f"C{c1x:.1f},{c1y:.1f} {c2x:.1f},{c2y:.1f} {p2[0]:.1f},{p2[1]:.1f}")
-    d.append("Z")
-    return " ".join(d)
+    last = None
+    for row, col in contour:
+        x = col * SX
+        y = row * SY
+        if last is None or (abs(x - last[0]) + abs(y - last[1])) > simplify:
+            pts.append((x, y))
+            last = (x, y)
+    if len(pts) < 3:
+        return None
+    parts = [f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"]
+    for x, y in pts[1:]:
+        parts.append(f"L{x:.1f},{y:.1f}")
+    return " ".join(parts)
 
 
-def make_island(cx, cy, rx, ry, rings, points, jitter, ring_gap=0.91):
-    """Generate nested ring path strings for one island. All rings share the
-    same `offsets` so they nest cleanly (no crossings within the island)."""
-    rot = random.random() * math.pi * 2
-    # Low-frequency offsets give smooth, organic shapes (not scribbly).
-    # Build from a few sine components so the perimeter undulates gently.
-    harmonics = [
-        (random.uniform(0.6, 1.0), random.randint(2, 3), random.random() * math.pi * 2),
-        (random.uniform(0.3, 0.6), random.randint(3, 4), random.random() * math.pi * 2),
-        (random.uniform(0.15, 0.3), random.randint(5, 7), random.random() * math.pi * 2),
-    ]
-    offsets = []
-    for i in range(points):
-        a = 2 * math.pi * i / points
-        v = 0.0
-        for amp, freq, phase in harmonics:
-            v += amp * math.sin(a * freq + phase)
-        # normalize harmonic sum then scale by jitter
-        offsets.append(v / sum(h[0] for h in harmonics) * jitter)
-
-    paths = []
-    r1, r2 = rx, ry
-    for i in range(rings):
-        paths.append((smooth_blob(cx, cy, r1, r2, points, offsets, rot), i, rings,
-                      max(r1, r2)))
-        r1 *= ring_gap
-        r2 *= ring_gap
-    return paths
+paths = []           # list of dicts {d, level_idx, length, closed}
+for li, lvl in enumerate(levels):
+    for c in measure.find_contours(field, lvl):
+        if len(c) < 8:
+            continue
+        d = path_from_contour(c, simplify=0.8)
+        if d is None:
+            continue
+        # length in field-grid units (approx)
+        diffs = np.diff(c, axis=0)
+        length = float(np.sum(np.hypot(diffs[:, 0] * SY, diffs[:, 1] * SX)))
+        closed = bool(np.allclose(c[0], c[-1]))
+        paths.append({"d": d, "li": li, "length": length, "closed": closed})
 
 
-def island_bbox(cx, cy, rx, ry, jitter, pad=20):
-    """Approx bounding box including jitter and a small pad."""
-    ex = rx * (1 + jitter) + pad
-    ey = ry * (1 + jitter) + pad
-    return (cx - ex, cy - ey, cx + ex, cy + ey)
-
-
-def bbox_overlap(a, b):
-    return not (a[2] < b[0] or a[0] > b[2] or a[3] < b[1] or a[1] > b[3])
-
-
-# Hand-placed island centers (cx, cy, rx, ry, rings, points, jitter).
-# Spaced so their outer rings don't collide.
-placed = [
-    # Big anchors — elongated, more rings, gentler shrink
-    (310,  240, 320, 170, 9, 44, 0.26),
-    (1020, 220, 380, 160, 9, 46, 0.24),
-    (1720, 300, 340, 200, 9, 44, 0.26),
-    (640,  640, 320, 180, 9, 44, 0.26),
-    (1320, 700, 400, 200, 10, 46, 0.24),
-    (1830, 820, 260, 170, 7, 38, 0.26),
-    (260,  900, 320, 170, 8, 42, 0.26),
-    (760, 1040, 300, 130, 7, 38, 0.26),
-    (1640,1060, 300, 130, 7, 38, 0.26),
-    # Medium fillers
-    (1480, 270, 140,  95, 5, 30, 0.28),
-    ( 980, 480, 170, 100, 5, 32, 0.28),
-    ( 350, 540, 140,  90, 5, 30, 0.28),
-    (1130,1010, 170,  95, 5, 32, 0.28),
-    (1820, 540, 140,  90, 5, 30, 0.28),
+# ---- Pick comet target paths: medium-length closed loops in mid-elevation ---
+candidates = [
+    (i, p) for i, p in enumerate(paths)
+    if p["closed"] and 600 < p["length"] < 2200 and 6 <= p["li"] <= N_LEVELS - 6
 ]
-
-# Attempt a few additional random fillers but reject overlapping ones
-existing_bboxes = [island_bbox(p[0], p[1], p[2], p[3], p[6]) for p in placed]
-random.seed(23)
-attempts = 0
-while attempts < 200 and len(placed) < 22:
-    attempts += 1
-    cx = random.randint(120, W - 120)
-    cy = random.randint(120, H - 120)
-    rx = random.randint(70, 110)
-    ry = int(rx * random.uniform(0.55, 0.85))
-    jit = 0.24
-    bb = island_bbox(cx, cy, rx, ry, jit, pad=30)
-    if any(bbox_overlap(bb, eb) for eb in existing_bboxes):
-        continue
-    existing_bboxes.append(bb)
-    placed.append((cx, cy, rx, ry, 3, 26, jit))
+random.shuffle(candidates)
+comet_picks = candidates[:6]
+comet_ids = {i: f"c{k}" for k, (i, _) in enumerate(comet_picks)}
 
 
-# Build paths and pick a handful of mid rings for animation
+# ---- Emit SVG ---------------------------------------------------------------
+def style_for(p):
+    # Faint, subtle background; slight emphasis every ~5th contour like real maps
+    every5 = (p["li"] % 5 == 0)
+    sw = 1.2 if every5 else 0.8
+    op = 0.42 if every5 else 0.26
+    return sw, op
+
+
 path_lines = []
-anim_targets = []
-pid = 0
-random.seed(101)
-for (cx, cy, rx, ry, rings, points, jit) in placed:
-    isle_paths = make_island(cx, cy, rx, ry, rings, points, jit)
-    # Mark one mid ring per medium/large island as comet target
-    target_ring_idx = 1 if rings >= 5 else 0
-    for (d, i, total, ring_r) in isle_paths:
-        pid += 1
-        outer = i == 0
-        # subtle dashes on a single ring per island (not every other one)
-        dashed = (rings >= 6 and i == total - 2)
-        sw = 1.2 if outer else 0.9
-        op = 0.32 if outer else 0.20
-        anim_id = ""
-        attrs = f'stroke-width="{sw}" opacity="{op}"'
-        if dashed:
-            attrs += ' stroke-dasharray="5 9"'
-        if i == target_ring_idx and rings >= 5 and ring_r > 110:
-            anim_id = f' id="r{pid}"'
-            perim = 2 * math.pi * ring_r
-            anim_targets.append((f"r{pid}", perim))
-        path_lines.append(f'<path{anim_id} d="{d}" {attrs}/>')
-
+for i, p in enumerate(paths):
+    sw, op = style_for(p)
+    attrs = f'stroke-width="{sw}" opacity="{op}"'
+    pid = comet_ids.get(i, "")
+    id_attr = f' id="{pid}"' if pid else ""
+    path_lines.append(f'<path{id_attr} d="{p["d"]}" {attrs}/>')
 
 header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" preserveAspectRatio="xMidYMid slice">
   <defs>
@@ -157,7 +139,7 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
                 filter: url(#glow); opacity: 0; }}
     </style>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2.4" result="b"/>
+      <feGaussianBlur stdDeviation="2.6" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
@@ -165,26 +147,15 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 
 body = "\n  ".join(path_lines)
 
-# Animated comets: clone the target rings and sweep a short dash around them
-import re
-id_to_d = {}
-for line in path_lines:
-    m = re.search(r'id="(r\d+)"\s+d="([^"]+)"', line)
-    if m:
-        id_to_d[m.group(1)] = m.group(2)
-
 comet_lines = []
-selected = anim_targets[:6]
-for idx, (rid, perim) in enumerate(selected):
-    d = id_to_d.get(rid)
-    if not d:
-        continue
-    seg = max(50, perim * 0.10)
+for idx, (pi, p) in enumerate(comet_picks):
+    perim = p["length"]
+    seg = max(60, perim * 0.10)
     gap = perim
-    dur = 8 + (idx % 3) * 2          # 8-12s per sweep
-    begin = idx * 2.5                # stagger
-    cycle_gap = 7 + (idx % 4) * 2    # quiet time between sweeps
-    comet_lines.append(f'''  <path class="comet" d="{d}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
+    dur = 9 + (idx % 3) * 2
+    begin = idx * 2.6
+    cycle_gap = 8 + (idx % 4) * 2
+    comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
     <animate attributeName="stroke-dashoffset" from="0" to="{-perim:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
     <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.08;0.92;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
   </path>''')
@@ -193,5 +164,5 @@ svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
 
 out = Path(__file__).resolve().parent.parent / "images" / "topo-bg.svg"
 out.write_text(svg)
-print(f"wrote {out} ({out.stat().st_size} bytes, {len(path_lines)} paths, "
-      f"{len(placed)} islands, {len(selected)} comets)")
+print(f"wrote {out} ({out.stat().st_size} bytes, {len(paths)} contours, "
+      f"{len(comet_picks)} comets)")
