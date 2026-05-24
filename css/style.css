@@ -36,23 +36,24 @@ body {
   overflow-x: hidden;
   position: relative;
 }
-/* Topo map background — fixed, right-side only, gently faded in from
-   the centre so it doesn't look like a hard split. Lives on a
-   pseudo-element so opacity is independent of body content. */
-body::before {
+/* Topo map background — currently only behind the home page hero
+   section, faded in from the left. Lives on .hero::before so it's
+   scoped to a single section. */
+.hero::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   background-image: url('../images/topo-bg.svg');
   background-size: cover;
-  background-position: right center;
+  background-position: left center;
   background-repeat: no-repeat;
   opacity: 0.75;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
-          mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+          mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
 }
+.hero > * { position: relative; z-index: 1; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
