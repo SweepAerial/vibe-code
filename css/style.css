@@ -79,21 +79,33 @@ body.topo-bg-left::before {
 .hero.topo-bg-left > *,
 .hero.topo-bg-right > * { position: relative; z-index: 1; }
 
-/* Topographic horizon divider: a single organic contour line spanning
-   the canvas. Sits between sections to soften the transition. */
-.topo-divider {
-  display: block;
-  width: 100%;
-  height: 80px;
-  margin: -40px 0;            /* overlap surrounding sections slightly */
+/* Hero -> next-section transition: fade the hero's background layers
+   (topo + purple orbs + grid) to transparent over the bottom ~22%
+   then bridge with a thin purple accent line + faint glow. */
+.hero .hero__bg,
+.hero .hero__grid,
+.hero.topo-bg-left::before,
+.hero.topo-bg-right::before {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
   pointer-events: none;
-  position: relative;
-  z-index: 2;
-  background-image: url('../images/topo-divider.svg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  z-index: 1;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(105,37,191,0.55) 30%,
+    rgba(139,63,240,0.75) 50%,
+    rgba(105,37,191,0.55) 70%,
+    transparent 100%);
+  box-shadow: 0 0 24px rgba(105,37,191,0.45),
+              0 0 60px rgba(105,37,191,0.25);
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
