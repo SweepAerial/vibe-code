@@ -28,10 +28,9 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; background-color: var(--black); }
 body {
   font-family: var(--font-body);
-  background-color: var(--black);
   color: var(--white-dim);
   line-height: 1.6;
   overflow-x: hidden;
@@ -1454,8 +1453,10 @@ html[data-theme="light"] {
   --white-muted: rgba(17,24,39,0.55);
   --white-subtle: rgba(17,24,39,0.07);
 }
-html[data-theme="light"] body {
+html[data-theme="light"] {
   background-color: var(--black);
+}
+html[data-theme="light"] body {
   color: var(--white-dim);
 }
 html[data-theme="light"] .navbar.scrolled {
