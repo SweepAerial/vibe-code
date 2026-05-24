@@ -172,18 +172,19 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
-# Bright dot, no tail, no motion — appears and fades. Implemented as a
-# tiny dash on the contour path so it sits naturally on a topo ring.
+# Bright dot that travels a short way along the contour and fades.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
     gap = perim
     dot_len = 1.5                    # near-point — round linecap makes it a dot
-    dur = 0.9 + (idx % 5) * 0.12     # 0.9-1.4s — quick flash
-    begin = idx * 0.9                # tight stagger -> 3x more common
-    cycle_gap = 9 + (idx % 7) * 2    # 9-21s quiet between blinks per dot
+    travel = perim * 0.18            # short glide along the line
+    dur = 1.1 + (idx % 5) * 0.15     # 1.1-1.7s — quick flash that travels
+    begin = idx * 0.9
+    cycle_gap = 3 + (idx % 5)        # 3-7s quiet between blinks per dot
     common_anim_begin = f"{begin}s;sweep{idx}.end+{cycle_gap}s"
     comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{dot_len} {gap:.1f}" stroke-dashoffset="0">
-    <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.18;1" dur="{dur}s" begin="{common_anim_begin}" id="sweep{idx}" fill="freeze"/>
+    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{common_anim_begin}" id="sweep{idx}" fill="freeze"/>
+    <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.18;1" dur="{dur}s" begin="{common_anim_begin}"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
