@@ -36,19 +36,21 @@ body {
   overflow-x: hidden;
   position: relative;
 }
-/* Topo map background helpers. Apply .topo-bg-right or .topo-bg-left
-   to an element (or to body) to overlay the topographic background
-   with a directional fade-in mask.
+/* Topo map background helpers. Apply one of these to a section (or
+   to body) to overlay the topographic background.
 
    - .topo-bg-right : full on the right, fades out to the left
    - .topo-bg-left  : full on the left,  fades out to the right
+   - .topo-bg-both  : full width, fades only at top and bottom
 */
 .topo-bg-right,
-.topo-bg-left {
+.topo-bg-left,
+.topo-bg-both {
   position: relative;
 }
 .topo-bg-right::before,
-.topo-bg-left::before {
+.topo-bg-left::before,
+.topo-bg-both::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -59,19 +61,13 @@ body {
   background-repeat: no-repeat;
   opacity: 0.75;
 }
-.topo-bg-right::before {
-  background-position: right center;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
-          mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
-}
-.topo-bg-left::before {
-  background-position: left center;
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
-          mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
-}
+.topo-bg-right::before { background-position: right center; }
+.topo-bg-left::before  { background-position: left center;  }
+.topo-bg-both::before  { background-position: center;       }
 /* When applied to body, the topo should be fixed and behind everything. */
 body.topo-bg-right::before,
-body.topo-bg-left::before {
+body.topo-bg-left::before,
+body.topo-bg-both::before {
   position: fixed;
   z-index: -1;
 }
@@ -90,10 +86,35 @@ body.topo-bg-left::before {
 .hero > .hero__scan,
 .hero > .hero__orb { z-index: 0; }
 
-/* Hero -> next-section transition: fade the hero's background layers
-   to transparent over the bottom ~22%. The topo pseudo-elements
-   already have a horizontal side-fade mask, so they get a composited
-   mask (intersect: only visible where BOTH masks allow). */
+/* Topo sections get a soft vertical fade on the topo itself at top
+   AND bottom, composited with the horizontal side-mask. */
+.topo-bg-left::before {
+  -webkit-mask-image:
+    linear-gradient(to left,   transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+          mask-image:
+    linear-gradient(to left,   transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+.topo-bg-right::before {
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+          mask-image:
+    linear-gradient(to right,  transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+.topo-bg-both::before {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+
+/* Hero decorative bg layers (orbs, noise, scan, grid, hero__bg) also
+   fade out at the bottom toward the next section. */
 .hero .hero__bg,
 .hero .hero__grid,
 .hero .hero__noise,
@@ -102,43 +123,35 @@ body.topo-bg-left::before {
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
 }
-.hero.topo-bg-left::before {
-  -webkit-mask-image:
-    linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-          mask-image:
-    linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
-}
-.hero.topo-bg-right::before {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-          mask-image:
-    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
-    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
-}
-.hero::after {
+
+/* Top + bottom accent dividers on every topo-bg section: a thin
+   purple gradient line that fades at each end and glows softly. Body
+   variants get full-viewport top/bottom lines. */
+.topo-bg-left::after,
+.topo-bg-right::after,
+.topo-bg-both::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
   bottom: 0;
-  height: 1px;
   pointer-events: none;
   z-index: 1;
-  background: linear-gradient(to right,
-    transparent 0%,
-    rgba(105,37,191,0.55) 30%,
-    rgba(139,63,240,0.75) 50%,
-    rgba(105,37,191,0.55) 70%,
-    transparent 100%);
-  box-shadow: 0 0 24px rgba(105,37,191,0.45),
-              0 0 60px rgba(105,37,191,0.25);
+  background-image:
+    linear-gradient(to right, transparent 0%, rgba(105,37,191,0.55) 30%, rgba(139,63,240,0.75) 50%, rgba(105,37,191,0.55) 70%, transparent 100%),
+    linear-gradient(to right, transparent 0%, rgba(105,37,191,0.55) 30%, rgba(139,63,240,0.75) 50%, rgba(105,37,191,0.55) 70%, transparent 100%),
+    radial-gradient(ellipse 60% 18px at 50% 0,   rgba(105,37,191,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 18px at 50% 100%, rgba(105,37,191,0.35) 0%, transparent 70%);
+  background-position: top, bottom, top, bottom;
+  background-size: 100% 1px, 100% 1px, 100% 18px, 100% 18px;
+  background-repeat: no-repeat;
+}
+body.topo-bg-left::after,
+body.topo-bg-right::after,
+body.topo-bg-both::after {
+  position: fixed;
+  z-index: -1;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -405,6 +418,9 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
   overflow: hidden;
   background: transparent;
+  /* Reserve room at the bottom so the .hero__scroll indicator never
+     visually crowds the action buttons. */
+  padding-bottom: 120px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
