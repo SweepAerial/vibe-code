@@ -117,7 +117,7 @@ candidates = [
     if p["length"] > 200       # any non-trivial contour, closed or not
 ]
 random.shuffle(candidates)
-TARGET = 310
+TARGET = 200
 MIN_DIST = 55  # viewBox units — light spread, allow many picks
 chosen = []
 for i, p in candidates:
@@ -158,8 +158,8 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
   <defs>
     <style>
       path {{ fill: none; stroke: {STROKE}; stroke-linejoin: round; stroke-linecap: round; }}
-      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 3.2; stroke-linecap: round;
-              filter: url(#glow); opacity: 0; }}
+      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 3.6; stroke-linecap: round;
+              opacity: 0; }}
     </style>
     <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="1.8" result="b"/>
