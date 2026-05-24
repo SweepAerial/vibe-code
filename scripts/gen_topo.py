@@ -112,9 +112,13 @@ def centroid(path_d):
     return (sum(xs) / len(xs), sum(ys) / len(ys))
 
 import re
+# Only pick contours whose centroid sits in the right portion of the canvas —
+# the body topo background is masked to fade out toward the left, so dots
+# placed on the left half are invisible.
+RIGHT_ZONE_X = W * 0.55          # 55% across (~1100 / 2000)
 candidates = [
     (i, p) for i, p in enumerate(paths)
-    if p["length"] > 200       # any non-trivial contour, closed or not
+    if p["length"] > 200 and centroid(p["d"])[0] >= RIGHT_ZONE_X
 ]
 random.shuffle(candidates)
 TARGET = 50
