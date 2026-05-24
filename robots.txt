@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Disallow: /portal-dashboard.html
+
+Sitemap: https://sweepaerial.com.au/sitemap.xml
