@@ -112,16 +112,16 @@ def centroid(path_d):
     return (sum(xs) / len(xs), sum(ys) / len(ys))
 
 import re
-# Only pick contours whose centroid sits in the left portion of the canvas —
-# the topo background is currently masked to fade out toward the right, so
-# dots placed on the right half are invisible.
-LEFT_ZONE_X = W * 0.45           # left ~45% (~900 / 2000)
+# Place dots across the whole canvas — the topo bg is masked
+# differently per page (right side on most pages, left side on the
+# home hero) so we want dots visible on either side. Target enough
+# that ~50 fall in each visible half.
 candidates = [
     (i, p) for i, p in enumerate(paths)
-    if p["length"] > 200 and centroid(p["d"])[0] <= LEFT_ZONE_X
+    if p["length"] > 200
 ]
 random.shuffle(candidates)
-TARGET = 50
+TARGET = 100
 MIN_DIST = 55  # viewBox units — light spread, allow many picks
 chosen = []
 for i, p in candidates:

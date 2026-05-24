@@ -36,9 +36,26 @@ body {
   overflow-x: hidden;
   position: relative;
 }
-/* Topo map background — currently only behind the home page hero
-   section, faded in from the left. Lives on .hero::before so it's
-   scoped to a single section. */
+/* Topo map background — site-wide, right-side only, gently faded in
+   from the centre. Lives on a body::before pseudo so opacity is
+   independent of body content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url('../images/topo-bg.svg');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+          mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+}
+/* Home page only: suppress the site-wide body topo and use a hero-
+   scoped, left-aligned variant behind just the top section. */
+body:has(.hero)::before { display: none; }
 .hero::before {
   content: "";
   position: absolute;
