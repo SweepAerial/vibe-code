@@ -76,18 +76,42 @@ body.topo-bg-left::before {
   z-index: -1;
 }
 /* Lift direct children of a hero with topo above the pseudo-element. */
-.hero.topo-bg-left > *,
-.hero.topo-bg-right > * { position: relative; z-index: 1; }
+/* Lift only the content container above the bg layers — orbs, noise,
+   scan etc. are direct children too but should stay behind. */
+.hero > .container,
+.hero > .hero__scroll { position: relative; z-index: 2; }
 
 /* Hero -> next-section transition: fade the hero's background layers
-   (topo + purple orbs + grid) to transparent over the bottom ~22%
-   then bridge with a thin purple accent line + faint glow. */
+   to transparent over the bottom ~22%. The topo pseudo-elements
+   already have a horizontal side-fade mask, so they get a composited
+   mask (intersect: only visible where BOTH masks allow). */
 .hero .hero__bg,
 .hero .hero__grid,
-.hero.topo-bg-left::before,
-.hero.topo-bg-right::before {
+.hero .hero__noise,
+.hero .hero__scan,
+.hero .hero__orb {
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
           mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+.hero.topo-bg-left::before {
+  -webkit-mask-image:
+    linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+          mask-image:
+    linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+.hero.topo-bg-right::before {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+          mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%),
+    linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
 }
 .hero::after {
   content: "";
@@ -373,21 +397,70 @@ html[data-theme="light"] .btn--outline:hover {
   overflow: hidden;
   background: transparent;
 }
+/* Hero background — matches the coming-soon (index.html) treatment:
+   three layered radial gradients, faint scan lines, fractal noise,
+   and two floating orbs. */
 .hero__bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(105,37,191,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(105,37,191,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 0%,  rgba(105,37,191,0.06) 0%, transparent 55%);
 }
 .hero__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(105,37,191,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(105,37,191,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    linear-gradient(rgba(105,37,191,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(105,37,191,0.055) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+}
+.hero__noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+.hero__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(105,37,191,0.03) 50%,
+    transparent 100%);
+  background-size: 100% 8px;
+  animation: heroScanMove 8s linear infinite;
+}
+@keyframes heroScanMove {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 800px; }
+}
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: heroOrbFloat 12s ease-in-out infinite;
+}
+.hero__orb--1 {
+  width: 500px; height: 500px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(105,37,191,0.15) 0%, transparent 70%);
+}
+.hero__orb--2 {
+  width: 350px; height: 350px;
+  bottom: -80px; left: -80px;
+  background: radial-gradient(circle, rgba(139,63,240,0.10) 0%, transparent 70%);
+  animation-delay: -6s;
+}
+@keyframes heroOrbFloat {
+  0%, 100% { transform: translate(0, 0)        scale(1);    }
+  33%      { transform: translate(20px, -30px) scale(1.05); }
+  66%      { transform: translate(-15px, 20px) scale(0.95); }
 }
 .hero__content {
   position: relative;
