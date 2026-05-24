@@ -183,10 +183,27 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   color: #ffffff;
   border: 1px solid rgba(255,255,255,0.25);
 }
-/* Force white text on Client Portal links across all themes */
-a[href="portal.html"] { color: #ffffff; }
-a[href="portal.html"].btn--outline { color: #ffffff; }
-a[href="portal.html"].btn--outline:hover { color: #ffffff; }
+/* Force white text on Client Portal links across all themes. Higher
+   specificity than .navbar__links a so it actually wins. */
+a[href="portal.html"],
+.navbar__links a[href="portal.html"],
+.nav-mobile a[href="portal.html"],
+a[href="portal.html"].btn,
+a[href="portal.html"].btn--outline,
+a[href="portal.html"].btn--primary { color: #ffffff; }
+a[href="portal.html"].btn--outline:hover,
+a[href="portal.html"].btn--primary:hover { color: #ffffff; }
+
+/* Get a Quote / outline buttons need to be visible on the light theme
+   too. Switch them to brand purple text + border when in light mode. */
+html[data-theme="light"] .btn--outline {
+  color: var(--purple);
+  border-color: var(--purple);
+}
+html[data-theme="light"] .btn--outline:hover {
+  color: var(--purple-light);
+  border-color: var(--purple-light);
+}
 .btn--outline:hover {
   border-color: var(--purple-light);
   color: var(--purple-light);
