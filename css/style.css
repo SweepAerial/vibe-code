@@ -295,7 +295,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--black);
+  background: transparent;
 }
 .hero__bg {
   position: absolute;
@@ -380,6 +380,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 
 /* ── Stats Bar ── */
 .stats {
+  display: none; /* hidden for now */
   background: var(--black-card);
   border-top: 1px solid var(--black-border);
   border-bottom: 1px solid var(--black-border);
