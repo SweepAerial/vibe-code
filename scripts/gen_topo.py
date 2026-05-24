@@ -172,17 +172,21 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
-# Shooting-star flash: bright peak, very brief total visibility, gone fast.
+# Shooting-star: bright flash appears, gentle motion, then fades out.
+# Opacity peaks fast (sharp ignition) and then trails off across the rest
+# of the duration so you see the fade, not just a quick whip.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
     seg = max(22, perim * 0.035)       # short tail
     gap = perim
-    dur = 0.7 + (idx % 4) * 0.12       # 0.7-1.0s total — quick whip
-    begin = idx * 3.6                  # widely spread starts
-    cycle_gap = 18 + (idx % 6) * 4     # long quiet between flashes (18-38s)
+    # Travel only a fraction of the ring — the eye reads it as drift, not a lap.
+    travel = perim * 0.18
+    dur = 1.8 + (idx % 4) * 0.25       # 1.8-2.55s — long enough to see the fade
+    begin = idx * 3.6
+    cycle_gap = 18 + (idx % 6) * 4
     comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
-    <animate attributeName="stroke-dashoffset" from="0" to="{-perim:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.2;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
+    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
+    <animate attributeName="opacity" values="0;0.95;0.55;0.18;0" keyTimes="0;0.08;0.35;0.7;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
