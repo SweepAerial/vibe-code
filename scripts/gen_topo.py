@@ -117,7 +117,7 @@ candidates = [
     if p["closed"] and 500 < p["length"] < 2400 and 5 <= p["li"] <= N_LEVELS - 5
 ]
 random.shuffle(candidates)
-MIN_DIST = 280  # viewBox units between picks
+MIN_DIST = 460  # viewBox units between picks — strong spatial spread
 chosen = []
 for i, p in candidates:
     cx, cy = centroid(p["d"])
@@ -159,7 +159,7 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
   <defs>
     <style>
       path {{ fill: none; stroke: {STROKE}; stroke-linejoin: round; stroke-linecap: round; }}
-      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.4; stroke-linecap: round;
+      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.6; stroke-linecap: round;
                 filter: url(#glow); opacity: 0; }}
     </style>
     <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
@@ -172,17 +172,17 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
-# Quick flash with a short tail then gone — subtle peak opacity, long rest.
+# Shooting-star flash: bright peak, very brief total visibility, gone fast.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
-    seg = max(28, perim * 0.05)        # short bright arc (the 'tail')
+    seg = max(22, perim * 0.035)       # short tail
     gap = perim
-    dur = 1.6 + (idx % 3) * 0.3        # fast traversal, 1.6-2.2s
-    begin = idx * 1.7                  # widely spread starts
-    cycle_gap = 14 + (idx % 5) * 3     # long quiet between flashes (14-26s)
+    dur = 0.7 + (idx % 4) * 0.12       # 0.7-1.0s total — quick whip
+    begin = idx * 3.6                  # widely spread starts
+    cycle_gap = 18 + (idx % 6) * 4     # long quiet between flashes (18-38s)
     comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
     <animate attributeName="stroke-dashoffset" from="0" to="{-perim:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.15;0.7;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
+    <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.2;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
