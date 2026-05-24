@@ -117,22 +117,22 @@ candidates = [
     if p["closed"] and 500 < p["length"] < 2400 and 5 <= p["li"] <= N_LEVELS - 5
 ]
 random.shuffle(candidates)
-MIN_DIST = 460  # viewBox units between picks — strong spatial spread
+MIN_DIST = 220  # viewBox units — spread but allow more picks
 chosen = []
 for i, p in candidates:
     cx, cy = centroid(p["d"])
     if all(math.hypot(cx - ox, cy - oy) > MIN_DIST for ox, oy in (c[2] for c in chosen)):
         chosen.append((i, p, (cx, cy)))
-    if len(chosen) >= 12:
+    if len(chosen) >= 36:
         break
 # Fallback: if min-dist culled too many, top up with closest remaining
-if len(chosen) < 12:
+if len(chosen) < 36:
     seen = {c[0] for c in chosen}
     for i, p in candidates:
         if i in seen:
             continue
         chosen.append((i, p, centroid(p["d"])))
-        if len(chosen) >= 12:
+        if len(chosen) >= 36:
             break
 comet_picks = [(i, p) for (i, p, _) in chosen]
 comet_ids = {i: f"c{k}" for k, (i, _) in enumerate(comet_picks)}
@@ -159,12 +159,8 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
   <defs>
     <style>
       path {{ fill: none; stroke: {STROKE}; stroke-linejoin: round; stroke-linecap: round; }}
-      .comet-head {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 2.0; stroke-linecap: round;
-                    filter: url(#glow); opacity: 0; }}
-    .comet-mid  {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.4; stroke-linecap: round;
-                    filter: url(#glow); opacity: 0; }}
-    .comet-tail {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.0; stroke-linecap: round;
-                    filter: url(#glow); opacity: 0; }}
+      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 3.2; stroke-linecap: round;
+              filter: url(#glow); opacity: 0; }}
     </style>
     <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="1.8" result="b"/>
@@ -176,32 +172,18 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
-# Shooting-star: a bright dot at the head with a tapered fading tail.
-# Implemented as three stacked layers on the same path, all with the same
-# dashoffset so their dashes start at the same position. Each successive
-# layer's dash extends further back along the path with lower opacity and
-# thinner stroke — building a natural taper without per-pixel gradient maths.
+# Bright dot, no tail, no motion — appears and fades. Implemented as a
+# tiny dash on the contour path so it sits naturally on a topo ring.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
     gap = perim
-    # Travel only slightly — the eye reads it as a flash, not a sweep.
-    travel = perim * 0.08
-    dur = 1.6 + (idx % 4) * 0.2          # 1.6-2.2s
-    begin = idx * 3.6
-    cycle_gap = 18 + (idx % 6) * 4
-    # Dash lengths: head (bright dot), mid (short trail), tail (long faint trail).
-    head_len = 3
-    mid_len  = 14
-    tail_len = 32
+    dot_len = 1.5                    # near-point — round linecap makes it a dot
+    dur = 0.9 + (idx % 5) * 0.12     # 0.9-1.4s — quick flash
+    begin = idx * 0.9                # tight stagger -> 3x more common
+    cycle_gap = 9 + (idx % 7) * 2    # 9-21s quiet between blinks per dot
     common_anim_begin = f"{begin}s;sweep{idx}.end+{cycle_gap}s"
-    for cls, dash_len, peak_op in [
-        ("comet-tail", tail_len, 0.20),
-        ("comet-mid",  mid_len,  0.55),
-        ("comet-head", head_len, 0.95),
-    ]:
-        comet_lines.append(f'''  <path class="{cls}" d="{p["d"]}" stroke-dasharray="{dash_len:.1f} {gap:.1f}" stroke-dashoffset="0">
-    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{common_anim_begin}" {('id="sweep%d"' % idx) if cls == "comet-head" else ""} fill="freeze"/>
-    <animate attributeName="opacity" values="0;{peak_op};{peak_op*0.5:.2f};0" keyTimes="0;0.15;0.5;1" dur="{dur}s" begin="{common_anim_begin}"/>
+    comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{dot_len} {gap:.1f}" stroke-dashoffset="0">
+    <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.18;1" dur="{dur}s" begin="{common_anim_begin}" id="sweep{idx}" fill="freeze"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
