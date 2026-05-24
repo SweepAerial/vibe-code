@@ -121,7 +121,7 @@ candidates = [
     if p["length"] > 200
 ]
 random.shuffle(candidates)
-TARGET = 100
+TARGET = 50
 MIN_DIST = 55  # viewBox units — light spread, allow many picks
 chosen = []
 for i, p in candidates:
