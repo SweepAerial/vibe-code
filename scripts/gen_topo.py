@@ -105,12 +105,36 @@ for li, lvl in enumerate(levels):
 
 
 # ---- Pick comet target paths: medium-length closed loops in mid-elevation ---
+# Spatially diverse — enforce a min distance between picked contour centroids.
+def centroid(path_d):
+    nums = [float(n) for n in re.findall(r'-?\d+(?:\.\d+)?', path_d)]
+    xs, ys = nums[0::2], nums[1::2]
+    return (sum(xs) / len(xs), sum(ys) / len(ys))
+
+import re
 candidates = [
     (i, p) for i, p in enumerate(paths)
-    if p["closed"] and 600 < p["length"] < 2200 and 6 <= p["li"] <= N_LEVELS - 6
+    if p["closed"] and 500 < p["length"] < 2400 and 5 <= p["li"] <= N_LEVELS - 5
 ]
 random.shuffle(candidates)
-comet_picks = candidates[:6]
+MIN_DIST = 280  # viewBox units between picks
+chosen = []
+for i, p in candidates:
+    cx, cy = centroid(p["d"])
+    if all(math.hypot(cx - ox, cy - oy) > MIN_DIST for ox, oy in (c[2] for c in chosen)):
+        chosen.append((i, p, (cx, cy)))
+    if len(chosen) >= 12:
+        break
+# Fallback: if min-dist culled too many, top up with closest remaining
+if len(chosen) < 12:
+    seen = {c[0] for c in chosen}
+    for i, p in candidates:
+        if i in seen:
+            continue
+        chosen.append((i, p, centroid(p["d"])))
+        if len(chosen) >= 12:
+            break
+comet_picks = [(i, p) for (i, p, _) in chosen]
 comet_ids = {i: f"c{k}" for k, (i, _) in enumerate(comet_picks)}
 
 
@@ -135,11 +159,11 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
   <defs>
     <style>
       path {{ fill: none; stroke: {STROKE}; stroke-linejoin: round; stroke-linecap: round; }}
-      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.8; stroke-linecap: round;
+      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.4; stroke-linecap: round;
                 filter: url(#glow); opacity: 0; }}
     </style>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2.6" result="b"/>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.8" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
@@ -148,16 +172,17 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
+# Quick flash with a short tail then gone — subtle peak opacity, long rest.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
-    seg = max(60, perim * 0.10)
+    seg = max(28, perim * 0.05)        # short bright arc (the 'tail')
     gap = perim
-    dur = 9 + (idx % 3) * 2
-    begin = idx * 2.6
-    cycle_gap = 8 + (idx % 4) * 2
+    dur = 1.6 + (idx % 3) * 0.3        # fast traversal, 1.6-2.2s
+    begin = idx * 1.7                  # widely spread starts
+    cycle_gap = 14 + (idx % 5) * 3     # long quiet between flashes (14-26s)
     comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
     <animate attributeName="stroke-dashoffset" from="0" to="{-perim:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.08;0.92;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
+    <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.15;0.7;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
