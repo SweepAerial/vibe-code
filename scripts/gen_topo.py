@@ -117,7 +117,7 @@ candidates = [
     if p["length"] > 200       # any non-trivial contour, closed or not
 ]
 random.shuffle(candidates)
-TARGET = 200
+TARGET = 50
 MIN_DIST = 55  # viewBox units — light spread, allow many picks
 chosen = []
 for i, p in candidates:
