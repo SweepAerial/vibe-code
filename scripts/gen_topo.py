@@ -114,26 +114,25 @@ def centroid(path_d):
 import re
 candidates = [
     (i, p) for i, p in enumerate(paths)
-    if p["closed"] and 500 < p["length"] < 2400 and 5 <= p["li"] <= N_LEVELS - 5
+    if p["length"] > 200       # any non-trivial contour, closed or not
 ]
 random.shuffle(candidates)
-MIN_DIST = 220  # viewBox units — spread but allow more picks
+TARGET = 310
+MIN_DIST = 55  # viewBox units — light spread, allow many picks
 chosen = []
 for i, p in candidates:
     cx, cy = centroid(p["d"])
     if all(math.hypot(cx - ox, cy - oy) > MIN_DIST for ox, oy in (c[2] for c in chosen)):
         chosen.append((i, p, (cx, cy)))
-    if len(chosen) >= 36:
+    if len(chosen) >= TARGET:
         break
-# Fallback: if min-dist culled too many, top up with closest remaining
-if len(chosen) < 36:
-    seen = {c[0] for c in chosen}
-    for i, p in candidates:
-        if i in seen:
-            continue
+# Top up: only ~200 distinct contours exist, so allow multiple dots per
+# contour (each placed at a different starting offset along the line).
+if len(chosen) < TARGET:
+    pool = candidates[:]
+    while len(chosen) < TARGET and pool:
+        i, p = random.choice(pool)
         chosen.append((i, p, centroid(p["d"])))
-        if len(chosen) >= 36:
-            break
 comet_picks = [(i, p) for (i, p, _) in chosen]
 comet_ids = {i: f"c{k}" for k, (i, _) in enumerate(comet_picks)}
 
@@ -173,17 +172,21 @@ body = "\n  ".join(path_lines)
 
 comet_lines = []
 # Bright dot that travels a short way along the contour and fades.
+# Each dot gets a random starting offset so dots on the same contour
+# appear at different positions instead of stacking.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
     gap = perim
     dot_len = 1.5                    # near-point — round linecap makes it a dot
     travel = perim * 0.18            # short glide along the line
-    dur = 1.1 + (idx % 5) * 0.15     # 1.1-1.7s — quick flash that travels
-    begin = idx * 0.9
+    dur = 1.1 + (idx % 5) * 0.15     # 1.1-1.7s
+    begin = (idx * 0.13) % 14        # densely staggered starts across 14s
     cycle_gap = 3 + (idx % 5)        # 3-7s quiet between blinks per dot
+    start_off = random.uniform(0, perim)
+    end_off = start_off + travel
     common_anim_begin = f"{begin}s;sweep{idx}.end+{cycle_gap}s"
-    comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{dot_len} {gap:.1f}" stroke-dashoffset="0">
-    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{common_anim_begin}" id="sweep{idx}" fill="freeze"/>
+    comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{dot_len} {gap:.1f}" stroke-dashoffset="{-start_off:.1f}">
+    <animate attributeName="stroke-dashoffset" from="{-start_off:.1f}" to="{-end_off:.1f}" dur="{dur}s" begin="{common_anim_begin}" id="sweep{idx}" fill="freeze"/>
     <animate attributeName="opacity" values="0;0.95;0" keyTimes="0;0.18;1" dur="{dur}s" begin="{common_anim_begin}"/>
   </path>''')
 
