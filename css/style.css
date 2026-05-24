@@ -76,10 +76,19 @@ body.topo-bg-left::before {
   z-index: -1;
 }
 /* Lift direct children of a hero with topo above the pseudo-element. */
-/* Lift only the content container above the bg layers — orbs, noise,
-   scan etc. are direct children too but should stay behind. */
+/* Lift content above the topo pseudo on any topo-bg section. */
+.topo-bg-left > *,
+.topo-bg-right > * { position: relative; z-index: 1; }
+/* Hero is special: orbs/noise/scan are also direct children and
+   should stay behind. Lift the content container + scroll indicator
+   to a higher z-index than those decorative layers. */
 .hero > .container,
-.hero > .hero__scroll { position: relative; z-index: 2; }
+.hero > .hero__scroll { z-index: 2; }
+.hero > .hero__bg,
+.hero > .hero__grid,
+.hero > .hero__noise,
+.hero > .hero__scan,
+.hero > .hero__orb { z-index: 0; }
 
 /* Hero -> next-section transition: fade the hero's background layers
    to transparent over the bottom ~22%. The topo pseudo-elements
