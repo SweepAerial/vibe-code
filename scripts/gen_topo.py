@@ -159,8 +159,12 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
   <defs>
     <style>
       path {{ fill: none; stroke: {STROKE}; stroke-linejoin: round; stroke-linecap: round; }}
-      .comet {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.6; stroke-linecap: round;
-                filter: url(#glow); opacity: 0; }}
+      .comet-head {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 2.0; stroke-linecap: round;
+                    filter: url(#glow); opacity: 0; }}
+    .comet-mid  {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.4; stroke-linecap: round;
+                    filter: url(#glow); opacity: 0; }}
+    .comet-tail {{ fill: none; stroke: {STROKE_HOT}; stroke-width: 1.0; stroke-linecap: round;
+                    filter: url(#glow); opacity: 0; }}
     </style>
     <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
       <feGaussianBlur stdDeviation="1.8" result="b"/>
@@ -172,21 +176,32 @@ header = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" prese
 body = "\n  ".join(path_lines)
 
 comet_lines = []
-# Shooting-star: bright flash appears, gentle motion, then fades out.
-# Opacity peaks fast (sharp ignition) and then trails off across the rest
-# of the duration so you see the fade, not just a quick whip.
+# Shooting-star: a bright dot at the head with a tapered fading tail.
+# Implemented as three stacked layers on the same path, all with the same
+# dashoffset so their dashes start at the same position. Each successive
+# layer's dash extends further back along the path with lower opacity and
+# thinner stroke — building a natural taper without per-pixel gradient maths.
 for idx, (pi, p) in enumerate(comet_picks):
     perim = p["length"]
-    seg = max(22, perim * 0.035)       # short tail
     gap = perim
-    # Travel only a fraction of the ring — the eye reads it as drift, not a lap.
-    travel = perim * 0.18
-    dur = 1.8 + (idx % 4) * 0.25       # 1.8-2.55s — long enough to see the fade
+    # Travel only slightly — the eye reads it as a flash, not a sweep.
+    travel = perim * 0.08
+    dur = 1.6 + (idx % 4) * 0.2          # 1.6-2.2s
     begin = idx * 3.6
     cycle_gap = 18 + (idx % 6) * 4
-    comet_lines.append(f'''  <path class="comet" d="{p["d"]}" stroke-dasharray="{seg:.1f} {gap:.1f}" stroke-dashoffset="0">
-    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s" id="sweep{idx}" fill="freeze"/>
-    <animate attributeName="opacity" values="0;0.95;0.55;0.18;0" keyTimes="0;0.08;0.35;0.7;1" dur="{dur}s" begin="{begin}s;sweep{idx}.end+{cycle_gap}s"/>
+    # Dash lengths: head (bright dot), mid (short trail), tail (long faint trail).
+    head_len = 3
+    mid_len  = 14
+    tail_len = 32
+    common_anim_begin = f"{begin}s;sweep{idx}.end+{cycle_gap}s"
+    for cls, dash_len, peak_op in [
+        ("comet-tail", tail_len, 0.20),
+        ("comet-mid",  mid_len,  0.55),
+        ("comet-head", head_len, 0.95),
+    ]:
+        comet_lines.append(f'''  <path class="{cls}" d="{p["d"]}" stroke-dasharray="{dash_len:.1f} {gap:.1f}" stroke-dashoffset="0">
+    <animate attributeName="stroke-dashoffset" from="0" to="{-travel:.1f}" dur="{dur}s" begin="{common_anim_begin}" {('id="sweep%d"' % idx) if cls == "comet-head" else ""} fill="freeze"/>
+    <animate attributeName="opacity" values="0;{peak_op};{peak_op*0.5:.2f};0" keyTimes="0;0.15;0.5;1" dur="{dur}s" begin="{common_anim_begin}"/>
   </path>''')
 
 svg = header + "  " + body + "\n" + "\n".join(comet_lines) + "\n</svg>\n"
