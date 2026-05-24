@@ -32,14 +32,27 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
   background-color: var(--black);
-  background-image: url('../images/topo-bg.svg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   color: var(--white-dim);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+}
+/* Topo map background — fixed, right-side only, gently faded in from
+   the centre so it doesn't look like a hard split. Lives on a
+   pseudo-element so opacity is independent of body content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url('../images/topo-bg.svg');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+          mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
