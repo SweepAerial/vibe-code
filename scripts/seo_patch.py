@@ -96,7 +96,7 @@ JSON_LD = '''<script type="application/ld+json">
   "image": "%(site)s/images/FullSweepLogoWhiteOutline.svg",
   "description": "Precision drone mapping, aerial surveys, construction progress monitoring, stockpile volume calculations, photogrammetry and GIS reporting across Australia.",
   "email": "hello@sweepaerial.com.au",
-  "telephone": "+61400000000",
+  "telephone": "+61411209280",
   "areaServed": { "@type": "Country", "name": "Australia" },
   "serviceType": [
     "Drone Mapping",
