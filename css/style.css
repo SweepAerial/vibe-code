@@ -675,10 +675,11 @@ html[data-theme="light"] .btn--outline:hover {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--purple);
-  opacity: 0.4;
+  color: var(--purple-light);
   line-height: 1;
-  min-width: 40px;
+  min-width: 48px;
+  flex-shrink: 0;
+  text-align: left;
 }
 .why-us__text h4 { margin-bottom: 6px; font-size: 1rem; }
 .why-us__text p { font-size: 0.875rem; }
@@ -1654,6 +1655,10 @@ html[data-theme="light"] .navbar.scrolled {
 }
 html[data-theme="light"] .nav-mobile {
   background: rgba(240,242,245,0.98);
+}
+.cta-banner { background: linear-gradient(135deg,#0a0012 0%,#0d0a1a 50%,#000 100%); }
+html[data-theme="light"] .cta-banner {
+  background: linear-gradient(135deg,#f3eefb 0%,#ece4f7 50%,#f7f5fb 100%);
 }
 html[data-theme="light"] .nav-mobile a { color: var(--purple); }
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
