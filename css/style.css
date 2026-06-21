@@ -1646,12 +1646,7 @@ html[data-theme="light"] .nav-mobile {
 }
 html[data-theme="light"] .nav-mobile a { color: var(--purple); }
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
-html[data-theme="light"] .topo-bg-right::before,
-html[data-theme="light"] .topo-bg-left::before,
-html[data-theme="light"] .topo-bg-both::before,
-html[data-theme="light"] body.topo-bg-right::before,
-html[data-theme="light"] body.topo-bg-left::before,
-html[data-theme="light"] body.topo-bg-both::before { opacity: 0.4; }
+html[data-theme="light"] .hero__scan { opacity: 0.4; }
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
