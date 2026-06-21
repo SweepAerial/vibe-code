@@ -1641,6 +1641,7 @@ html[data-theme="light"] {
 html[data-theme="light"] body {
   color: var(--white-dim);
 }
+html[data-theme="light"] .navbar,
 html[data-theme="light"] .navbar.scrolled {
   background: rgba(240,242,245,0.95);
 }
