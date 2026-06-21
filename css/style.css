@@ -311,6 +311,7 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: relative;
 }
 .navbar__logo {
   display: flex;
@@ -333,7 +334,12 @@ html[data-theme="light"] .btn--outline:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
+.navbar__links a { white-space: nowrap; }
 .navbar__links a {
   font-family: var(--font-heading);
   font-size: 0.875rem;
