@@ -321,7 +321,7 @@ html[data-theme="light"] .btn--outline:hover {
 .navbar__logo img {
   height: 68px;
   width: auto;
-  margin: -8px 0;
+  margin: 4px 0 -8px;
 }
 .navbar__logo-text {
   font-family: var(--font-heading);
@@ -1644,6 +1644,14 @@ html[data-theme="light"] .navbar.scrolled {
 html[data-theme="light"] .nav-mobile {
   background: rgba(240,242,245,0.98);
 }
+html[data-theme="light"] .nav-mobile a { color: var(--purple); }
+html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
+html[data-theme="light"] .topo-bg-right::before,
+html[data-theme="light"] .topo-bg-left::before,
+html[data-theme="light"] .topo-bg-both::before,
+html[data-theme="light"] body.topo-bg-right::before,
+html[data-theme="light"] body.topo-bg-left::before,
+html[data-theme="light"] body.topo-bg-both::before { opacity: 0.4; }
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
