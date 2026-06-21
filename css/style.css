@@ -319,9 +319,9 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
 }
 .navbar__logo img {
-  height: 44px;
+  height: 64px;
   width: auto;
-  margin: -8px 0;
+  margin: -12px 0;
 }
 .navbar__logo-text {
   font-family: var(--font-heading);
