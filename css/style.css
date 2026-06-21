@@ -1687,11 +1687,14 @@ html[data-theme="light"] .carousel__visual {
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 768px) {
-  :root { --nav-height: 60px; }
+@media (max-width: 1024px) {
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
   .theme-toggle { margin-left: auto; margin-right: 8px; }
+  .navbar__inner { grid-template-columns: auto 1fr auto; }
+}
+@media (max-width: 768px) {
+  :root { --nav-height: 60px; }
   .services-grid { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
   .portfolio-full-grid { grid-template-columns: 1fr 1fr; }
