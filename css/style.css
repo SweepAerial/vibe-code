@@ -299,6 +299,9 @@ html[data-theme="light"] .btn--outline:hover {
   height: var(--nav-height);
   display: flex;
   align-items: center;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--black-border);
   transition: var(--transition);
 }
 .navbar.scrolled {
@@ -319,9 +322,10 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
 }
 .navbar__logo img {
-  height: 68px;
+  height: clamp(40px, 6vw, 68px);
   width: auto;
   margin: 4px 0 -8px;
+  transition: height 0.2s ease;
 }
 .navbar__logo-text {
   font-family: var(--font-heading);
@@ -422,8 +426,7 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
   overflow: hidden;
   background: transparent;
-  /* Reserve room at the bottom so the .hero__scroll indicator never
-     visually crowds the action buttons. */
+  padding-top: var(--nav-height);
   padding-bottom: 120px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
