@@ -543,10 +543,11 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
   gap: 8px;
   font-family: var(--font-heading);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--white-muted);
+  color: var(--white);
 }
 .hero__scroll-line {
   width: 1px;
@@ -613,6 +614,8 @@ html[data-theme="light"] .btn--outline:hover {
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .service-card::before {
   content: '';
@@ -645,8 +648,12 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
   gap: 8px;
   transition: var(--transition);
+  margin-top: auto;
+  align-self: flex-start;
 }
 .service-card__link:hover { gap: 12px; }
+.service-card > .btn { margin-top: auto; align-self: flex-start; }
+.service-card__icon-spacer { width: 48px; height: 48px; margin-bottom: 20px; flex-shrink: 0; }
 
 /* ── Why Us ── */
 .why-us { background: var(--black-soft); }
