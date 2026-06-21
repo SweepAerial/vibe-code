@@ -20,7 +20,7 @@
   --font-heading: 'Audiowide', sans-serif;
   --font-accent: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --nav-height: 72px;
+  --nav-height: 88px;
   --radius: 4px;
   --radius-lg: 8px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -319,7 +319,7 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: center;
 }
 .navbar__logo img {
-  height: 44px;
+  height: 68px;
   width: auto;
   margin: -8px 0;
 }
