@@ -106,7 +106,7 @@ SERVICES = [
     ("Construction Progress Monitoring",
      "Regular drone capture and side-by-side change detection so project managers can track schedule, earthworks and build progress over time."),
     ("Stockpile Volume Calculations",
-     "Survey-grade stockpile volume measurement from drone imagery, delivered with full calculation reports and comparison over time."),
+     "Stockpile volume measurement from drone imagery, delivered with full calculation reports and comparison over time."),
     ("Customised GIS Reports",
      "Tailored GIS deliverables, CAD overlays, contour maps and analysis reports formatted for the platforms your team already uses."),
 ]

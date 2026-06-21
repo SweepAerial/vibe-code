@@ -18,14 +18,14 @@ PAGES = {
     "home.html": {
         "url": f"{SITE}/",
         "title": "Drone Mapping Australia: Precision Aerial Surveys, GIS & Construction Monitoring | Sweep Aerial Photography",
-        "desc": "Australia-wide drone mapping, aerial surveys, GIS outputs, construction progress monitoring, stockpile volume calculations and custom reports. Survey-grade accuracy, 48-hour turnaround. Get a free quote.",
+        "desc": "Australia-wide drone mapping, aerial surveys, GIS outputs, construction progress monitoring, stockpile volume calculations and custom reports. Fast turnaround. Get a free quote.",
         "keywords": "drone mapping australia, aerial survey, drone surveying services, construction progress monitoring, stockpile volume measurement, gis mapping drone, orthomosaic mapping, photogrammetry services, drone gis, aerial photography construction",
         "og_image": "/images/FullSweepLogoWhiteOutline.svg",
     },
     "services.html": {
         "url": f"{SITE}/services.html",
         "title": "5 Drone Survey Services Built for Construction, Mining & Land Development | Sweep Aerial",
-        "desc": "Explore our five core drone services: high-accuracy drone mapping, construction visualisations, construction progress monitoring, stockpile volume calculations and custom GIS reports. Delivered Australia-wide in 48-72 hours.",
+        "desc": "Explore our five core drone services: high-accuracy drone mapping, construction visualisations, construction progress monitoring, stockpile volume calculations and custom GIS reports. Delivered Australia-wide with fast turnaround.",
         "keywords": "drone mapping services, construction progress drone monitoring, stockpile volume drone, orthomosaic generation, 3d site reconstruction, gaussian splatting construction, drone gis reports, aerial photogrammetry, construction site survey drone, mine site drone survey",
         "og_image": "/images/FullSweepLogoWhiteOutline.svg",
     },
@@ -39,13 +39,13 @@ PAGES = {
     "about.html": {
         "url": f"{SITE}/about.html",
         "title": "About Sweep Aerial Photography | Australia's Precision Drone Mapping & Survey Team",
-        "desc": "Meet the surveyors and drone operators behind Sweep Aerial Photography. We invest in industry-leading hardware and processing software to deliver precision aerial intelligence with 48-72 hour turnaround.",
+        "desc": "Meet the surveyors and drone operators behind Sweep Aerial Photography. We invest in industry-leading hardware and processing software to deliver precision aerial intelligence with fast turnaround.",
         "keywords": "drone surveyors australia, professional drone mapping team, aerial survey company, drone surveying experts, photogrammetry specialists australia",
         "og_image": "/images/FullSweepLogoWhiteOutline.svg",
     },
     "contact.html": {
         "url": f"{SITE}/contact.html",
-        "title": "Get a Free Drone Mapping Quote in 24 Hours | Sweep Aerial Photography Australia",
+        "title": "Get a Free Drone Mapping Quote | Sweep Aerial Photography Australia",
         "desc": "Request a free, no-obligation quote for drone mapping, aerial surveys, construction progress monitoring or stockpile volume calculations. Australia-wide coverage. Reply within one business day.",
         "keywords": "drone mapping quote, aerial survey quote australia, construction drone services contact, hire drone surveyor, drone mapping cost",
         "og_image": "/images/FullSweepLogoWhiteOutline.svg",
