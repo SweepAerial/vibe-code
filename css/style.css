@@ -1556,7 +1556,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
 }
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 48px;
   margin-bottom: 48px;
 }
@@ -1569,6 +1569,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
 }
 .footer__brand-logo img { height: 52px; margin: -10px 0; }
 .footer__brand-logo span { color: var(--purple-light); }
