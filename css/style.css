@@ -1588,6 +1588,16 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   transition: var(--transition);
 }
 .footer__col ul a:hover { color: var(--purple-light); }
+.footer__disclaimer {
+  border-top: 1px solid var(--black-border);
+  padding: 20px 0 0;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: var(--white-muted);
+}
 .footer__bottom {
   border-top: 1px solid var(--black-border);
   padding: 24px 0;
