@@ -421,13 +421,13 @@ html[data-theme="light"] .btn--outline:hover {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: max(720px, 100vh);
   display: flex;
   align-items: center;
   overflow: hidden;
   background: transparent;
-  padding-top: var(--nav-height);
-  padding-bottom: 120px;
+  padding-top: calc(var(--nav-height) + 32px);
+  padding-bottom: 160px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
@@ -1574,7 +1574,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   margin-bottom: 20px;
 }
 .footer__brand-logo { display: block; }
-.footer__brand-logo img { width: 100%; height: auto; max-width: 180px; margin: 0; display: block; }
+.footer__brand-logo img { width: 100%; height: auto; max-width: 220px; margin: 0; display: block; }
 .footer__brand-logo span { color: var(--purple-light); }
 .footer__col h5 {
   font-family: var(--font-heading);
