@@ -1578,7 +1578,7 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--white-muted);
+  color: var(--white);
   margin-bottom: 16px;
 }
 .footer__col ul { display: flex; flex-direction: column; gap: 10px; }
