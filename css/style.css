@@ -421,7 +421,7 @@ html[data-theme="light"] .btn--outline:hover {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: max(720px, 100vh);
+  min-height: clamp(720px, 100vh, 880px);
   display: flex;
   align-items: center;
   overflow: hidden;
