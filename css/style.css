@@ -1556,11 +1556,13 @@ textarea.form-control { resize: vertical; min-height: 140px; }
 }
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 48px;
   margin-bottom: 48px;
+  align-items: start;
 }
 .footer__brand p { font-size: 0.875rem; line-height: 1.7; margin-top: 12px; max-width: 280px; }
+.footer__about p { font-size: 0.875rem; line-height: 1.7; }
 .footer__brand-logo {
   font-family: var(--font-heading);
   font-size: 1.3rem;
