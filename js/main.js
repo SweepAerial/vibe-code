@@ -20,7 +20,11 @@
     const favicon = document.getElementById('favicon');
     if (favicon) favicon.href = resolved === 'light' ? 'images/PyramidBlack.svg' : 'images/PyramidWhite.svg';
     document.querySelectorAll('.theme-logo').forEach(img => {
-      img.src = resolved === 'light' ? 'images/FullSweepLogoBlackOutline.svg' : 'images/FullSweepLogoWhiteOutline.svg';
+      if (img.classList.contains('theme-logo--sap')) {
+        img.src = resolved === 'light' ? 'images/SAPBlack.svg' : 'images/SAPWhite.svg';
+      } else {
+        img.src = resolved === 'light' ? 'images/FullSweepLogoBlackOutline.svg' : 'images/FullSweepLogoWhiteOutline.svg';
+      }
     });
   }
 
