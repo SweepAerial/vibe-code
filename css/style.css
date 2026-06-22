@@ -519,7 +519,7 @@ html[data-theme="light"] .btn--outline:hover {
 }
 .hero h1 { margin-bottom: 24px; }
 .hero h1 .line-purple {
-  display: block;
+  display: inline;
   background: linear-gradient(135deg, var(--purple-light), #c084fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
