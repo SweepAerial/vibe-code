@@ -817,6 +817,8 @@ html[data-theme="light"] .btn--outline:hover {
 .carousel__slide {
   min-width: 100%;
   padding: 0 24px;
+  display: flex;
+  align-items: center;
 }
 .carousel__card {
   background: var(--black-card);
@@ -827,6 +829,7 @@ html[data-theme="light"] .btn--outline:hover {
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
 }
