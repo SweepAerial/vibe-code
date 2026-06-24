@@ -65,6 +65,7 @@ body {
 .topo-bg-left::before  { background-position: left center;  }
 .topo-bg-both::before  { background-position: center;       }
 .carousel__card.topo-bg-right::before { background-image: url('../images/topo-bg-static.svg'); opacity: 1; filter: brightness(1.6) contrast(1.4); }
+.cta-banner.topo-bg-both::before { opacity: 1; filter: brightness(1.4) contrast(1.2); }
 /* When applied to body, the topo should be fixed and behind everything. */
 body.topo-bg-right::before,
 body.topo-bg-left::before,
@@ -75,7 +76,8 @@ body.topo-bg-both::before {
 /* Lift direct children of a hero with topo above the pseudo-element. */
 /* Lift content above the topo pseudo on any topo-bg section. */
 .topo-bg-left > *,
-.topo-bg-right > * { position: relative; z-index: 1; }
+.topo-bg-right > *,
+.topo-bg-both > * { position: relative; z-index: 1; }
 /* Hero is special: orbs/noise/scan are also direct children and
    should stay behind. Lift the content container + scroll indicator
    to a higher z-index than those decorative layers. */
@@ -215,7 +217,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 }
 .section { padding: 96px 0; }
 .section + .section { padding-top: 56px; }
-.section.carousel-section { padding: 56px 0; }
+.section.carousel-section { padding: 24px 0 56px; }
 .carousel-section + .section { padding-top: 40px; }
 .section--sm { padding: 64px 0; }
 .text-purple { color: var(--purple-light); }
@@ -451,7 +453,7 @@ html[data-theme="light"] .btn--outline:hover {
   overflow: hidden;
   background: transparent;
   padding-top: calc(var(--nav-height) + 32px);
-  padding-bottom: 160px;
+  padding-bottom: 100px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
