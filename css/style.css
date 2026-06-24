@@ -125,6 +125,26 @@ body.topo-bg-both::before {
           mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
 }
 
+/* Site-wide section divider: thin purple gradient line at the top of
+   every section that follows another section. Topo sections retain
+   their own top/bottom variant below. */
+section { position: relative; }
+section + section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 18px;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(to right, transparent 0%, rgba(105,37,191,0.55) 30%, rgba(139,63,240,0.75) 50%, rgba(105,37,191,0.55) 70%, transparent 100%),
+    radial-gradient(ellipse 60% 18px at 50% 0, rgba(105,37,191,0.35) 0%, transparent 70%);
+  background-position: top, top;
+  background-size: 100% 1px, 100% 18px;
+  background-repeat: no-repeat;
+}
 /* Top + bottom accent dividers on every topo-bg section: a thin
    purple gradient line that fades at each end and glows softly. Body
    variants get full-viewport top/bottom lines. */
