@@ -129,7 +129,7 @@ body.topo-bg-both::before {
    every section that follows another section. Topo sections retain
    their own top/bottom variant below. */
 section { position: relative; }
-section + section::before {
+section + section:not(.topo-bg-right):not(.topo-bg-left):not(.topo-bg-both)::before {
   content: "";
   position: absolute;
   left: 0;
@@ -215,7 +215,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 }
 .section { padding: 96px 0; }
 .section + .section { padding-top: 56px; }
-.section.carousel-section { padding: 56px 0; }
+.section.carousel-section { padding: 56px 0 24px; }
 .carousel-section + .section { padding-top: 40px; }
 .section--sm { padding: 64px 0; }
 .text-purple { color: var(--purple-light); }
