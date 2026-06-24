@@ -820,6 +820,13 @@ html[data-theme="light"] .btn--outline:hover {
 .carousel__card-icon svg { width: 32px; height: 32px; }
 .carousel__card h2 { margin-bottom: 16px; font-size: 2rem; }
 .carousel__card-desc { font-size: 1rem; line-height: 1.75; margin-bottom: 24px; }
+.carousel__deliverables {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: var(--white-subtle);
+  border-left: 2px solid var(--purple);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
 .carousel__deliverables h4 {
   font-size: 0.8rem;
   font-weight: 600;
@@ -876,23 +883,6 @@ html[data-theme="light"] .btn--outline:hover {
   inset: 0;
   background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 70%);
 }
-.carousel__use-case {
-  margin-top: 20px;
-  padding: 16px 20px;
-  background: var(--white-subtle);
-  border-left: 2px solid var(--purple);
-  border-radius: 0 var(--radius) var(--radius) 0;
-}
-.carousel__use-case-label {
-  font-family: var(--font-heading);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 4px;
-}
-.carousel__use-case p { font-size: 0.875rem; }
 
 .carousel__controls {
   display: flex;
