@@ -215,7 +215,7 @@ p { font-size: 0.975rem; color: var(--white-muted); }
 }
 .section { padding: 96px 0; }
 .section + .section { padding-top: 56px; }
-.section.carousel-section { padding: 56px 0 24px; }
+.section.carousel-section { padding: 56px 0; }
 .carousel-section + .section { padding-top: 40px; }
 .section--sm { padding: 64px 0; }
 .text-purple { color: var(--purple-light); }
@@ -810,6 +810,7 @@ html[data-theme="light"] .btn--outline:hover {
 }
 .carousel__track {
   display: flex;
+  height: 700px;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .carousel__slide {
