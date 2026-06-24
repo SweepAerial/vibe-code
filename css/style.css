@@ -214,7 +214,9 @@ p { font-size: 0.975rem; color: var(--white-muted); }
   .container { max-width: 1600px; }
 }
 .section { padding: 96px 0; }
+.section + .section { padding-top: 56px; }
 .section.carousel-section { padding: 56px 0; }
+.carousel-section + .section { padding-top: 40px; }
 .section--sm { padding: 64px 0; }
 .text-purple { color: var(--purple-light); }
 .text-center { text-align: center; }
