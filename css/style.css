@@ -64,6 +64,7 @@ body {
 .topo-bg-right::before { background-position: right center; }
 .topo-bg-left::before  { background-position: left center;  }
 .topo-bg-both::before  { background-position: center;       }
+.carousel__card.topo-bg-right::before { background-image: url('../images/topo-bg-static.svg'); }
 /* When applied to body, the topo should be fixed and behind everything. */
 body.topo-bg-right::before,
 body.topo-bg-left::before,
