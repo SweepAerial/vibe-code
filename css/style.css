@@ -1792,7 +1792,7 @@ html[data-theme="light"] .carousel__visual {
 
 .cslider {
   position: relative;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 1 / 1;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--black-card);
@@ -1809,7 +1809,7 @@ html[data-theme="light"] .carousel__visual {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: var(--obj-pos, 100% 0%);
+  object-position: var(--obj-pos, 50% 50%);
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
@@ -1893,6 +1893,6 @@ html[data-theme="light"] .cslider__label { background: rgba(0,0,0,0.48); }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .cslider { aspect-ratio: 3 / 2; }
+  .cslider { aspect-ratio: 1 / 1; }
   .cslider__grip { width: 40px; height: 40px; }
 }
