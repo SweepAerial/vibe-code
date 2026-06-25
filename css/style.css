@@ -853,6 +853,7 @@ html[data-theme="light"] .btn--outline:hover {
   margin-top: 20px;
   padding: 16px 20px;
   background: var(--white-subtle);
+  border: 1px solid var(--black-border);
   border-left: 2px solid var(--purple);
   border-radius: 0 var(--radius) var(--radius) 0;
 }
@@ -1743,7 +1744,7 @@ html[data-theme="light"] .carousel__visual {
   .carousel__card { grid-template-columns: 1fr; gap: 32px; height: auto; }
   .carousel__track { height: auto; }
   .carousel__slide { align-items: stretch; }
-  .carousel__visual { aspect-ratio: 16/7; }
+  .carousel__visual { aspect-ratio: 3/2; min-height: 200px; }
   .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1763,7 +1764,8 @@ html[data-theme="light"] .carousel__visual {
   .all-services__grid { grid-template-columns: 1fr; }
   .mission__grid { grid-template-columns: 1fr; }
   .team__grid { grid-template-columns: 1fr 1fr; }
-  .carousel__card { padding: 32px 24px; }
+  .carousel__card { padding: 32px 24px; height: auto; }
+  .carousel__track { height: auto; }
   .footer__grid { grid-template-columns: 1fr; }
   .contact-form-wrap { padding: 32px 24px; }
   .form-row { grid-template-columns: 1fr; }
