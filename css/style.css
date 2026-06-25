@@ -1793,6 +1793,8 @@ html[data-theme="light"] .carousel__visual {
 .cslider {
   position: relative;
   aspect-ratio: 1 / 1;
+  max-width: 600px;
+  margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--black-card);
