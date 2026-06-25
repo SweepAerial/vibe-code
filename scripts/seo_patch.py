@@ -32,7 +32,7 @@ PAGES = {
     "portfolio.html": {
         "url": f"{SITE}/portfolio.html",
         "title": "Drone Mapping Portfolio: Real Construction & Survey Project Deliverables | Sweep Aerial",
-        "desc": "Browse real-world drone mapping, orthomosaic, photogrammetry and construction monitoring projects delivered by Sweep Aerial Photography. See raw aerial capture compared to processed outputs.",
+        "desc": "Browse real-world drone mapping, orthomosaic, photogrammetry and construction monitoring projects delivered by Sweep Aerial Photography. See week-on-week site progress captured from above.",
         "keywords": "drone mapping portfolio, orthomosaic examples, construction drone survey case study, drone photogrammetry samples, aerial survey portfolio australia, drone mapping deliverables",
         "og_image": "/images/FullSweepLogoWhiteOutline.svg",
     },
