@@ -1740,7 +1740,9 @@ html[data-theme="light"] .carousel__visual {
   .about-hero__grid { grid-template-columns: 1fr; gap: 48px; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .carousel__card { grid-template-columns: 1fr; gap: 32px; }
+  .carousel__card { grid-template-columns: 1fr; gap: 32px; height: auto; }
+  .carousel__track { height: auto; }
+  .carousel__slide { align-items: stretch; }
   .carousel__visual { aspect-ratio: 16/7; }
   .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
   .tech-grid { grid-template-columns: repeat(2, 1fr); }
