@@ -1792,7 +1792,7 @@ html[data-theme="light"] .carousel__visual {
 
 .cslider {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 11 / 6;
   max-width: 1100px;
   margin: 0 auto;
   border-radius: var(--radius);
