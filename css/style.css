@@ -207,7 +207,7 @@ h4 { font-size: 1.2rem; }
 p { font-size: 0.975rem; color: var(--white-muted); }
 
 /* ── Utilities ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 64px); }
 @media (min-width: 1600px) {
   .container { max-width: 1440px; }
 }
