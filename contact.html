@@ -71,7 +71,7 @@
 }
 </script>
 </head>
-<body class="topo-bg-right">
+<body>
 
 <!-- ── Navbar ── -->
 <nav class="navbar scrolled" id="navbar">
@@ -104,13 +104,22 @@
 </nav>
 
 <!-- ── Hero ── -->
-<section class="contact-hero" style="background:var(--black);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 100%,rgba(105,37,191,0.1) 0%,transparent 70%);"></div>
+<section class="hero topo-bg-right contact-hero">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__noise" aria-hidden="true"></div>
+  <div class="hero__scan" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
   <div class="container" style="position:relative;">
     <div class="tag fade-in">Get in Touch</div>
     <h1 class="fade-in">Let's Discuss<br><span class="text-purple">Your Project.</span></h1>
     <div class="divider fade-in"></div>
     <p class="fade-in" style="max-width:520px;font-size:1.05rem;">Whether you have a clear brief or just an idea, we're happy to talk through what aerial intelligence can do for your project. Free consultation, no obligation.</p>
+  </div>
+  <div class="hero__scroll">
+    Scroll
+    <div class="hero__scroll-line"></div>
   </div>
 </section>
 

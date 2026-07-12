@@ -59,7 +59,7 @@
 }
 </script>
 </head>
-<body class="topo-bg-right">
+<body>
 
 <!-- ── Navbar ── -->
 <nav class="navbar scrolled" id="navbar">
@@ -92,13 +92,22 @@
 </nav>
 
 <!-- ── Hero ── -->
-<section class="portfolio-hero" style="background:var(--black);position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 100%,rgba(105,37,191,0.12) 0%,transparent 70%);"></div>
+<section class="hero topo-bg-right portfolio-hero">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__noise" aria-hidden="true"></div>
+  <div class="hero__scan" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
   <div class="container" style="position:relative;">
     <div class="tag fade-in">Portfolio</div>
     <h1 class="fade-in">Our Work in the Field</h1>
     <div class="divider fade-in"></div>
     <p class="fade-in" style="max-width:560px;font-size:1.05rem;">A selection of completed projects across construction and development in Queensland. Every project is delivered with care, consistency, and clear documentation your team can actually use.</p>
+  </div>
+  <div class="hero__scroll">
+    Scroll
+    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
@@ -273,7 +282,7 @@
 </section>
 
 <!-- ── CTA ── -->
-<section class="section--sm" style="background:var(--black);border-top:1px solid var(--black-border);">
+<section class="section--sm topo-bg-both cta-banner">
   <div class="container text-center">
     <h2 class="fade-in" style="margin-bottom:16px;">Want to See Your Project Here?</h2>
     <p class="fade-in" style="max-width:480px;margin:0 auto 36px;">Get in touch and let's discuss what aerial intelligence can do for your next project.</p>
