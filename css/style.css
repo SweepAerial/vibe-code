@@ -1179,28 +1179,58 @@ html[data-theme="light"] .btn--outline:hover {
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 24px;
   margin-top: 48px;
 }
-.tech-item {
+.tech-card {
   background: var(--black-card);
   border: 1px solid var(--black-border);
   border-radius: var(--radius-lg);
-  padding: 24px;
-  text-align: center;
+  padding: 32px 24px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light));
+  opacity: 0;
   transition: var(--transition);
 }
-.tech-item:hover { border-color: var(--purple); }
-.tech-item__icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto 12px;
+.tech-card:hover { border-color: var(--purple); transform: translateY(-4px); }
+.tech-card:hover::before { opacity: 1; }
+.tech-card__icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 20px;
   color: var(--purple-light);
-  opacity: 0.7;
 }
-.tech-item__icon svg { width: 100%; height: 100%; }
-.tech-item h4 { font-size: 0.95rem; margin-bottom: 4px; }
-.tech-item p { font-size: 0.8rem; }
+.tech-card__icon svg { width: 100%; height: 100%; }
+.tech-card__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+.tech-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tech-card__list li {
+  font-size: 0.9rem;
+  color: var(--white-dim);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--white-subtle);
+}
+.tech-card__list li:last-child { border-bottom: none; }
 
 /* ── Contact Page ── */
 .contact-hero {
@@ -1763,6 +1793,7 @@ html[data-theme="light"] .carousel__visual {
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .all-services__grid { grid-template-columns: 1fr; }
   .mission__grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: 1fr; }
   .team__grid { grid-template-columns: 1fr 1fr; }
   .carousel__card { padding: 32px 24px; height: auto; }
   .carousel__track { height: auto; }
