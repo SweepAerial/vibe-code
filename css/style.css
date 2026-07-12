@@ -447,13 +447,13 @@ html[data-theme="light"] .btn--outline:hover {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: clamp(720px, 100vh, 780px);
+  min-height: 540px;
   display: flex;
   align-items: center;
   overflow: hidden;
   background: transparent;
   padding-top: calc(var(--nav-height) + 32px);
-  padding-bottom: 160px;
+  padding-bottom: 120px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
@@ -1002,7 +1002,7 @@ html[data-theme="light"] .btn--outline:hover {
 .service-item p { font-size: 0.875rem; line-height: 1.65; }
 
 /* ── Portfolio Page ── */
-.portfolio-hero { min-height: 540px; align-items: flex-start; padding-top: calc(var(--nav-height) + 56px); }
+.portfolio-hero { }
 .portfolio-filters {
   display: flex;
   gap: 8px;
@@ -1080,7 +1080,7 @@ html[data-theme="light"] .btn--outline:hover {
 .portfolio-item__desc { font-size: 0.85rem; line-height: 1.6; }
 
 /* ── About Page ── */
-.about-hero { min-height: 540px; align-items: flex-start; padding-top: calc(var(--nav-height) + 56px); }
+.about-hero { }
 .about-hero__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1200,7 +1200,7 @@ html[data-theme="light"] .btn--outline:hover {
 }
 
 /* ── Contact Page ── */
-.contact-hero { min-height: 540px; align-items: flex-start; padding-top: calc(var(--nav-height) + 56px); }
+.contact-hero { }
 .contact-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
