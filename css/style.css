@@ -426,23 +426,37 @@ html[data-theme="light"] .btn--outline:hover {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--black-border);
   z-index: 999;
-  padding: 16px 0;
+  padding: 16px 24px;
   flex-direction: column;
+  gap: 4px;
 }
 .nav-mobile.open { display: flex; }
 .nav-mobile a {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white-muted);
-  padding: 14px 24px;
-  border-bottom: 1px solid var(--black-border);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  position: relative;
+}
+.nav-mobile a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 14px; right: 14px;
+  height: 1px;
+  background: var(--purple-light);
+  transform: scaleX(0);
   transition: var(--transition);
 }
-.nav-mobile a:last-child { border-bottom: none; }
-.nav-mobile a:hover, .nav-mobile a.active { color: var(--purple-light); }
+.nav-mobile a:hover { color: var(--white); }
+.nav-mobile a:hover::after { transform: scaleX(1); }
+.nav-mobile a.active { color: var(--white); }
+.nav-mobile a.active::after { transform: scaleX(1); }
+.nav-mobile:has(a:not(.active):hover) a.active::after { transform: scaleX(0); }
 
 /* ── Hero ── */
 .hero {
