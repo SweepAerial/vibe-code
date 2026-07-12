@@ -1118,46 +1118,27 @@ html[data-theme="light"] .btn--outline:hover {
 .mission__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 1px;
+  background: var(--black-border);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   margin-top: 48px;
 }
 .mission__item {
   background: var(--black-card);
-  border: 1px solid var(--black-border);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
+  padding: 40px 32px;
+  text-align: center;
 }
-.mission__item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--purple), var(--purple-light));
-  opacity: 0;
-  transition: var(--transition);
-}
-.mission__item:hover { border-color: var(--purple); transform: translateY(-4px); }
-.mission__item:hover::before { opacity: 1; }
 .mission__item-icon {
-  width: 36px;
-  height: 36px;
-  margin-bottom: 20px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
   color: var(--purple-light);
 }
 .mission__item-icon svg { width: 100%; height: 100%; }
-.mission__item h4 {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 12px;
-}
-.mission__item p { font-size: 0.875rem; color: var(--white-dim); }
+.mission__item h4 { margin-bottom: 10px; }
+.mission__item p { font-size: 0.875rem; }
 .team { padding: 96px 0; }
 .team__grid {
   display: grid;
@@ -1198,58 +1179,35 @@ html[data-theme="light"] .btn--outline:hover {
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 1px;
+  background: var(--black-border);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   margin-top: 48px;
 }
 .tech-card {
   background: var(--black-card);
-  border: 1px solid var(--black-border);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
+  padding: 40px 32px;
+  text-align: center;
 }
-.tech-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--purple), var(--purple-light));
-  opacity: 0;
-  transition: var(--transition);
-}
-.tech-card:hover { border-color: var(--purple); transform: translateY(-4px); }
-.tech-card:hover::before { opacity: 1; }
 .tech-card__icon {
-  width: 36px;
-  height: 36px;
-  margin-bottom: 20px;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
   color: var(--purple-light);
 }
 .tech-card__icon svg { width: 100%; height: 100%; }
-.tech-card__title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  color: var(--white);
-}
+.tech-card__title { margin-bottom: 10px; }
 .tech-card__list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 .tech-card__list li {
-  font-size: 0.9rem;
-  color: var(--white-dim);
-  padding: 6px 0;
-  border-bottom: 1px solid var(--white-subtle);
+  font-size: 0.875rem;
+  padding: 4px 0;
 }
-.tech-card__list li:last-child { border-bottom: none; }
 
 /* ── Contact Page ── */
 .contact-hero {
@@ -1812,7 +1770,7 @@ html[data-theme="light"] .carousel__visual {
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .all-services__grid { grid-template-columns: 1fr; }
   .mission__grid { grid-template-columns: 1fr; }
-  .tech-grid { grid-template-columns: 1fr; }
+  .tech-grid { grid-template-columns: repeat(2, 1fr); }
   .team__grid { grid-template-columns: 1fr 1fr; }
   .carousel__card { padding: 32px 24px; height: auto; }
   .carousel__track { height: auto; }
@@ -1832,7 +1790,7 @@ html[data-theme="light"] .carousel__visual {
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; justify-content: center; }
   .dashboard-stats { grid-template-columns: 1fr 1fr; }
-  .tech-grid { grid-template-columns: repeat(2, 1fr); }
+  .tech-grid { grid-template-columns: 1fr; }
   .footer__bottom {
     flex-direction: column;
     gap: 12px;
