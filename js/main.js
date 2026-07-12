@@ -74,6 +74,11 @@ mobileNav?.querySelectorAll('a').forEach(link => {
   });
 });
 
+window.addEventListener('resize', () => {
+  hamburger?.classList.remove('open');
+  mobileNav?.classList.remove('open');
+});
+
 /* ── Active nav link ── */
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar__links a, .nav-mobile a').forEach(link => {
