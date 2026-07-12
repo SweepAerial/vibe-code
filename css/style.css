@@ -573,7 +573,7 @@ html[data-theme="light"] .btn--outline:hover {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--white-muted);
 }
 .hero__scroll-line {
   width: 1px;
@@ -805,7 +805,7 @@ html[data-theme="light"] .btn--outline:hover {
   background: radial-gradient(ellipse 70% 50% at 50% 100%, var(--purple-glow) 0%, transparent 70%);
 }
 .hero > .container { text-align: center; }
-.hero > .container p { margin-left: auto; margin-right: auto; }
+.hero > .container p { margin-left: auto; margin-right: auto; color: var(--white); }
 
 .carousel {
   position: relative;
