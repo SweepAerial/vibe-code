@@ -447,13 +447,13 @@ html[data-theme="light"] .btn--outline:hover {
 /* ── Hero ── */
 .hero {
   position: relative;
-  min-height: 540px;
+  min-height: 600px;
   display: flex;
   align-items: center;
   overflow: hidden;
   background: transparent;
   padding-top: calc(var(--nav-height) + 32px);
-  padding-bottom: 120px;
+  padding-bottom: 140px;
 }
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
@@ -804,7 +804,8 @@ html[data-theme="light"] .btn--outline:hover {
   inset: 0;
   background: radial-gradient(ellipse 70% 50% at 50% 100%, var(--purple-glow) 0%, transparent 70%);
 }
-.services-hero__content { position: relative; text-align: center; }
+.hero > .container { text-align: center; }
+.hero > .container p { margin-left: auto; margin-right: auto; }
 
 .carousel {
   position: relative;
@@ -1002,7 +1003,6 @@ html[data-theme="light"] .btn--outline:hover {
 .service-item p { font-size: 0.875rem; line-height: 1.65; }
 
 /* ── Portfolio Page ── */
-.portfolio-hero { }
 .portfolio-filters {
   display: flex;
   gap: 8px;
@@ -1080,7 +1080,6 @@ html[data-theme="light"] .btn--outline:hover {
 .portfolio-item__desc { font-size: 0.85rem; line-height: 1.6; }
 
 /* ── About Page ── */
-.about-hero { }
 .about-hero__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1200,7 +1199,6 @@ html[data-theme="light"] .btn--outline:hover {
 }
 
 /* ── Contact Page ── */
-.contact-hero { }
 .contact-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
