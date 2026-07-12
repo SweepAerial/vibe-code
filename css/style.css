@@ -389,9 +389,10 @@ html[data-theme="light"] .btn--outline:hover {
   transition: var(--transition);
 }
 .navbar__links a:hover { color: var(--white); }
-.navbar__links a:hover::after,
-.navbar__links a.active::after { transform: scaleX(1); }
+.navbar__links a:hover::after { transform: scaleX(1); }
 .navbar__links a.active { color: var(--white); }
+.navbar__links a.active::after { transform: scaleX(1); }
+.navbar__links:has(a:not(.active):hover) a.active::after { transform: scaleX(0); }
 .navbar__links .btn--primary { padding: 9px 20px; font-size: 0.8rem; }
 .navbar__hamburger {
   display: none;
