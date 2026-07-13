@@ -64,7 +64,7 @@ body {
 .topo-bg-right::before { background-position: right center; }
 .topo-bg-left::before  { background-position: left center;  }
 .topo-bg-both::before  { background-position: center;       }
-.carousel__card.topo-bg-right::before { background-image: url('../images/topo-bg-static.svg'); opacity: 1; filter: brightness(1.6) contrast(1.4) sepia(1) hue-rotate(230deg) saturate(3); }
+.carousel__card.topo-bg-right::before { background-image: url('../images/topo-bg-static.svg'); opacity: 1; filter: brightness(1.6) contrast(1.4); }
 .carousel__card.topo-bg-right::after { opacity: 0.5; }
 /* When applied to body, the topo should be fixed and behind everything. */
 body.topo-bg-right::before,
@@ -838,7 +838,11 @@ html[data-theme="light"] .btn--outline:hover {
   align-items: stretch;
 }
 .carousel__card {
-  background: var(--black-card);
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(105,37,191,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 0%,  rgba(105,37,191,0.06) 0%, transparent 55%),
+    var(--black-card);
   border: 1px solid var(--black-border);
   border-radius: var(--radius-lg);
   padding: 56px;
