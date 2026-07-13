@@ -76,7 +76,8 @@ body.topo-bg-both::before {
 /* Lift direct children of a hero with topo above the pseudo-element. */
 /* Lift content above the topo pseudo on any topo-bg section. */
 .topo-bg-left > *,
-.topo-bg-right > * { position: relative; z-index: 1; }
+.topo-bg-right > *,
+.topo-bg-both > * { position: relative; z-index: 1; }
 /* Hero is special: orbs/noise/scan are also direct children and
    should stay behind. Lift the content container + scroll indicator
    to a higher z-index than those decorative layers. */
