@@ -590,13 +590,13 @@ html[data-theme="light"] .btn--outline:hover {
   color: var(--purple-dark);
 }
 .hero__scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, transparent, var(--purple));
+  width: 2px;
+  height: 64px;
+  background: linear-gradient(to bottom, transparent, var(--purple-light));
   animation: scrollPulse 2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  0%, 100% { opacity: 0.4; transform: scaleY(0.85); }
   50% { opacity: 1; transform: scaleY(1); }
 }
 
