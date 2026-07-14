@@ -150,22 +150,30 @@ document.querySelectorAll('.carousel').forEach(el => new Carousel(el));
 const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
+function applyFilter(filter) {
+  portfolioItems.forEach(item => {
+    if (filter === 'all' || item.dataset.category === filter) {
+      item.style.display = '';
+      setTimeout(() => item.style.opacity = '1', 10);
+    } else {
+      item.style.opacity = '0';
+      setTimeout(() => item.style.display = 'none', 300);
+    }
+  });
+}
+
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    portfolioItems.forEach(item => {
-      if (filter === 'all' || item.dataset.category === filter) {
-        item.style.display = '';
-        setTimeout(() => item.style.opacity = '1', 10);
-      } else {
-        item.style.opacity = '0';
-        setTimeout(() => item.style.display = 'none', 300);
-      }
-    });
+    applyFilter(btn.dataset.filter);
   });
 });
+
+const activeBtn = document.querySelector('.filter-btn.active');
+if (activeBtn && activeBtn.dataset.filter !== 'all') {
+  applyFilter(activeBtn.dataset.filter);
+}
 
 /* ── Contact Form ── */
 const contactForm = document.getElementById('contactForm');
