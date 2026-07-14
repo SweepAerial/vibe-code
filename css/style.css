@@ -787,14 +787,14 @@ html[data-theme="light"] .btn--outline:hover {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
-  opacity: 0;
+  opacity: 1;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 20px;
 }
-.portfolio-card:hover .portfolio-card__overlay { opacity: 1; }
+.portfolio-card:hover .portfolio-card__overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 60%); }
 .portfolio-card__type {
   font-family: var(--font-heading);
   font-size: 0.7rem;
@@ -803,7 +803,7 @@ html[data-theme="light"] .btn--outline:hover {
   color: var(--purple-light);
   margin-bottom: 4px;
 }
-.portfolio-card__title { font-size: 0.95rem; font-weight: 600; }
+.portfolio-card__title { font-size: 0.95rem; font-weight: 600; color: #ffffff; }
 
 /* ── Services Page - Carousel ── */
 .services-hero {
