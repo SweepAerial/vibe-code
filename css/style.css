@@ -1671,6 +1671,14 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   color: var(--purple-light);
 }
 .theme-toggle svg { width: 16px; height: 16px; }
+html[data-theme="light"] .theme-toggle {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+html[data-theme="light"] .theme-toggle:hover {
+  border-color: var(--purple-light);
+  color: var(--purple-light);
+}
 
 /* ── Light Theme ── */
 html[data-theme="light"] {
