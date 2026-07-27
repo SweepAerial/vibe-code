@@ -1672,6 +1672,10 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   color: var(--purple);
 }
 .theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle__icon { display: flex; align-items: center; justify-content: center; }
+.theme-toggle__icon--hover { display: none; }
+.theme-toggle:hover .theme-toggle__icon--current { display: none; }
+.theme-toggle:hover .theme-toggle__icon--hover { display: flex; }
 html[data-theme="light"] .theme-toggle {
   border: 1px solid rgba(0,0,0,0.2);
   background: var(--purple);

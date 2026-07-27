@@ -27,16 +27,24 @@
   let pref = localStorage.getItem('theme') || 'dark';
   applyTheme(pref);
 
+  function opposite(p) { return p === 'dark' ? 'light' : 'dark'; }
+
+  function updateBtn(btn, current) {
+    const next = opposite(current);
+    btn.innerHTML =
+      '<span class="theme-toggle__icon theme-toggle__icon--current">' + ICONS[current] + '</span>' +
+      '<span class="theme-toggle__icon theme-toggle__icon--hover">' + ICONS[next] + '</span>';
+    btn.title = 'Switch to ' + LABELS[next].toLowerCase();
+  }
+
   const btn = document.getElementById('themeToggle');
   if (btn) {
-    btn.innerHTML = ICONS[pref];
-    btn.title = LABELS[pref];
+    updateBtn(btn, pref);
     btn.addEventListener('click', () => {
-      pref = CYCLE[(CYCLE.indexOf(pref) + 1) % CYCLE.length];
+      pref = opposite(pref);
       localStorage.setItem('theme', pref);
       applyTheme(pref);
-      btn.innerHTML = ICONS[pref];
-      btn.title = LABELS[pref];
+      updateBtn(btn, pref);
     });
   }
 
