@@ -1656,9 +1656,9 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   width: 36px;
   height: 36px;
   border-radius: var(--radius);
-  border: 1px solid var(--black-border);
-  background: transparent;
-  color: var(--white-muted);
+  border: 1px solid rgba(255,255,255,0.25);
+  background: var(--purple);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1667,17 +1667,20 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   flex-shrink: 0;
 }
 .theme-toggle:hover {
-  border-color: var(--purple);
-  color: var(--purple-light);
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--purple);
 }
 .theme-toggle svg { width: 16px; height: 16px; }
 html[data-theme="light"] .theme-toggle {
-  border-color: var(--purple);
-  color: var(--purple);
+  border: 1px solid rgba(0,0,0,0.2);
+  background: var(--purple);
+  color: #ffffff;
 }
 html[data-theme="light"] .theme-toggle:hover {
-  border-color: var(--purple-light);
-  color: var(--purple-light);
+  background: #111827;
+  border-color: #111827;
+  color: var(--purple);
 }
 
 /* ── Light Theme ── */
