@@ -83,7 +83,7 @@ window.addEventListener('resize', () => {
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar__links a, .nav-mobile a').forEach(link => {
   const href = link.getAttribute('href');
-  if (href === currentPath || (currentPath === '' && href === 'index.html') || (currentPath === 'home.html' && href === 'index.html')) {
+  if (href === currentPath || (currentPath === '' && href === 'index.html')) {
     link.classList.add('active');
   }
 });

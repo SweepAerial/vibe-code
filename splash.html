@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Sweep Aerial Photography">
+  <meta name="robots" content="index,follow">
+  <meta name="twitter:image" content="https://sweepaerial.com.au/images/FullSweepLogoWhiteOutline.svg">
+  <meta name="twitter:description" content="Sweep Aerial Photography: precision drone mapping, construction progress monitoring, stockpile volume calculations and 3D site models for the construction industry across South East Queensland. Launching soon — register your interest for a free consultation.">
+  <meta name="twitter:title" content="Sweep Aerial Photography | Drone Mapping for Construction — Coming Soon">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://sweepaerial.com.au/images/FullSweepLogoWhiteOutline.svg">
+  <meta property="og:url" content="https://sweepaerial.com.au/">
+  <meta property="og:description" content="Sweep Aerial Photography: precision drone mapping, construction progress monitoring, stockpile volume calculations and 3D site models for the construction industry across South East Queensland. Launching soon — register your interest for a free consultation.">
+  <meta property="og:title" content="Sweep Aerial Photography | Drone Mapping for Construction — Coming Soon">
+  <meta property="og:site_name" content="Sweep Aerial Photography">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://sweepaerial.com.au/splash.html">
+  <meta name="keywords" content="drone mapping south east queensland, drone mapping brisbane, construction drone monitoring, stockpile volume drone, photogrammetry south east queensland, sweep aerial photography">
+  <title>Sweep Aerial Photography | Drone Mapping for Construction — Coming Soon</title>
+  <meta name="description" content="Sweep Aerial Photography: precision drone mapping, construction progress monitoring, stockpile volume calculations and 3D site models for the construction industry across South East Queensland. Launching soon — register your interest for a free consultation.">
+  <link rel="icon" type="image/svg+xml" href="images/PyramidWhite.svg" id="favicon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap">
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t==='system'?(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):t);})();</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #6925bf;
+      --purple-light: #8b3ff0;
+      --purple-glow: rgba(105, 37, 191, 0.25);
+      --black: #000000;
+      --black-card: #0f0f0f;
+      --black-border: #1a1a1a;
+      --white: #ffffff;
+      --white-dim: rgba(255,255,255,0.85);
+      --white-muted: rgba(255,255,255,0.45);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white-dim);
+      overflow: auto;
+    }
+
+    /* ── Background ── */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+    .bg__gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 50%, rgba(105,37,191,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 10% 80%, rgba(105,37,191,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 0%, rgba(105,37,191,0.06) 0%, transparent 55%);
+    }
+    .bg__topo {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/topo-bg.svg');
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
+      opacity: 0.6;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+              mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 35%, #000 65%);
+    }
+    .bg__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(105,37,191,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(105,37,191,0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
+    }
+    .bg__noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Scan line animation ── */
+    .bg__scan {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(105,37,191,0.03) 50%,
+        transparent 100%
+      );
+      background-size: 100% 8px;
+      animation: scanMove 8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes scanMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 800px; }
+    }
+
+    /* ── Floating orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+    .orb--1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(105,37,191,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation-delay: 0s;
+    }
+    .orb--2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(139,63,240,0.1) 0%, transparent 70%);
+      bottom: -80px; left: -80px;
+      animation-delay: -6s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20px, -30px) scale(1.05); }
+      66% { transform: translate(-15px, 20px) scale(0.95); }
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    /* ── Left panel ── */
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 64px;
+      border-right: 1px solid var(--black-border);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      width: 440px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: -18px 0;
+    }
+    .logo__text {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .logo__text span { color: var(--purple-light); }
+
+    .left__main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 0; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 32px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--purple);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    h1 .accent {
+      display: block;
+      color: var(--white);
+    }
+
+    .sub {
+      font-size: 1rem;
+      color: var(--white-muted);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Email form ── */
+    .notify-label {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .notify-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+    }
+    .notify-input {
+      flex: 1;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      padding: 13px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .notify-input:focus { border-color: var(--purple); }
+    .notify-input::placeholder { color: rgba(255,255,255,0.2); }
+    .notify-btn {
+      background: var(--purple);
+      border: 1px solid var(--purple);
+      border-radius: 0 4px 4px 0;
+      padding: 13px 22px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.25s, box-shadow 0.25s;
+      white-space: nowrap;
+    }
+    .notify-btn:hover {
+      background: var(--purple-light);
+      box-shadow: 0 0 24px var(--purple-glow);
+    }
+    .notify-success {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #a78bfa;
+      margin-top: 4px;
+      padding: 12px 16px;
+      background: rgba(105,37,191,0.1);
+      border: 1px solid rgba(105,37,191,0.25);
+      border-radius: 4px;
+      max-width: 440px;
+    }
+    .notify-success svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .notify-error {
+      display: none;
+      font-size: 0.85rem;
+      color: #fca5a5;
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 4px;
+      max-width: 440px;
+    }
+
+    .left__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--black-border);
+    }
+    .right__footer {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--black-border);
+      margin-top: 16px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--white-muted);
+    }
+    .social {
+      display: flex;
+      gap: 10px;
+    }
+    .social a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--black-border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white-muted);
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .social a:hover { border-color: var(--purple); color: var(--purple-light); }
+    .social a svg { width: 15px; height: 15px; }
+
+    /* ── Right panel ── */
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 64px 56px;
+    }
+    .right__top {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .contact-link {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.25s;
+    }
+    .contact-link:hover { color: var(--purple-light); }
+    .contact-link svg { width: 14px; height: 14px; }
+
+    .right__main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* ── Services list ── */
+    .services-title {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .services-title::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--purple);
+      flex-shrink: 0;
+    }
+    .service-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 4px;
+      transition: border-color 0.25s, transform 0.25s;
+      animation: rowIn 0.6s ease both;
+    }
+    .service-row:hover { border-color: rgba(105,37,191,0.4); transform: translateX(4px); }
+    @keyframes rowIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .service-row:nth-child(1) { animation-delay: 0.1s; }
+    .service-row:nth-child(2) { animation-delay: 0.2s; }
+    .service-row:nth-child(3) { animation-delay: 0.3s; }
+    .service-row:nth-child(4) { animation-delay: 0.4s; }
+    .service-row:nth-child(5) { animation-delay: 0.5s; }
+    .service-row:nth-child(6) { animation-delay: 0.6s; }
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(105,37,191,0.12);
+      border: 1px solid rgba(105,37,191,0.2);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--purple-light);
+    }
+    .service-icon svg { width: 18px; height: 18px; }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      flex: 1;
+    }
+    .service-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      opacity: 0.5;
+    }
+
+    /* ── Status bar ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(105,37,191,0.06);
+      border: 1px solid rgba(105,37,191,0.15);
+      border-radius: 4px;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--purple-light);
+      box-shadow: 0 0 10px var(--purple);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--purple); }
+      50% { opacity: 0.5; box-shadow: 0 0 4px var(--purple); }
+    }
+    .status-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+    }
+    .status-sub {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--white-muted);
+      margin-left: auto;
+    }
+
+    /* ── Hero animation ── */
+    .left__main { animation: fadeUp 0.8s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Large screens ── */
+    @media (min-width: 1400px) {
+      .left { padding: 72px 96px; }
+      .right { padding: 56px 96px 72px; }
+    }
+    @media (min-width: 1800px) {
+      .left { padding: 96px 120px; }
+      .right { padding: 72px 120px 96px; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      html, body { overflow: auto; }
+      .page { grid-template-columns: 1fr; padding-top: 56px; }
+      .right__top {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--black-border);
+        justify-content: space-between;
+      }
+      .right__top .contact-link { display: flex; }
+      .theme-toggle { position: static; background: transparent; backdrop-filter: none; }
+      html[data-theme="light"] .right__top .contact-link { color: #ffffff; }
+      html[data-theme="light"] .right__top .theme-toggle { color: rgba(255,255,255,0.75); border-color: rgba(255,255,255,0.3); }
+      .left {
+        padding: 40px 28px;
+        border-right: none;
+        border-bottom: 1px solid var(--black-border);
+      }
+      .logo img { max-width: 75%; }
+      .right { padding: 40px 28px; }
+      h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+      .notify-form { flex-direction: column; }
+      .notify-input { border-right: 1px solid var(--black-border); border-radius: 4px; border-bottom: none; border-radius: 4px 4px 0 0; }
+      .notify-btn { border-radius: 0 0 4px 4px; text-align: center; }
+      .left__main { flex: unset; justify-content: flex-start; padding-bottom: 0; }
+      .left__footer { display: none; }
+      .right__footer { display: flex; }
+    }
+    @media (max-width: 480px) {
+      .left__footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+    }
+
+    /* ── Admin bypass ── */
+    .admin-trigger {
+      position: fixed;
+      bottom: 14px;
+      right: 18px;
+      width: 22px;
+      height: 22px;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+    .admin-trigger:hover { opacity: 0.35; }
+    .admin-trigger svg { width: 100%; height: 100%; color: var(--white-muted); }
+
+    .admin-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+    }
+    .admin-overlay.open { display: flex; }
+    .admin-modal {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 8px;
+      padding: 36px 40px;
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .admin-modal h2 {
+      font-family: 'Audiowide', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .admin-modal input {
+      background: #0a0a0a;
+      border: 1px solid var(--black-border);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .admin-modal input:focus { outline: none; border-color: var(--purple); }
+    .admin-modal button {
+      background: var(--purple);
+      border: none;
+      border-radius: 4px;
+      padding: 12px;
+      font-family: 'Audiowide', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .admin-modal button:hover { background: var(--purple-light); }
+    .admin-error {
+      font-size: 0.8rem;
+      color: #fca5a5;
+      display: none;
+    }
+    .admin-cancel {
+      font-size: 0.78rem;
+      color: var(--white-muted);
+      text-align: center;
+      cursor: pointer;
+      background: none !important;
+      padding: 0 !important;
+    }
+    .admin-cancel:hover { color: var(--white); background: none !important; }
+
+    html[data-theme="light"] .bg__scan {
+      animation-duration: 60s;
+      opacity: 0.35;
+    }
+    html[data-theme="light"] .orb { opacity: 0.45; }
+
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      border: 1px solid var(--black-border);
+      background: transparent;
+      color: var(--white-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--purple-light); color: var(--purple-light); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+
+    /* ── Light Theme ── */
+    html[data-theme="light"] {
+      --black: #f0f2f5;
+      --black-card: #ffffff;
+      --black-border: #d1d5db;
+      --white: #111827;
+      --white-dim: rgba(17,24,39,0.88);
+      --white-muted: rgba(17,24,39,0.55);
+    }
+    html[data-theme="light"] body { background: var(--black); }
+    html[data-theme="light"] .notify-input::placeholder { color: rgba(17,24,39,0.3); }
+    html[data-theme="light"] .admin-modal input { background: #f9fafb; }
+    html[data-theme="light"] .left { border-right-color: var(--black-border); }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Sweep Aerial Photography",
+  "url": "https://sweepaerial.com.au",
+  "logo": "https://sweepaerial.com.au/images/FullSweepLogoWhiteOutline.svg",
+  "image": "https://sweepaerial.com.au/images/FullSweepLogoWhiteOutline.svg",
+  "description": "Precision drone mapping, construction progress monitoring, stockpile volume calculations, 3D site models and construction visualisations across South East Queensland. All flight operations conducted under CASA regulations with current public liability and professional indemnity insurance.",
+  "email": "hello@sweepaerial.com.au",
+  "telephone": "+61411209280",
+  "areaServed": { "@type": "Place", "name": "South East Queensland, Australia" },
+  "serviceType": [
+    "Drone Mapping",
+    "Aerial Mapping",
+    "Construction Progress Monitoring",
+    "Stockpile Volume Calculation",
+    "Construction Visualisation",
+    "3D Site Models"
+  ],
+  "sameAs": []
+}
+</script>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg__gradient"></div>
+  <div class="bg__topo"></div>
+  <div class="bg__grid"></div>
+  <div class="bg__noise"></div>
+  <div class="bg__scan"></div>
+  <div class="orb orb--1"></div>
+  <div class="orb orb--2"></div>
+</div>
+
+<div class="page">
+
+  <!-- ── Left ── -->
+  <div class="left">
+
+    <div class="logo">
+      <img class="theme-logo" src="images/FullSweepLogoWhiteOutline.svg" alt="Sweep Aerial Photography logo — drone mapping for construction across South East Queensland" onerror="this.style.display='none'">
+    </div>
+
+    <div class="left__main">
+      <div class="eyebrow">Launching Soon</div>
+      <h1>
+        Precision<br>
+        From <span class="accent">Above.</span>
+      </h1>
+      <p class="sub">
+        We're putting the finishing touches on our new site.
+        In the meantime, we're open for business — Clean, precise data - delivered with a fast turnaround.
+      </p>
+
+      <div>
+        <div class="notify-label">Get notified when we launch</div>
+        <form class="notify-form" id="notifyForm" novalidate>
+          <input
+            class="notify-input"
+            type="email"
+            id="notifyEmail"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="notify-btn">Notify Me</button>
+        </form>
+        <div class="notify-success" id="notifySuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Got it — we'll let you know the moment we go live.
+        </div>
+        <div class="notify-error" id="notifyError"></div>
+      </div>
+    </div>
+
+    <div class="left__footer">
+      <div class="footer-copy">&copy; 2026 Sweep Aerial Photography</div>
+      <div class="social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Right ── -->
+  <div class="right">
+
+    <div class="right__top">
+      <a href="mailto:hello@sweepaerial.com.au" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        hello@sweepaerial.com.au
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+
+    <div class="right__main">
+      <div class="services-title">Our Services</div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        </div>
+        <div class="service-name">Drone Mapping</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="2" x2="12" y2="22"/><circle cx="12" cy="12" r="3"/><polyline points="7 9 4 12 7 15"/><polyline points="17 9 20 12 17 15"/></svg>
+        </div>
+        <div class="service-name">Construction Progress Monitoring</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div class="service-name">Construction Visualisations</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+        </div>
+        <div class="service-name">Stockpile Volume Calculations</div>
+        <div class="service-dot"></div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="service-name">Tailored Reports</div>
+        <div class="service-dot"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="status-bar">
+        <div class="status-dot"></div>
+        <div class="status-text">Taking on projects now</div>
+        <div class="status-sub">
+          <a href="www.sweepaerial.com.au/contact" style="color:inherit;text-decoration:none;">Get in touch &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="right__footer">
+      <div class="footer-copy">&copy; 2026 Sweep Aerial Photography</div>
+      <div class="social">
+        <a href="www.instagram.com/sweepaerialphotography" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Admin preview bypass -->
+<button class="admin-trigger" id="adminTrigger" aria-label="Admin access" title="">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+</button>
+
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-modal">
+    <h2>Preview Access</h2>
+    <input type="password" id="adminPass" placeholder="Password" autocomplete="off">
+    <div class="admin-error" id="adminError">Incorrect password.</div>
+    <button id="adminSubmit">Enter Preview</button>
+    <button class="admin-cancel" id="adminCancel">Cancel</button>
+  </div>
+</div>
+
+<script>
+  /* ── Theme Toggle ── */
+  (function () {
+    const CYCLE = ['dark', 'light', 'system'];
+    const ICONS = {
+      dark: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+      light: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+      system: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
+    };
+    const LABELS = { dark: 'Dark mode', light: 'Light mode', system: 'System default' };
+    function applyTheme(pref) {
+      const resolved = pref === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : pref;
+      document.documentElement.setAttribute('data-theme', resolved);
+      const favicon = document.getElementById('favicon');
+      if (favicon) favicon.href = resolved === 'light' ? 'images/PyramidBlack.svg' : 'images/PyramidWhite.svg';
+      document.querySelectorAll('.theme-logo').forEach(img => {
+        if (img.classList.contains('theme-logo--sap')) {
+          img.src = resolved === 'light' ? 'images/SAPBlack.svg' : 'images/SAPWhite.svg';
+        } else {
+          img.src = resolved === 'light' ? 'images/FullSweepLogoBlackOutline.svg' : 'images/FullSweepLogoWhiteOutline.svg';
+        }
+      });
+    }
+    let pref = localStorage.getItem('theme') || 'dark';
+    applyTheme(pref);
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.innerHTML = ICONS[pref];
+      btn.title = LABELS[pref];
+      btn.addEventListener('click', () => {
+        pref = CYCLE[(CYCLE.indexOf(pref) + 1) % CYCLE.length];
+        localStorage.setItem('theme', pref);
+        applyTheme(pref);
+        btn.innerHTML = ICONS[pref];
+        btn.title = LABELS[pref];
+      });
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (pref === 'system') applyTheme('system');
+    });
+  })();
+
+  // ─────────────────────────────────────────────────────────────────
+  // https://sweepaerial.us1.list-manage.com/subscribe/post-json?u=172a3804c39135ff1e5c4c1bf&id=6a554ac2c1&f_id=00dc78e0f0
+  // MAILCHIMP SETUP
+  // 1. Log in to Mailchimp → Audience → Signup forms → Embedded forms
+  // 2. Copy the form "action" URL — it looks like:
+  //    https://yourname.us1.list-manage.com/subscribe/post?u=abc123&amp;id=def456
+  // 3. Paste it below, change "subscribe/post" → "subscribe/post-json"
+  //    and remove any "&amp;" (replace with "&")
+  // ─────────────────────────────────────────────────────────────────
+  const MAILCHIMP_URL = 'https://sweepaerial.us1.list-manage.com/subscribe/post-json?u=172a3804c39135ff1e5c4c1bf&id=6a554ac2c1&f_id=00dc78e0f0';
+
+  const form    = document.getElementById('notifyForm');
+  const input   = document.getElementById('notifyEmail');
+  const btn     = form.querySelector('button');
+  const success = document.getElementById('notifySuccess');
+  const error   = document.getElementById('notifyError');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!email) return;
+
+    // Reset state
+    error.style.display = 'none';
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Mailchimp requires JSONP for cross-origin requests from static sites
+    const callbackName = 'mcCallback_' + Date.now();
+    const url = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}&c=${callbackName}`;
+
+    window[callbackName] = function (data) {
+      // Clean up
+      delete window[callbackName];
+      document.getElementById('mc-jsonp')?.remove();
+      btn.textContent = 'Notify Me';
+      btn.disabled = false;
+
+      if (data.result === 'success') {
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } else {
+        let msg = 'Something went wrong. Please try again.';
+        if (data.msg) {
+          msg = data.msg
+            .replace(/<[^>]*>/g, '')
+            .replace(/^\d+ - /, '')
+            .trim();
+          // Friendlier text for common Mailchimp responses
+          if (/already subscribed/i.test(msg)) {
+            msg = 'This email is already on our list — we\'ll be in touch!';
+          }
+        }
+        error.textContent = msg;
+        error.style.display = 'block';
+      }
+    };
+
+    const script = document.createElement('script');
+    script.id  = 'mc-jsonp';
+    script.src = url;
+    // Timeout fallback if Mailchimp doesn't respond
+    script.onerror = () => {
+      delete window[callbackName];
+      script.remove();
+      btn.textContent = 'Notify Me';
+      btn.disabled = false;
+      error.textContent = 'Could not connect. Please try again.';
+      error.style.display = 'block';
+    };
+    document.body.appendChild(script);
+  });
+
+  // ── Admin preview bypass ──
+  const ADMIN_PASSWORD = 'sweep-preview';
+  const adminTrigger  = document.getElementById('adminTrigger');
+  const adminOverlay  = document.getElementById('adminOverlay');
+  const adminPass     = document.getElementById('adminPass');
+  const adminSubmit   = document.getElementById('adminSubmit');
+  const adminCancel   = document.getElementById('adminCancel');
+  const adminError    = document.getElementById('adminError');
+
+  adminTrigger.addEventListener('click', () => {
+    adminOverlay.classList.add('open');
+    adminPass.value = '';
+    adminError.style.display = 'none';
+    setTimeout(() => adminPass.focus(), 50);
+  });
+
+  function attemptAdminLogin() {
+    if (adminPass.value === ADMIN_PASSWORD) {
+      sessionStorage.setItem('sweep_admin_preview', '1');
+      window.location.href = 'index.html';
+    } else {
+      adminError.style.display = 'block';
+      adminPass.value = '';
+      adminPass.focus();
+    }
+  }
+
+  adminSubmit.addEventListener('click', attemptAdminLogin);
+  adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptAdminLogin(); });
+  adminCancel.addEventListener('click', () => adminOverlay.classList.remove('open'));
+  adminOverlay.addEventListener('click', (e) => { if (e.target === adminOverlay) adminOverlay.classList.remove('open'); });
+</script>
+
+</body>
+</html>
