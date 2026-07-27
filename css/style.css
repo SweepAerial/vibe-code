@@ -1356,16 +1356,6 @@ textarea.form-control { resize: vertical; min-height: 140px; }
   margin-bottom: 20px;
   display: none;
 }
-.portal-demo-note {
-  margin-top: 24px;
-  padding: 14px 16px;
-  background: var(--white-subtle);
-  border-left: 2px solid var(--purple);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  font-size: 0.8rem;
-  color: var(--white-muted);
-}
-.portal-demo-note strong { color: var(--purple-light); }
 
 /* ── Dashboard ── */
 .dashboard {

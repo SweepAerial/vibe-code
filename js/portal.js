@@ -49,10 +49,7 @@
   });
 })();
 
-const DEMO_CREDENTIALS = {
-  'demo@sweep.com': { password: 'sweep2024', name: 'Demo Client', company: 'Demo Corp', initials: 'DC' },
-  'client@example.com': { password: 'client123', name: 'Jane Smith', company: 'BuildRight Construction', initials: 'JS' }
-};
+const DEMO_CREDENTIALS = {};
 
 const SESSION_KEY = 'sweep_portal_session';
 
