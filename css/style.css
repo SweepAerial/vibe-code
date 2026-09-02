@@ -727,9 +727,10 @@ html[data-theme="light"] .btn--outline:hover {
 .why-us__visual {
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.why-us__visual .cslider {
+  width: 100%;
+  max-width: none;
 }
 .why-us__visual-inner {
   text-align: center;
