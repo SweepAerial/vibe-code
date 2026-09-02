@@ -1927,7 +1927,7 @@ html[data-theme="light"] .carousel__visual {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-  color: #333;
+  color: var(--purple);
   pointer-events: none;
 }
 
@@ -1945,7 +1945,7 @@ html[data-theme="light"] .carousel__visual {
 }
 
 .cslider__label {
-  background: rgba(0,0,0,0.52);
+  background: var(--purple);
   color: #fff;
   padding: 4px 10px;
   border-radius: 3px;
@@ -1953,13 +1953,10 @@ html[data-theme="light"] .carousel__visual {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 
 /* Light theme */
 html[data-theme="light"] .cslider { border-color: var(--black-border); background: #ffffff; }
-html[data-theme="light"] .cslider__label { background: rgba(0,0,0,0.48); }
 
 /* Mobile */
 @media (max-width: 480px) {
