@@ -1865,7 +1865,7 @@ html[data-theme="light"] .carousel__visual {
   margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
-  background: var(--black-card);
+  background: #000000;
   border: 1px solid var(--black-border);
   user-select: none;
   -webkit-user-select: none;
@@ -1958,7 +1958,7 @@ html[data-theme="light"] .carousel__visual {
 }
 
 /* Light theme */
-html[data-theme="light"] .cslider { border-color: var(--black-border); }
+html[data-theme="light"] .cslider { border-color: var(--black-border); background: #ffffff; }
 html[data-theme="light"] .cslider__label { background: rgba(0,0,0,0.48); }
 
 /* Mobile */
