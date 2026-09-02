@@ -1728,6 +1728,20 @@ html[data-theme="light"] .theme-toggle:hover {
   font-size: clamp(1.3rem, 3vw, 1.8rem);
   color: var(--purple-light);
 }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 48px;
+}
+.faq-col {
+  min-width: 0;
+}
+@media (max-width: 768px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
 
 /* ── Light Theme ── */
 html[data-theme="light"] {
@@ -1883,10 +1897,6 @@ html[data-theme="light"] .carousel__visual {
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
-  mix-blend-mode: multiply;
-}
-html[data-theme="light"] .cslider__img {
-  mix-blend-mode: normal;
 }
 
 .cslider__img--b { z-index: 1; }
