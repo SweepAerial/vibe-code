@@ -22,6 +22,10 @@
         img.src = pref === 'light' ? 'images/FullSweepLogoBlackOutline.svg' : 'images/FullSweepLogoWhiteOutline.svg';
       }
     });
+    var key = pref === 'light' ? 'srcLight' : 'srcDark';
+    document.querySelectorAll('.cslider__img[data-src-dark]').forEach(function (img) {
+      img.src = img.dataset[key];
+    });
   }
 
   let pref = localStorage.getItem('theme') || 'dark';
