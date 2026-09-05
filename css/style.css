@@ -90,6 +90,14 @@ body.topo-bg-both::before {
 .hero > .hero__noise,
 .hero > .hero__scan,
 .hero > .hero__orb { z-index: 0; }
+/* When a video background is present, hide all decorative layers
+   (topo, grid, noise, scan, orbs) so only the video shows through. */
+.hero:has(.hero__video) > .hero__bg,
+.hero:has(.hero__video) > .hero__grid,
+.hero:has(.hero__video) > .hero__noise,
+.hero:has(.hero__video) > .hero__scan,
+.hero:has(.hero__video) > .hero__orb { display: none; }
+.hero:has(.hero__video)::before { display: none; }
 
 /* Topo sections get a soft vertical fade on the topo itself at top
    AND bottom, composited with the horizontal side-mask. */
@@ -585,7 +593,7 @@ html[data-theme="light"] .btn--outline:hover {
 }
 .hero__sub {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   max-width: 540px;
   margin-bottom: 40px;
   line-height: 1.7;
