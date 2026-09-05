@@ -473,6 +473,20 @@ html[data-theme="light"] .btn--outline:hover {
 /* Hero background — matches the coming-soon (index.html) treatment:
    three layered radial gradients, faint scan lines, fractal noise,
    and two floating orbs. */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero__video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -1788,6 +1802,7 @@ html[data-theme="light"] .filter-btn.active { color: #ffffff; }
 html[data-theme="light"] .carousel__card.topo-bg-right::before { filter: saturate(3) brightness(0.7); opacity: 0.55; }
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
 html[data-theme="light"] .hero__scan { opacity: 0.4; }
+html[data-theme="light"] .hero__video-overlay { background: rgba(255, 255, 255, 0.65); }
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
