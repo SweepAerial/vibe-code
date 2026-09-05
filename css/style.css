@@ -82,9 +82,9 @@ body.topo-bg-both::before {
    should stay behind. Lift the content container + scroll indicator
    to a higher z-index than those decorative layers. */
 .hero > .container,
-.hero > .hero__scroll { z-index: 2; }
-.hero > .hero__video,
-.hero > .hero__video-overlay { z-index: -1; }
+.hero > .hero__scroll { z-index: 3; }
+.hero > .hero__video { z-index: 0; }
+.hero > .hero__video-overlay { z-index: 1; }
 .hero > .hero__bg,
 .hero > .hero__grid,
 .hero > .hero__noise,
@@ -472,6 +472,7 @@ html[data-theme="light"] .btn--outline:hover {
 /* ── Hero ── */
 .hero {
   position: relative;
+  z-index: 0;
   min-height: 600px;
   display: flex;
   align-items: center;
