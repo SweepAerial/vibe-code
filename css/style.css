@@ -98,6 +98,7 @@ body.topo-bg-both::before {
 .hero:has(.hero__video) > .hero__scan,
 .hero:has(.hero__video) > .hero__orb { display: none; }
 .hero:has(.hero__video)::before { display: none; }
+.hero:has(.hero__video) { background: #000000; }
 .hero:has(.hero__video) p,
 .hero:has(.hero__video) .hero__sub { color: #ffffff !important; }
 
@@ -1815,12 +1816,17 @@ html[data-theme="light"] .footer__col h5 { color: var(--purple); }
 html[data-theme="light"] .filter-btn.active { color: #ffffff; }
 html[data-theme="light"] .carousel__card.topo-bg-right::before { filter: saturate(3) brightness(0.7); opacity: 0.55; }
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
-html[data-theme="light"] .hero__scan { opacity: 0.4; }
-html[data-theme="light"] .hero__video-overlay { background: rgba(255, 255, 255, 0.35); }
-html[data-theme="light"] .hero:has(.hero__video) p,
-html[data-theme="light"] .hero:has(.hero__video) .hero__sub { color: #111111 !important; }
-html[data-theme="light"] .hero:has(.hero__video) .hero__sub,
-html[data-theme="light"] .hero:has(.hero__video) p { color: #ffffff !important; }
+/* Lock the home-page hero to dark appearance in both themes */
+html[data-theme="light"] .hero:has(.hero__video) {
+  --black: #000000;
+  --black-soft: #0a0a0a;
+  --black-card: #111111;
+  --black-border: #1a1a1a;
+  --white: #ffffff;
+  --white-dim: rgba(255, 255, 255, 0.85);
+  --white-muted: rgba(255, 255, 255, 0.5);
+  --white-subtle: rgba(255, 255, 255, 0.08);
+}
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
