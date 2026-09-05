@@ -1908,6 +1908,9 @@ html[data-theme="light"] .carousel__visual {
   pointer-events: none;
   -webkit-user-drag: none;
 }
+.cslider--no-zoom .cslider__img {
+  object-view-box: none;
+}
 
 .cslider__img--b { z-index: 1; }
 
