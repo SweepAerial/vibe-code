@@ -481,6 +481,7 @@ html[data-theme="light"] .btn--outline:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   z-index: 0;
 }
 .hero__video-overlay {
@@ -584,7 +585,7 @@ html[data-theme="light"] .btn--outline:hover {
 }
 .hero__sub {
   font-size: 1.1rem;
-  color: var(--white-muted);
+  color: rgba(255, 255, 255, 0.85);
   max-width: 540px;
   margin-bottom: 40px;
   line-height: 1.7;
@@ -1805,6 +1806,7 @@ html[data-theme="light"] .carousel__card.topo-bg-right::before { filter: saturat
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
 html[data-theme="light"] .hero__scan { opacity: 0.4; }
 html[data-theme="light"] .hero__video-overlay { background: rgba(255, 255, 255, 0.65); }
+html[data-theme="light"] .hero__sub { color: rgba(17, 24, 39, 0.7); }
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
