@@ -99,7 +99,6 @@ body.topo-bg-both::before {
 .hero:has(.hero__video) > .hero__orb { display: none; }
 .hero:has(.hero__video)::before { display: none; }
 .hero:has(.hero__video) p,
-.hero:has(.hero__video) .tag,
 .hero:has(.hero__video) .hero__sub { color: #ffffff !important; }
 
 /* Topo sections get a soft vertical fade on the topo itself at top
