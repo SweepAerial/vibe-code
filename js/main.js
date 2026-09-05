@@ -186,22 +186,31 @@ const formSuccess = document.querySelector('.form-success');
 
 contactForm?.addEventListener('submit', (e) => {
   e.preventDefault();
-  const name = document.getElementById('name')?.value;
-  const email = document.getElementById('email')?.value;
-  const company = document.getElementById('company')?.value;
-  const service = document.getElementById('service')?.value;
-  const message = document.getElementById('message')?.value;
+  const submitBtn = contactForm.querySelector('.form-submit');
+  const errorEl = document.getElementById('formError');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  if (errorEl) errorEl.style.display = 'none';
 
-  const subject = `Sweep Aerial Enquiry - ${service || 'General'} - ${company || name}`;
-  const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nService: ${service}\n\n${message}`;
-  const mailtoLink = `mailto:hello@sweepaerial.com.au?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  window.location.href = mailtoLink;
-
-  if (formSuccess) {
-    contactForm.style.display = 'none';
-    formSuccess.style.display = 'block';
-  }
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: new FormData(contactForm),
+    headers: { 'Accept': 'application/json' }
+  }).then(function (res) {
+    if (res.ok) {
+      contactForm.style.display = 'none';
+      if (formSuccess) formSuccess.style.display = 'block';
+    } else {
+      throw new Error('Submission failed');
+    }
+  }).catch(function () {
+    if (errorEl) {
+      errorEl.textContent = 'Something went wrong. Please try again or email us directly at hello@sweepaerial.com.au';
+      errorEl.style.display = 'block';
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  });
 });
 
 /* ── Counter animation ── */
