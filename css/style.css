@@ -1725,8 +1725,11 @@ html[data-theme="light"] .theme-toggle:hover {
   line-height: 1.7;
 }
 .faq-category h2 {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   color: var(--purple-light);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--purple);
+  margin-bottom: 0;
 }
 .faq-grid {
   display: grid;
