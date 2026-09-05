@@ -931,6 +931,11 @@ html[data-theme="light"] .btn--outline:hover {
   inset: 0;
   background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 70%);
 }
+.carousel__visual--embed {
+  background: none;
+  border: none;
+}
+.carousel__visual--embed::before { display: none; }
 
 .carousel__controls {
   display: flex;
