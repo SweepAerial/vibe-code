@@ -496,7 +496,10 @@ html[data-theme="light"] .btn--outline:hover {
   z-index: 0;
 }
 .hero__video-overlay {
-  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
 }
 .hero__bg {
   position: absolute;
@@ -1814,6 +1817,8 @@ html[data-theme="light"] .carousel__card.topo-bg-right::before { filter: saturat
 html[data-theme="light"] .nav-mobile a[href="portal.html"] { color: var(--purple); }
 html[data-theme="light"] .hero__scan { opacity: 0.4; }
 html[data-theme="light"] .hero__video-overlay { background: rgba(255, 255, 255, 0.35); }
+html[data-theme="light"] .hero:has(.hero__video) .hero__sub,
+html[data-theme="light"] .hero:has(.hero__video) p { color: #ffffff !important; }
 html[data-theme="light"] .form-control {
   background: #f9fafb;
   color: var(--white);
