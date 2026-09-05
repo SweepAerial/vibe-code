@@ -83,6 +83,8 @@ body.topo-bg-both::before {
    to a higher z-index than those decorative layers. */
 .hero > .container,
 .hero > .hero__scroll { z-index: 2; }
+.hero > .hero__video,
+.hero > .hero__video-overlay { z-index: -1; }
 .hero > .hero__bg,
 .hero > .hero__grid,
 .hero > .hero__noise,
