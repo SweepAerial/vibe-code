@@ -1900,6 +1900,7 @@ html[data-theme="light"] .carousel__visual {
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
+  transform: scale(1.25);
 }
 
 .cslider__img--b { z-index: 1; }
