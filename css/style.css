@@ -934,6 +934,7 @@ html[data-theme="light"] .btn--outline:hover {
 .carousel__visual--embed {
   background: none;
   border: none;
+  align-self: center;
 }
 .carousel__visual--embed::before { display: none; }
 
